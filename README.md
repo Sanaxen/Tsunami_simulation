@@ -1,6 +1,162 @@
-# Tsunami_simulation
-
-It's under maintenance now.  
-It was made more than 10 years ago, so I'm reconditioning it in various ways.  
-ä»Šã¯ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ä¸­ã§ã™ã€‚  
-ï¼‘ï¼ä»¥ä¸Šå¹´å‰ã«ä½œã£ãŸã‚‚ã®ãªã®ã§è‰²ã€…ã¨å†æ•´å‚™ã—ã¦ã„ã¾ã™ã€‚  
+# Tsunami_simulation  
+  
+![](./images/simulation.gif)  
+  
+It's under maintenance now.    
+It was made more than 10 years ago, so I'm reconditioning it in various ways.    
+¡‚Íƒƒ“ƒeƒiƒ“ƒX’†‚Å‚·B    
+‚P‚OˆÈã”N‘O‚Éì‚Á‚½‚à‚Ì‚È‚Ì‚ÅFX‚ÆÄ®”õ‚µ‚Ä‚¢‚Ü‚·B    
+  
+------  
+[example Gallery](https://github.com/Sanaxen/Tsunami_simulation/blob/master/example_Gallery.md)  
+  
+------  
+  
+# ƒrƒ‹ƒh•û–@  
+  
+## Requirements  
+  
+visual studio 2019 community  
+  
+Visual Studio ŠJ”­ÒƒRƒ}ƒ“ƒh ƒvƒƒ“ƒvƒg‚ğ—˜—p‚µ‚Ü‚·B(x64 Native Tools Command Pr  
+  
+# Tsunami_simulation  
+  
+It's under maintenance now.    
+It was made more than 10 years ago, so I'm reconditioning it in various ways.    
+¡‚Íƒƒ“ƒeƒiƒ“ƒX’†‚Å‚·B    
+‚P‚OˆÈã”N‘O‚Éì‚Á‚½‚à‚Ì‚È‚Ì‚ÅFX‚ÆÄ®”õ‚µ‚Ä‚¢‚Ü‚·B  ompt for VS 2019)  
+ŠJ”­Ò—pƒRƒ}ƒ“ƒhƒ‰ƒCƒ“ ƒc[ƒ‹‚ğŠÈ’P‚Ég—p‚Å‚«‚é‚æ‚¤‚É“Á’è‚ÌŠÂ‹«•Ï”‚ªİ’è‚³‚ê‚Ä‚¢‚é•W€ƒRƒ}ƒ“ƒh ƒvƒƒ“ƒvƒg‚Å‚·B  
+  
+`` cd Tsunami_simulation\project_and_run  
+tsu_build_all.bat ``  
+  
+  
+  
+# ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“•û–@  
+  
+### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^ì¬Ïƒf[ƒ^ƒZƒbƒg‚ğg‚¤ê‡  
+ƒf[ƒ^ƒZƒbƒg‚ÍˆÈ‰º‚©‚çæ“¾‚Å‚«‚Ü‚·B  
+https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_dataset.7z  
+  
+—˜—p‰Â”\‚ÈƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚¨‚æ‚ÑŒvZƒf[ƒ^İ’èƒoƒbƒ`‚ÍˆÈ‰º‚Ì’Ê‚èB  
+``cd Tsunami_simulation\project_and_run\Tsunami_simulation_run_example``  
+  
+¡’Ã”gƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“  
+’†‰›–hĞ‰ï‹cCASE1_new.bat  
+’†–hƒ‚ƒfƒ‹3˜A“®.bat  
+  
+“Œ–k.bat  
+“Œ–k‘åƒ‚ƒfƒ‹Ver1.2.bat  
+  
+“Œ–k‘åƒ‚ƒfƒ‹Ver1.2_“ú–{‘Sˆæ.bat  
+  
+“Œ–k‘¾•½—m‰«v2-2.bat  
+“Œ–k‘¾•½—m‰«v2.bat²’|ƒ‚ƒfƒ‹Ver4.6.bat  
+²’|ƒ‚ƒfƒ‹Ver8.0.bat  
+  
+C³E•ó‰i’nk.bat  
+  
+‘å˜A“®ƒP[ƒX.bat  
+  
+‘å˜A“®i•ó‰i{Œc’·j.bat  
+ˆÀ­“ŒŠC’nkv2.bat  
+  
+ˆÀ­“ŒŠC’nkv2_all.bat  
+  
+•ó‰i’nkv2.bat  
+  
+Œc’·’nk.bat  
+  
+  
+  
+¡‘ä•—‚É‚æ‚é‚’ªƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“  
+ˆÉ¨˜p‘ä•—.bat  
+  
+‘ä•—201330†(HAIYAN).bat  
+  
+¡‰Íì”Ã—”ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“  
+‹S“{ì”Ã—”‰ğÍ.bat  
+  
+  
+  
+ˆÈ‰º‚ÍÀ‘•‚ÌƒeƒXƒg‚É—˜—p‚µ‚½ƒf[ƒ^ƒZƒbƒg  
+¦Œ»“_‚Å—˜—p‚Å‚«‚é‚©‚ÍŠm”F‚µ‚Ä‚¢‚Ü‚¹‚ñ  
+Š®‘S”½Ë.bat  
+  
+ó…Œø‰Ê.bat  
+‘kã.bat  
+‘kã2.bat  
+‘kã3.bat  
+‘kã4.bat  
+‘kã5.bat  
+‹«ŠE”gŒ»Û.bat  
+W’†Œø‰Ê.bat  
+—£“‡ƒgƒ‰ƒbƒvŒ»Û.bat  
+  
+#### ‚»‚Ì‘¼‚ÌƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“  
+  
+è¦ÎÕ“ËiKT_inmpact“¯ƒŒƒxƒ‹)Test(“ú–{‘S‘Ì)  
+  
+### ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“ƒf[ƒ^‚ğÅ‰‚©‚çì‚éê‡  
+  
+`` cd Tsunami_simulation\tsu_dataset\CREATE_DATA ``  
+  
+’nŒ`ƒf[ƒ^ì¬è‡.pdf‚ğQÆ‚­‚¾‚³‚¢B  
+¦ƒhƒLƒ…ƒƒ“ƒg’†‚ÌƒfƒBƒŒƒNƒgƒŠiƒtƒHƒ‹ƒ_[–¼j‚ªˆÙ‚È‚Á‚Ä‚¢‚é‰Â”\«‚ª‚ ‚è‚Ü‚·‚Ì‚Å‚²’ˆÓ‰º‚³‚¢B  
+  
+•K—v‚Èƒf[ƒ^i’nŒ`ƒf[ƒ^“™j‚ª€”õ‚Å‚«‚ê‚Î’nŒ`ƒf[ƒ^ì¬è‡.pdf‚Ìu‘¼‚Ì’nŒ`ƒf[ƒ^Aƒf[ƒ^ƒtƒH[ƒ}ƒbƒg‚ğ—˜—p‚·‚éê‡v‚ğQÆ‚­‚¾‚³‚¢Bƒoƒbƒ`‚Å©“®¶¬‚·‚é‚±‚Æ‚ªo—ˆ‚Ü‚·B  
+  
+  
+  
+  
+  
+# ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌÀs  
+  
+  
+#### ‰Šú‰»  
+  
+ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ğÀs‚·‚é‘O‚É` clear.bat `, ` init.bat ` ‚ğÀs‚µ‚Ä•s—v‚Èƒtƒ@ƒCƒ‹‚ğíœ‚µ‚Ä‰º‚³‚¢B  
+  
+  
+  
+’Ã”gƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“A‘ä•—‚É‚æ‚é‚’ªƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌÀs  
+`` Tsunami_simulation_Run.bat ``  
+  
+‰Íì”Ã—”ƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌÀs  
+`` Tsunami_simulation_River_flooding.bat ``  
+  
+  
+  
+# ‰Â‹‰»  
+  
+Às’†‚ÉƒŠƒAƒ‹ƒ^ƒCƒ€‚É‰Â‹‰»‰Â”\‚Å‚·  
+TSUNAMIƒŠƒAƒ‹ƒ^ƒCƒ€2DViwer.bat  
+  
+3D‰Â‹‰»‚à‰Â”\‚Å‚·‚ªƒVƒ~ƒ…ƒŒ[ƒVƒ‡ƒ“‚ÌÀs‘O‚É**CalculationParameters.txt**‚ğC³‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B  
+  
+``EXPORT_OBJ  
+0``  
+  
+‚ğ  
+``EXPORT_OBJ  
+1``  
+  
+  
+  
+‚ÉC³‚µ‚Ä‰º‚³‚¢B  
+  
+# “®‰æƒAƒjƒ[ƒVƒ‡ƒ“‚Ö‚Ì•ÏŠ·  
+  
+[ffmpeg](https://www.ffmpeg.org/)@‚ª•K—v‚Å‚·B  
+  
+` cnv_move2D.bat `  
+  
+ `cnv_move3D.bat `  
+  
+  
+  
+#### Œãn––  
+  
+` clear.bat `, ` init.bat ` ‚ğÀs‚µ‚Ä•s—v‚Èƒtƒ@ƒCƒ‹‚ğíœ‚µ‚Ä‰º‚³‚¢B  
+  
