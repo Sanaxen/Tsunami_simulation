@@ -21,7 +21,7 @@ Visual Studio 開発者コマンド プロンプトを利用します。(x64 Native Tools Command P
 It's under maintenance now.    
 It was made more than 10 years ago, so I'm reconditioning it in various ways.    
 今はメンテナンス中です。    
-１０以上年前に作ったものなので色々と再整備しています。  ompt for VS 2019)  
+１０以上年前に作ったものなので色々と再整備しています。 )  
 開発者用コマンドライン ツールを簡単に使用できるように特定の環境変数が設定されている標準コマンド プロンプトです。  
 
 `` cd Tsunami_simulation\project_and_run  
