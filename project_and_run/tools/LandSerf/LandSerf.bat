@@ -1,0 +1,2 @@
+:cd C:\Program Files\LandSerf
+start javaw -Xmx4400m -Djava.library.path=.\lib -classpath ./jars/landserf230.jar;./jars/jogl.jar;./jars/alloy.jar;./jars/utils230.jar;./jars/RXTXcomm.jar;./jars/gluegen-rt.jar jwo.landserf.LandSerf %1 %2 %3 %4 %5 %6 %7 %8 %9

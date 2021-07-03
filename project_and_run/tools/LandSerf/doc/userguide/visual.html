@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <link rel="Stylesheet" rev="Stylesheet" href="../css/landserf.css" media="All" />
+
+<!-- LandSerf Header -->
+
+ <title>LandSerf User's Guide - 4. Visualising Elevation Data</title>
+ <meta name="description" content="LandSerf User's Guide" />
+ <meta name="keywords" content="LandSerf GIS DEM Terrain modelling" />
+</head>
+
+<body>
+<div id="header">
+ <a href="../index.html">
+  <img src="../images/landserfText.gif" width="304" height="57" alt="Go to LandSerf documentation" />
+  <span id="lsicon">
+   <img src="../images/iconTitle.gif" width="57" height="57" alt="Go to Landserf documentation" />
+  </span>
+ </a>
+ <br />
+
+ <div id="breadcrumbs">
+  <span id="currentLocation">Chapter 4</span>          |
+  <a href="./index.html">User's Guide</a>              |
+  <a href="../../index.html">LandSerf 2.3 Documentation</a>  |
+  <a href="http://www.landserf.org">landserf.org</a>
+ </div>
+</div>
+
+<div id="container">
+
+ <!-- End of header -->
+
+
+<h1>Chapter 4. Visualising Spatial Data</h1>
+
+<h2>4.1 Displaying Raster Data</h2>
+
+<p>
+ To display raster surface models, select either <code>Raster</code> or <code>Relief</code> from the 
+ <code>Display</code> menu. The former will display the primary raster based on its own <i>colour table</i>
+ (see <a href="#colours">Editing Colours</a> below). Raster values that fall between those with defined colours 
+ are given a linearly interpolated colour value. This gives a continuous range of colours for most DEMs. 
+ <i>Relief</i> presentation will combine these same colour rules with a shaded relief calculation simulating local
+ texture and shadow. If a <i>secondary</i> raster is selected, the colour rules of this raster will be combined with
+ shaded relief calculated from the <i>primary raster</i>.
+ <br /><br />
+ <img src="images/figure4.1.jpg" width="630" height="295" align="bottom" alt="Raster and shaded relief display with default colour table" />
+ <span class="caption">Raster and shaded relief display with default colour table</span>
+</p>
+
+<p>
+ Various settings for the shaded relief calculation may be set from the <code>configure-&gt;Shaded relief...</code>
+ menu option or the <img src="../images/shade16.gif" width="16" height="16" alt="button" /> button. Each
+ of the parameters can be changed in realtime by moving the relevant slider. The small thumbnail image shows
+ the effect of these changing parameters on the surface.
+</p>
+
+<p>
+ The position of the 'sun' illuminating the surface is controlled by the <code>azimuth</code> and <code>elevation</code>
+ sliders. Lower sun angles give more pronounced shadowing effects, while azimuths from a southerly or 
+ easterly direction give the impression of inverted	topography. The relative balance of the colour and 
+ shading can be controlled using the <code>Percent shading</code> slider. <code>Vertical exaggeration</code> can be used
+ to control the degree of shadow throughout the whole image and is particularly useful for larger DEMs representing non-mountainous
+ terrain. The <code>Aspect bias</code> slider controls the degree to which slope direction (aspect) rather than 
+ slope steepness controls the amount of shadow. Higher values will tend to emphasise local detail in the surface and is 
+ particularly useful for detecting error artifacts in elevation models. Lower values will tend to produce more realistic shading.
+ <br /><br />
+ <img src="images/figure4.2.jpg" width="586" height="309" align="bottom" alt="Shaded relief parameters" />
+ <span class="caption">Basic (left) and advanced (right) shaded relief parameters</span>
+</p>
+
+<p>
+ Selecting <code>Show advanced</code> reveals a second set of shaded relief parameters that are used when creating a shaded
+ relief surface as a <i>surface parameter</i> (see <a href="./analysis.html">Chapter 7</a>). These parameters control the
+ <i>Phong lighting model</i>, their effects being shown on the grey sphere as the sliders are moved. Note that none of these
+ advanced parameters have any effect on the relief shading produced by selecting <code>Display-&gt;Relief</code>.
+</p>
+
+<p>
+ After pressing <code>OK</code> in this window, the main raster display will be updated with the new settings.
+</p>
+
+<h2>4.2 Displaying Vector Data</h2>
+
+<p>
+ Vector maps are displayed by selecting the <code>Display-&gt;Vector</code> menu. This menu item is
+ toggled on and off with further selection. Colours are assigned to vector values using interpolation of
+ colour rules in an identical way to rasters. Both primary and secondary vector maps can be displayed simultaneously
+ if selected.
+ <br /><br />
+ <img src="images/figure4.3.jpg" width="505" height="496" align="bottom" alt="Vector map with points, lines, polygons and text labels" />
+ <span class="caption">Vector map with points, lines, polygons and text labels</span>
+</p>
+
+<p>
+ The appearance of vector maps can be controlled through the editing of its colour table (see below)
+ and by altering their appearance using the <code>Display-&gt;Vector appearance</code> menu item. This
+ brings up a window as shown in the figure below that allows the width of vector points and lines to be
+ set, as well as the transparency associated with vector polygons. Width values can be less than 1 in order to
+ create thin lines and small points. Setting line width to 0.2 often results in attractive unobtrusive linear 
+ boundaries.Transparent polygons allow multiple features to be shown overlapping the same area on the ground. Polygon
+ boundaries can be turned on or off, and their colour can be set by clicking on the small square representing the 
+ current boundary colour. Setting  points or lines to <code>Surround</code> will draw boundaries <i>around</i> the 
+ feature rather than at the feature location. This can be useful for drawing parallel lines along roads or for 
+ circling points of interest.
+</p>
+
+<p>
+ Labels associated with point objects in the vector map can be optionally displayed by ticking the 
+ <code>Show labels</code> box. The appearance of these labels can be controlled by selecting an appropriate 
+ foreground and background colour (click the coloured square to change it). Particularly useful is the ability
+ to change the transparency of the background. By using semi-transparent background colour, sufficient contrast
+ with the foreground lettering can be used without obscuring any underlying map data (see figure below). The size
+ of the labels can controlled with the slider. The position of the label relative to its point location can be 
+ controlled by selecting the relevant button under <code>Text Alignment</code>. When displaying labels is often 
+ useful to select an appropriate textual attribute from the attribute table (see <a href="./edit.html#attributes">Section 3.4</a>).
+</p>
+
+<p>
+ The vector appearance dialogue can also be used to set higher quality rendering of vector objects
+ (<code>Optimize for quality</code>), or faster rendering (<code>Optimize for speed</code>).
+</p>
+
+<p>
+ Appearance settings may be saved as a file by pressing the <code>Save Styles</code> button for later retrieval 
+ via the <code>Load Styles</code> button. Vector draw style files should have the extension <code>.vst</code>.
+</p>
+
+<p>
+ <img src="images/figure4.4.jpg" width="785" height="541" align="bottom" alt="Vector display properties and sample output" />
+ <span class="caption">Vector display properties and sample output</span>
+</p>
+
+<h2>4.3 Zooming and Panning</h2>
+<p>
+ Any vector or raster map can be enlarged by placing LandSerf into <i>zoom mode</i>. This is achieved either
+ by selecting the <code>Display-&gt;Zoom mode</code> menu option or by toggling the 
+ <img src="../images/zoom16.gif" width="16" height="16" alt="button" /> button. When in zoom mode, dragging
+ the mouse up and down over the main display area with the left mouse button pressed will zoom in and out
+ of the displayed image. Zooming can also be achieved by using the mouse wheel if present. Dragging the mouse 
+ with the right button pressed (or &lt;shift&gt; left button) will allow a zoomed image to be panned in any direction. 
+ When zoomed in to a part of a map, the area displayed in the main window is highlighted on the primary and secondary 
+ thumbnails to the left. To reset a view back to its full extent select either the <code>Display-&gt;Full image</code> 
+ menu option or the <img src="../images/full16.gif" width="16" height="16" alt="button" /> button.
+ 
+ <br /><br />
+ <img src="images/figure4.5.jpg" width="640" height="314" align="bottom" alt="Surface with full extent (left) and zoomed-in area (right)" />
+ <span class="caption">Surface with full extent (left) and zoomed-in area (right). Note small highlighted area on thumbnail in zoomed version.</span>
+</p>
+
+<h3>4.4 Displaying Combined Models</h3>
+
+<p>
+ Two raster maps may be combined in a single display in a number of ways. In addition to the shaded relief mapping described 
+ in Section 4.1 three other forms of display combination can be selected from the <code>Display</code> menu.
+</p>
+
+<p>
+ Selecting <code>Blend</code> will take the average RGB values of the primary and secondary rasters to produce a new
+ colour map. A window will appear requesting the the percentage weighting given to the primary raster. The closer to 100%,
+ the closer the blended image will resemble the colours of the primary raster. If the resolutions of the two rasters are
+ different, the blended map will always use the resolution of the primary raster, so for the highest quality results,
+ the raster with the higher resolution should be selected as the primary raster.
+ 
+ <br /><br />
+ <img src="images/figure4.6.jpg" width="505" height="496" align="bottom" alt="RGB blended slope and aspect map" />
+ <span class="caption">RGB blended slope and aspect map (50% slope, 50% aspect)</span>
+</p>
+
+
+<p>
+ Selecting <code>Hue-Intensity</code> will use the hues ('colour') of the primary raster combined with the intensity (degree of 
+ black/white) of the secondary. This can be useful for producing slightly bolder shaded relief maps (see figure below) as well
+ as for combining coloured with grey-scaled maps. 
+ <br /><br />
+ <img src="images/figure4.6b.jpg" width="505" height="496" align="bottom" alt="Hue-intensity map combining DEM (hue) and Phong shaded relief (intensity)" />
+ <span class="caption">Hue-intensity map combining DEM (hue) and Phong shaded relief (intensity)</span>
+</p>
+
+<p>
+ Selecting <code>Hue-Saturation</code> has a related effect to hue-intensity mapping, but in this case the intensity of the
+ secondary map is used to control the saturation (greyness/boldness) of the combined images. Low intensities in the secondary
+ raster result in washed out low saturation colours while brighter secondary raster values produce bolder colours. Such 
+ combinations can be particularly useful for representing uncertainty, with	stronger saturation indicating greater certainty
+ (see image below).
+ <br /><br />
+ <img src="images/figure4.6c.jpg" width="505" height="496" align="bottom" alt="Hue-saturation map combining mean profile curvature (hue) local standard deviation of curvature measures (saturation)" />
+ <span class="caption">Hue-saturation map combining mean profile curvature (hue) local standard deviation of curvature measures (saturation)</span>
+</p>
+	
+
+<a name="colours"> &nbsp;</a>
+<h3>4.5 Editing Colours</h3>
+
+<p>
+ The colour tables associated with either vector or raster maps may be modified by double-clicking on the thumbnail of the
+ object to edit (or by selecting <code>Edit-&gt;Edit Vector</code> / <code>Edit-&gt;Edit Raster</code>) and then clicking 
+ the <code>Edit</code> button adjacent to the displayed colour bar. Colour tables are defined by a series of <i>colour rules</i>
+ that associate one or more attribute values with one or more colours. <i>Discrete colour rules</i> link a single attribute 
+ with its own colour while <i>continuous colour rules</i> are used to interpolate a range of attributes with a range of colours.
+ Both discrete and continuous colour rules can be defined either graphically or numerically (see figure below).
+</p>
+ <br /><br />
+ <img src="images/figure4.7.jpg" width="694" height="433" align="bottom" alt="Graphical and numerical colour editor" />
+ <span class="caption">Graphical (left) and numerical (right) colour editor</span>
+</p>
+
+<p>
+ The colour editor window will allow you to select one of several preset colour tables useful for mapping
+ onto continuous attributes such as elevation. The colour table is selected by choosing an appropriate colour
+ scheme from the drop-down menu towards the bottom of the colour editor window. By default, each is scaled between
+ the minimum and maximum values in the spatial object being displayed.
+ <br /><br />
+ <img src="images/figure4.8.png" width="292" height="328" align="bottom" alt="Preset colour tables" />
+ <span class="caption">Preset colour tables</span>
+ <br />
+ The 'land' and 'sea' colour tables follow guidance by the Swiss cartographer Eduard Imhoff and are particularly 
+ suitable for continuous data that you wish to display with a landscape-like appearance. The 'random' colour table
+ is the only preset table that is specifically designed for discrete data. When selected, a random set of colours
+ will be given to each numeric attribute in the object being displayed. Once set, the colours associated with each
+ value will not change. The 'exp1' colour table is suitable for exponentially scaled data where most colour variation
+ occurs near the minimum data value. The diverging schemes are suitable for data that vary around a central data point. 
+ This is assumed to be 0 if the spatial object being displayed contains both positive and negative values.
+</p>
+ 
+<p> 
+ Once defined, colour rules can be modified by dragging the small vertical tic marks below the colour bar. These increase
+ or decrease the attribute values associated with a given colour rule. A single colour can be changed graphically by
+ double-clicking on one of the tic marks to bring up a colour chooser (see figure below).
+ <br /><br />
+ <img src="images/figure4.9.jpg" width="257" height="395" align="bottom" alt="Colour selector" />
+ <span class="caption">Graphical colour selector</span>
+</p>
+
+<p>
+ For greater precision, colours tables can be edited numerically by selecting the <code>Numeric</code>
+ tab at the top of the colour editor window. Each rule is defined by 5 numbers. The first is the attribute
+ associated with a given colour. The remaining 4 numbers represent the <i>red</i>, <i>green</i>, <i>blue</i>
+ and <i>alpha</i> (transparency) components of the colour. For convenience if the alpha value is omitted, it is
+ assumed to be opaque (255). Likewise grey scale colours can be defined with a single number that will be applied
+ to red, green and blue components.
+</p>
+
+<p>
+ Colour tables may be saved for later use or shared use between spatial objects. This can be particularly
+ useful for frequently used datasets such as landcover maps that use particular IDs to represent particular
+ categories of information. The <code>data</code> sub-directory of LandSerf contains an example colour table
+ file for representing USGS landcover maps (see the <a href="../tutorial/index.html">tutorial</a> for an example of
+ its use).
+</p>
+
+ <!-- Footer area -->
+ <div id="footer">
+  <div id="lastModified">Last Modified, 20th April, 2009</div>
+ </div>
+
+</div> <!-- End of container area -->
+</body>
+</html>

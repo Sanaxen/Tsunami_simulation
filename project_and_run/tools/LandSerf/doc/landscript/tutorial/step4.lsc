@@ -1,0 +1,48 @@
+# Script to perform some simple morphometric analysis on a DEM.
+# v1.2 Jo Wood 21st April, 2009.
+# -------------------------------------------------------------
+version(1.0);
+
+# Store the base directory in a variable to allow easy changing.
+baseDir = "c:/Program Files/LandSerf/data/landscriptTutorial/";
+
+# Open the DEM and landcover raster from the previous steps.
+dem = open(baseDir & "step2.srf");
+landcover = open(baseDir & "step3.srf");
+
+# Create a shaded relief image saved as a file.
+edit(dem,"vExag",3);
+draw(baseDir & "relief.jpg",dem,landcover,"null","null","relief");
+
+# Output some relevant DEM metadata
+showMetadata(dem,"elevation");
+
+# Calculate and output slope of DEM
+slope = surfparam(dem,"slope");
+draw(baseDir & "slope.jpg",dem,slope,"null","null","relief");
+showMetadata(slope,"slope");
+
+# Create images of the other surface parameters.
+draw(baseDir & "aspect.jpg",dem,surfparam(dem,"aspect"),"null","null","relief");
+draw(baseDir & "profc.jpg", dem,surfparam(dem,"profc"),"null","null","relief");
+draw(baseDir & "planc.jpg", dem,surfparam(dem,"planc"),"null","null","relief");
+
+# Finally create a surface feature map and save as a LandSerf file.
+features = surfparam(dem,"feature");
+save(features, baseDir & "LincolnFeatures.srf");
+
+
+# Function to display some spatial metadata.
+# Params: raster Raster from which to extract metadata.
+#         name Name of raster.
+function showMetadata(raster,name)
+{
+  echo("\n" & name);
+  echo("East-west extent: "& (info(raster,"E")-info(raster,"W"))/1000 & "km.");
+  echo("North-south extent: "& (info(raster,"N")-info(raster,"S"))/1000 & "km.");
+  echo(name&" range from "& info(raster,"min")&" to "&info(raster,"max")&".");
+  echo("Mean "&name&": "& info(raster,"mean"));
+  echo("Modal "&name&" value: "& info(raster,"mode"));
+  echo("Standard deviation of "&name&": "& info(raster,"stdev"));
+  echo("Skewness of "&name&": "& info(raster,"skew") & "\n");
+}

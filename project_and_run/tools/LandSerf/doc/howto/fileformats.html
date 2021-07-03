@@ -1,0 +1,1584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <link rel="Stylesheet" rev="Stylesheet" href="../css/landserf.css" media="All" />
+
+<!-- LandSerf Header -->
+
+ <title>File Formats used by LandSerf 2</title>
+ <meta name="description" content="File Formats used by LandSerf 2.3" />
+ <meta name="keywords" content="LandSerf GIS DEM Terrain modelling file formats" />
+</head>
+
+<body>
+<div id="header">
+ <a href="../index.html">
+  <img src="../images/landserfText.gif" width="304" height="57" alt="Go to LandSerf documentation" />
+  <span id="lsicon">
+   <img src="../images/iconTitle.gif" width="57" height="57" alt="Go to Landserf documentation" />
+  </span>
+ </a>
+ <br />
+
+ <div id="breadcrumbs">
+  <span id="currentLocation">File Formats</span>          |
+  <a href="./index.html">'How to' Guides</a>              |
+  <a href="../../index.html">LandSerf 2.3 Documentation</a>  |
+  <a href="http://www.landserf.org">landserf.org</a>
+ </div>
+</div>
+
+<div id="container">
+
+ <!-- End of header -->
+
+<h1>File Formats Used by LandSerf 2.3</h1>
+
+<p>
+ LandSerf can import and export spatial data in a large range of commonly used data formats. The table below summarises the formats available,
+ whether the format can be imported or exported, and the ID used to identify the format when handling the file type with <i>LandScript</i>.
+ <br /><br />
+ <i>Click on a link below to see details of the format.</i>
+</p>
+
+<table class="prettyTable" border="0" cellspacing="0" cellpadding="3">
+ <tr><td><b>Format</b>															</td> <td><b>Filename extensions</b>	<td><b>LandSerf import</b></td>	<td><b>LandSerf export</b></td> <td><b>LandScript ID</b></td></tr>
+ <tr><td><a href="#arcRaster">ArcGIS raster text files.</a> 						</td> <td><code>.grd .asc</code></td> <td align="center">x</td> <td align="center">x</td> 		<td>ArcGridText</td> </tr>
+ <tr><td><a href="#arcImage">ArcGIS Binary Image files.</a>							</td> <td><code>.bil</code></td> <td align="center">x</td> <td align="center">x</td>			<td>ArcBIL</td> </tr>
+ <tr><td><a href="#arcGridFloat">ArcGIS 'GridFloat' text files.</a>					</td> <td><code>.flt</code></td> <td align="center">x</td> <td align="center">x</td>			<td>ArcGridFloat</td> </tr>
+ <tr><td><a href="#arcVector">ArcGIS 'ungenerate' vector text files.</a>				</td> <td><code>.gen .poi .lin .pol</code></td> <td align="center">x</td> <td align="center">x</td>			<td>ArcGenerate</td> </tr>
+ <tr><td><a href="#shapefile">ArcGIS shapefile binary vector files.</a>				</td> <td><code>.shp</code></td> <td align="center">x</td> <td align="center">x</td>			<td>Shapefile</td> </tr>
+ <tr><td><a href="#attTable">Attribute table.</a>									</td> <td><code>.atr</code></td> <td align="center">x</td> <td align="center">x</td>			<td>Attributes</td> </tr>
+ <tr><td><a href="#btRaster">BT binary raster files (Virtual Terrain Project).</a>	</td> <td><code>.bt </code></td> <td align="center">x</td> <td align="center">x</td>			<td>BT</td> </tr>
+  <tr><td><a href="#colourtable">Colour table files.</a>	</td> <td><code>.ctb </code></td> <td align="center">x</td> <td align="center">x</td>			<td>Colourtable</td> </tr>
+ <tr><td><a href="#dted">DTED Digital Terrain Elevation Data files.</a>				</td> <td><code>.dt0 .dt1 .dt2</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>DTED</td> </tr>
+ <tr><td><a href="#edxRaster">EDX raster text files.</a>							</td> <td><code>.asc</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>EDX</td> </tr>
+ <tr><td><a href="#genericBRaster">Generic binary raster files.</a>					</td> <td><code>.bin</code></td> <td align="center">x</td> <td align="center">x</td>			<td>BinRaster</td> </tr>
+ <tr><td><a href="#genericPoint">Generic point vector text files.</a>				</td> <td><code>.txt</code></td> <td align="center">x</td> <td align="center">x</td>			<td>Points</td> </tr>
+ <tr><td><a href="#genericRaster">Generic raster text files.</a>					</td> <td><code>.txt</code></td> <td align="center">x</td> <td align="center">x</td>			<td>TextRaster</td> </tr>
+ <tr><td><a href="#genericVector">Generic vector text files.</a>					</td> <td><code>.txt</code></td> <td align="center">x</td> <td align="center">x</td>			<td>TextVector</td> </tr>
+ <tr><td><a href="#gshhs">Global Hierarchical, High-resolution Shoreline files.</a>	</td> <td><code>.ghs</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>GHSS</td> </tr>
+ <tr><td><a href="#gpx">GPS exchange (GPX) files.</a>								</td> <td><code>.gpx</code></td> <td align="center">x</td> <td align="center">x</td>			<td>GPX</td> </tr>
+ <tr><td><a href="#gtopo30">GTOPO30 global raster DEM files.</a>					</td> <td><code>.dem</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>GTOPO30</td> </tr>
+ <tr><td><a href="#graphics">Graphic image files (including GeoTIFF).</a>				</td> <td><code>.jpg .gif .png .tif .bmp</code></td> <td align="center">x</td> <td align="center">x</td>			<td>Image</td> </tr>
+ <tr><td><a href="#grassRaster">GRASS raster text files.</a>						</td> <td><code>.txt</code></td> <td align="center">x</td> <td align="center">x</td>			<td>GrassRasterText</td> </tr>
+ <tr><td><a href="#grassVector">GRASS vector text files.</a>						</td> <td><code>.txt</code></td> <td align="center">x</td> <td align="center">x</td>			<td>GrassVectorText</td> </tr>
+ <tr><td><a href="#kmlRaster">KML (Google Earth) raster files.</a>				 	</td> <td><code>.kmz</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>			<td>KMZ</td> </tr>
+  <tr><td><a href="#kmlVector">KML (Google Earth) vector files.</a>				 	</td> <td><code>.kml</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>			<td>KML</td> </tr>
+ <tr><td><a href="#landscript">LandScript files.</a>        						</td> <td><code>.lsc</code></td> <td align="center">x</td> <td align="center">x</td>			<td>&nbsp;</td> </tr>
+ <tr><td><a href="#rasterMap">LandSerf native raster files.</a>						</td> <td><code>.srf</code></td> <td align="center">x</td> <td align="center">x</td>			<td>RasterMap</td> </tr>
+ <tr><td><a href="#vectorMap">LandSerf native vector files.</a>						</td> <td><code>.vec</code></td> <td align="center">x</td> <td align="center">x</td>			<td>VectorMap</td> </tr>
+ <tr><td><a href="#mastermap">Mastermap (GB Ordnance Survey) vector text files.</a>	</td> <td><code>.gz .xml</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>Mastermap</td> </tr>
+ <tr><td><a href="#ntfRaster">NTF (GB Ordnance Survey) raster text files.</a>			</td> <td><code>.ntf</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>NTFRaster</td> </tr>
+ <tr><td><a href="#ntfVector">NTF (GB Ordnance Survey) vector text files.</a>			</td> <td><code>.ntf</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>NTFVector</td> </tr>
+ <tr><td><a href="#svg">Scalable Vector Graphics (SVG) file.</a>					</td> <td><code>.svg .svgz</code></td> <td align="center">&nbsp;</td> <td align="center">x</td>	<td>SVG</td> </tr>
+ <tr><td><a href="#srtm">Shuttle Radar Topography Mission (SRTM) DEM files.</a>		</td> <td><code>.hgt .srtm</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>SRTM</td> </tr>
+ <tr><td><a href="#terragenBRaster">Terragen binary raster files.</a>				</td> <td><code>.raw</code></td> <td align="center">x</td> <td align="center">x</td>			<td>TerragenBin</td> </tr>
+ <tr><td><a href="#terragenNative">Terragen 'native' DEM files.</a>					</td> <td><code>.ter</code></td> <td align="center">x</td> <td align="center">x</td>			<td>TerragenNative</td> </tr>
+ <tr><td><a href="#threedroute">3D route file.</a>									</td> <td><code>.r3d .xml</code></td> <td align="center">x</td> <td align="center">x</td>			<td>Route</td> </tr>
+ <tr><td><a href="#usgsRaster">USGS Native DEM text files.</a>						</td> <td><code>.dem</code></td> <td align="center">x</td> <td align="center">&nbsp;</td>	<td>USGSNative</td> </tr>
+<tr><td><a href="#vectorstyles">Vector drawing style files.</a>						</td> <td><code>.vst</code></td> <td align="center">x</td> <td align="center">x</td>	<td>Vectorstyles</td> </tr>
+ <tr><td><a href="#vistaBRaster">VistaPro binary raster files.</a>					</td> <td><code>.bin</code></td> <td align="center">x</td> <td align="center">x</td>			<td>VistaProBin</td> </tr>
+ <tr><td><a href="#vistaRaster">VistaPro raster text files.</a>						</td> <td><code>.txt</code></td> <td align="center">x</td> <td align="center">x</td>			<td>VistaProText</td> </tr>
+ <tr><td><a href="#vrmlRaster">VRML raster 'world' files.</a>						</td> <td><code>.wrl .wrz .vrml</code></td> <td align="center">&nbsp;</td> <td align="center">x</td>	<td>VRML</td> </tr>
+</table>
+
+<a name="arcRaster"></a>
+<h2 class="blocktitle">ArcGIS Raster Text File</h2>
+
+<p>
+	<b>Default file extensions: .grd or .asc</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>ncols      321 <br />
+	nrows      468 <br />
+	xllcorner  387570.0<br />
+	yllcorner  5289240.0<br />
+	cellsize   30<br />
+	nodata_value -32766<br />
+	-32766 393 393 393 393 <i>..etc </i><br />
+	-32766 395 396 396 394 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	ASCII file for storing raster data. Header information consists of at least the number of rows/columns,
+	the geographical origin and the grid cell resolution. Any other header items are permitted but ignored.
+	Note that this format only allows square pixels to be written (single cellsize value). On output from
+	LandSerf, if the raster cells are not square, their dimension is given as the average of the two sides.
+	<br /><br />
+	Raster data are stored in <i>nrows</i> rows from north to south, each row consisting of <i>ncols</i>
+	values from west to east. 
+	<br /><br />
+	Raster values can be floating point or integer numbers and are separated by any number of whitespace
+	characters.
+	<br /><br />
+	When output from LandSerf, null values are given the numeric value -32766. If you wish to use another
+	number to represent null on output, the raster should be transformed in LandSerf ('Transform raster values').
+	</td></tr>
+</table>
+
+<a name="arcImage"></a>
+<h2 class="blocktitle">ArcGIS Binary Image (BIL) File</h2>
+
+<p>
+	<b>Default file extension: .bil (with .hdr and .blw files containing metadata)</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<i>.hdr file:</i><br />
+	<tt>BYTEORDER M<br />
+	NROWS      468 <br />
+	NCOLS      321 <br />
+	NBITS      16<br />
+	NBANDS     1<br /></tt>
+	<br />
+	<i>.blw file:</i><br />
+	<tt>30.0<br />
+	0.0000000<br />
+	0.0000000<br />
+	-30.0<br />
+	387570.0<br />
+	5289240.0<br /></tt>
+    <br />
+	<i>.bil file - binary equivalent of:</i><br />
+	<tt>386 393 393 393 393 <i>..etc </i><br />
+	387 395 396 396 394 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Binary integer file with two separate header files containing image metadata and georeferencing. <code><i>fileName</i>.bil</code>
+	contains the 16 bit or 32 bit integers in row prime order from north to south.
+	<br /><br />
+	<code><i>fileName</i>.hdr</code> contains image	metadata including the number of rows, columns and bits per cell. 
+	Byte order is 'big-endian' if BYTEORDER is set to M (Motorola), or 'little-endian' if set to I (Intel).
+	LandSerf assumes only 1 interleaved layer.
+	<br /><br />
+	<code><i>fileName</i>.blw</code> contains the georeferencing information including grid resolution, and coordinates of the
+	centre of the upper-left pixel of the image. The six values represent the affine transformation from image to georeferenced
+	coordinates. If the order of the 6 values are represented by A-F, the transformation is
+	<br /><br />
+	x' = Ax + By + E<br />
+	y' = Cx + Dy + F
+	<br /><br />
+	Therefore, values (A,D) give (xRes,-yRes), (E,F) give (xOrigin,yOrigin) and (B,C) define the rotation
+	(usually 0). Note that D is negative since the image origin is at the top, but georeferenced origin
+	will be at the bottom.
+	</td></tr>
+</table>
+
+<a name="arcGridFloat"></a>
+<h2 class="blocktitle">ArcGIS 'GridFloat' text file.</h2>
+
+
+<p>
+	<b>Default file extension: .flt (with .hdr file containing metadata)</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<i>.hdr file:</i><br />
+	<tt>
+	ncols 321<br />
+	nrows 468<br />
+	xllcorner 387570.0<br />
+    yllcorner 5289240.0<br />
+    cellsize 30.0<br />
+    nodata_value -32767<br />
+    byteorder LSBFIRST<br />
+	</tt>
+	<br />
+
+	<i>.flt file - binary equivalent of:</i><br />       
+	<tt>386.1 393.0 393.4 392.8 392.6 <i>..etc </i><br />
+	387.0 394.5 396.4 396.3 393.9 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Binary floating point file with separate header file containing raster metadata and georeferencing. <code><i>fileName</i>.flt</code>
+	contains the 32 floating point values in row prime order from north to south.
+	<br /><br />
+	<code><i>fileName</i>.hdr</code> contains image	metadata including the number of rows and columns, cell
+	size and location of lower-left corner. Note that only one cellsize value is permitted, so this format
+	can only store square pixel values.	On output from LandSerf, if the raster cells are not square, their 
+	dimension is given as the average of the two sides.Byte order is 'big-endian' if <code>byteorder</code>
+	is set to <code>MSBFIRST</code>, or 'little-endian' if set to <code>LSBFIRST</code>. Note also that 
+	this '<code>.hdr</code> file' is not in the same format as the <code>.hdr</code> files used by the BIL
+	format.	
+	</td></tr>
+</table>
+
+
+<a name="arcVector"></a>
+<h2 class="blocktitle">ArcGIS 'ungenerate' Vector Text File</h2>
+
+<p>
+	<b>Default file extensions: .poi, .lin, .pol or .gen (geometry) and .atr (attributes)</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>1<br />
+	 320550.0 425320.0<br />
+	 320633.0 425320.0<br />
+	 320720.0 425300.0<br />
+	 320701.0 425295.0<br />
+	END<br />
+	2<br />
+	 360297.0 425310.0<br />
+	 361050.0 425305.0<br />
+	 361078.0 425300.0<br />
+	END<br />
+	3 361455.0 424987.0<br />
+	4 361632.0 425001.0<br />
+	5 361760.0 424977.0<br />
+	<i>:</i><br />
+	<i>etc.</i><br />
+	END</tt></td>
+	<td width="60%" valign="top">
+	ASCII file for storing vector data. Points are stored in <code>ID, x, y</code> order on a single line.
+	Separators can be spaces, tabs or commas. Vector objects consisting of lines or areas comprise an ID
+	on its own line	followed by space, comma or tab separated x and y coordinates, one pair per line. The
+	end of each object's geometry is marked by the 'END' keyword. A final 'END' terminates the file. The
+	file extension is usually used to distinguish lines from areas (.lin or .pol). If extension is not one
+	of these then only repeated first and last coordinates can be used to infer polygon-line distinction.
+	Attributes are stored in a separate file, each line comprising the object ID, a comma, and the object's
+	attributes.
+	<br /><br />
+	IDs should be integers, geometry should be floating point numbers. Attributes can be numbers or text.
+	</td></tr>
+</table>
+
+
+<a name="shapefile"></a>
+<h2 class="blocktitle">ArcGIS Shapefile Binary Vector File</h2>
+
+<p>
+	<b>Default file extensions: .shp (with .shx, and .dbf files containing metadata and attributes)</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	3 binary files containing geometry, attributes and indexing information.
+	</td>
+	<td width="60%" valign="top">
+	Shapefiles contain geometric vector object information without topological structure (for example, the common boundary of shared
+	polygons will be recorded twice, once for each polygon). A given shapefile can store only one type of object, either points, lines
+	or areas. It is therefore common to import/export 3 sets of shapefiles representing a vector map containing points, lines and areas.
+	The geometry is stored in a <code><i>fileName</i>.shp</code> file with each item referenced by a unique ID. IDs can be related to
+	multiple attributes in a dBase III format <code><i>fileName</i>.dbf</code> file. The <code><i>fileName</i>.shx</code> file contains
+	indexing information and is not used by LandSerf when importing data, but is created on output.
+	<br /><br />
+	For detailed information about shapefile formats, see <a href="http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf" target="_blank">www.esri.com/library/whitepapers/pdfs/shapefile.pdf</a>
+	</td></tr>
+</table>
+
+
+<a name="attTable"></a>
+<h2 class="blocktitle">Attribute Table</h2>
+
+<p>
+	<b>Default file extension: .atr</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	1 35.4 &quot;Sheffield&quot;<br />
+	2 17.6 &quot;Nottingham&quot;<br />
+	3 11.5 &quot;Birmingham&quot;<br />
+	4 5.0 &quot;Liverpool&quot;<br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	ASCII file representing an attribute table. Columns are space, tab or comma separated. The first column is
+	the primary ID, the remaining columns are the attributes associated with that ID. The primary ID must be 
+	integer or a floating point number, the remaining attributes can be numbers or text. Text attributes containing
+	spaces,	tabs or commas must be enclosed in double quotes. There must be an equal number of columns in every row.
+	</td></tr>
+</table>
+
+<a name="btRaster"></a>
+<h2 class="blocktitle">BT Binary Raster File (Virtual Terrain Project)</h2>
+
+<p>
+	<b>Default file extension: .bt</b>
+</p>
+
+<table border="0" cellpadding="10" cellspacing="0">
+    <tr>
+      <td class="inlineHeading"><b>Byte Offset</b></td><td class="inlineHeading"><b>Length</b></td><td class="inlineHeading"><b>Contents</b></td>
+	  <td width="60%"><b>Description</b></td>
+    </tr>
+    <tr>
+      <td>0</td><td nowrap="nowrap">10</td><td nowrap="nowrap">&quot;binterr1.3&quot;</td>
+      <td width="60%">A marker which indicates that this is a BT 1.3 file</td>
+    </tr>
+    <tr>
+      <td>10</td><td nowrap="nowrap">4 (int)</td><td nowrap="nowrap">Columns</td>
+      <td width="60%">Width (east-west) dimension of the height grid.</td>
+    </tr>
+    <tr>
+      <td>14</td><td nowrap="nowrap">4 (int)</td><td nowrap="nowrap">Rows</td>
+	  <td width="60%">Height (north-south) dimension of the height grid.</td>
+    </tr>
+    <tr>
+      <td>18</td><td nowrap="nowrap">2 (short)</td><td nowrap="nowrap">Data size</td>
+      <td width="60%">Bytes per elevation grid point, either 2 or 4.</td>
+    </tr>
+    <tr>
+      <td valign="top">20</td><td nowrap="nowrap" valign="top">2 (short)</td><td nowrap="nowrap" valign="top">Floating-point flag</td>
+      <td valign="top" width="60%">If 1, the data consists of floating point values (float), otherwise they are integers.</td>
+    </tr>
+    <tr>
+      <td>22</td><td nowrap="nowrap">2 (short)</td><td nowrap="nowrap">Projection</td>
+      <td width="60%">0: Geographic<br />
+        1: metres or Universal Transverse Mercator (UTM)<br />
+		2: feet (international foot = .3048 meters)<br />
+		3: feet (U.S. survey foot = 1200/3937 meters)</td>
+    </tr>
+    <tr>
+      <td>24</td><td nowrap="nowrap">2 (short)</td><td nowrap="nowrap">UTM zone</td>
+      <td width="60%">Indicates the UTM zone (1-60) if the file is in UTM. The usual
+        convention is negative zone numbers for the southern hemisphere.</td>
+    </tr>
+    <tr>
+      <td>26</td><td nowrap="nowrap">2 (short)</td><td nowrap="nowrap">Datum</td>
+      <td width="60%">Indicates the Datum (ignored).</td>
+    </tr>
+    <tr>
+      <td valign="top">28</td><td nowrap="nowrap" valign="top">8 (double)</td><td nowrap="nowrap" valign="top">Left extent</td>
+      <td width="60%" valign="top">The extents are specified in the coordinate space specified by the 
+	    UTM flag/zone fields. If UTM is false, they are ordinary geographic (latitude-longitude) values.</td>
+    </tr>
+    <tr>
+      <td>36</td><td nowrap="nowrap">8 (double)</td><td nowrap="nowrap">Right extent</td>
+      <td width="60%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>44</td> <td nowrap="nowrap">8 (double)</td><td nowrap="nowrap">Bottom extent</td>
+	  <td width="60%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>52</td><td nowrap="nowrap">8 (double)</td><td nowrap="nowrap">Top extent</td>
+      <td width="60%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>60</td><td nowrap="nowrap">2 (short)</td><td nowrap="nowrap">External projection</td>
+      <td width="60%">0: Projection is fully described by this header<br />
+        1: Projection is specified in a external <b>.prj</b> file</td>
+    </tr>
+	<tr>
+      <td>62</td><td nowrap="nowrap">4 (float)</td><td nowrap="nowrap">Vertical scale</td>
+      <td width="60%">Scaling factor for vertical units. If set to 0 (for backward compatibility), assumed
+	                  to represent a scaling of 1</td>
+    </tr>
+    <tr>
+      <td>66-255</td><td nowrap="nowrap">190</td><td nowrap="nowrap">unused</td>
+      <td width="60%">Bytes of value 0 are used to pad the rest of the header.</td>
+    </tr>
+	<tr>
+      <td colspan="3" valign="top">
+       <i>Followed by binary equivalent of the following...</i><br />
+	   <tt>390.0 392.0 393.0 393.0 393.0 <i>..etc </i><br />
+       391.0 391.0 392.0 392.0 393.0 <i>..etc </i><br />
+       <i>:</i><br />
+       <i>etc.</i></tt></td>
+       <td width="60%" valign="top">
+       Raster data are stored in <i>nrows</i> rows from south to north, each
+       row consisting of <i>ncols</i> values from west to east. 
+       <br /><br />
+       Raster values should be 'little-endian' values either 32-bit float or 16-bit integer according to the header value.
+      </td> 
+	</tr>
+  </table>
+  
+<a name="colourtable"></a>
+<h2 class="blocktitle">Colour Table</h2>
+
+<p>
+	<b>Default file extension: .ctb</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	&lt;?xml version=&quot;1.0&quot; ?&gt;<br />
+&lt;!--Colour table rules--&gt;<br />
+&lt;!--Generated by LandSerf 2.3--&gt;<br />
+&lt;colourTable&gt;<br />
+&nbsp;&lt;rule value=&quot;0&quot; type=&quot;discrete&quot;&gt;255,255,255,255&lt;/rule&gt;<br />
+&nbsp;&lt;rule value=&quot;1&quot;&gt;98,123,92,255&lt;/rule&gt;<br />
+&nbsp;&lt;rule value=&quot;25&quot;&gt;130,152,117,255&lt;/rule&gt;<br />
+&nbsp;&lt;rule value=&quot;50&quot;&gt;196,197,160,255&lt;/rule&gt;<br />
+&nbsp;&lt;rule value=&quot;75&quot;&gt;244,232,195,255&lt;/rule&gt;<br />
+&nbsp;&lt;rule value=&quot;100&quot;&gt;249,242,230,255&lt;/rule&gt;<br />
+&lt;/colourTable&gt;
+	</tt></td>
+	<td width="60%" valign="top">
+	XML file representing a set of colour table rules. Each rule should be associated with a numerica value
+	and should define a colour using <i>R</i>,<i>G</i>,<i>B</i>,<i>opacity</i> values each scaled between 
+	0 and 255. Colours for raster or vector maps are then interpolated between these rules. If a colour rule
+	is not to be interpolated, but only associated with a particular numberic value, it should have its type
+	set to <code>discrete</code>.
+	<br /><br />
+	If a spatial object's numeric value defines its colour directly (as a 32 bit ARGB integer), its associated
+	colour table should be set to 'raw' as follows:
+	<br /><br />
+	<tt>
+	&lt;?xml version=&quot;1.0&quot; ?&gt;<br />
+	&lt;colourTable raw=&quot;true&quot; /&gt;
+	</tt>
+	</td></tr>
+</table>
+  
+  
+<a name="dted"></a>
+<h2 class="blocktitle">Digital Terrain Elevation Data (DTED) Files</h2>
+<p>
+	<b>Default file extensions: .dt0, .dt1, or .dt2</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	Binary integer elevations with origin defined as lat/long coordinates.</td>
+	<td width="60%" valign="top">
+	Binary format file storing elevation values and associated metadata, originally created by the
+	US Defance Mapping Agency (DMA) but now used by several national mapping agencies as well as 
+	the format for processed SRTM data supplied on DVD. Available at a number of resolutions - 
+	level 0 at 30 arc seconds, level 1 at 3 arc seconds and level 2 at 1 arc second. For details on
+	the file format, see <a href="http://www.nga.mil/ast/fm/acq/89020B.pdf" target="_blank">
+	www.nga.mil/ast/fm/acq/89020B.pdf</a>. 
+	</td></tr>
+</table>
+
+<a name="edxRaster"></a>
+<h2 class="blocktitle">EDX Raster Text File</h2>
+
+<p>
+	<b>Default file extension: .asc</b>
+</p>
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	<tr><td valign="top" width="40%">
+<tt>Copyright 1994. EDX Engineering, Inc. All Rights Reserved.  5   280000.0    80000.0   280000.0   100000.0   300000.0   100000.0   300000.0    80000.0   50.0   50.0  401  401     .0   -2.00000   49.00000  6377563.4  .00334091  .99960000  -100000.0   400000.0     .0  323.0<br />
+392 393 393 393 393 <i>..etc </i><br />
+393 394 393 395 394 <i>..etc </i><br />
+<i>:</i><br />
+<i>etc.</i></tt></td>
+	<td valign="top" width="60%">
+	ASCII file for storing elevation data. Header information consists of a single 
+	first line with whitespace characters separating the following information
+	<code>copyright, ktype, xc(1), yc(1), xc(2), yc(2), xc(3), yc(3), xc(4), yc(4), 
+	xinc_ns, xinc_ew, ny, nx, cell_offset, xlno, xlto, rad, f, xko, false_north, 
+	false_east, min_elev, max_elev</code>. LandSerf uses the copyright field, the
+	south-west [xc(1), yc(1)] and north-east [xc(3), yc(3)] corners and the 
+	resolution fields [xinc_ns, xinc_ew] only, but all other values should be
+	included in the same order.
+	<br /><br />
+	Raster data are stored in <i>ncols</i> rows from west to east, each
+	row consisting of <i>nrows</i> values from south to north. 
+	<br /><br />
+	Raster values should be integer values only and are separated by any 
+	number of whitespace characters.
+	</td></tr>
+</table>	
+
+<a name="genericBRaster"></a>
+<h2 class="blocktitle">Generic Binary Raster File</h2>
+
+<p>
+	<b>Default file extension: .bin</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	Binary equivalent of the following...<br />
+	<tt>
+	390 392 393 393 393 <i>..etc </i><br />
+	391 391 392 392 393 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Binary file for storing raster data. No header information is used, by default, when
+	importing generic binary rasters, the grid resolution is assumed to be 50x the vertical units.
+	<br /><br />
+	Raster data are stored in <i>nrows</i> rows from north to south, each
+	row consisting of <i>ncols</i> values from west to east. 
+	<br /><br />
+	On saving, raster values are stored as integers and are stored as Intel ordered
+	words (low byte first). To store non-integer values, rasters should first be transformed (e.g. by
+	multiplying by 100) into suitable positive integers. Any values outside the range of the word 
+	(ie, 0-255 for 8 bits, 0-65535 for 16 bits etc.), will be truncated around the minimum and maximum values.
+	On import, files can be 8, 16 or 32 bit words and use either Intel or Motorola byte ordering. 
+	</td></tr>
+</table>
+
+<a name="genericPoint"></a>
+<h2 class="blocktitle">Generic Point Vector Text File</h2>
+
+<p>
+	<b>Default file extension: .txt</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	340530.0 448650.0 390.0 &quot;Church&quot;<br />
+	340580.0 448650.0 392.0 &quot;Car park&quot;<br /> 
+	350550.0 441250.0 493.0 &quot;Unclassified&quot;<br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Text file for storing point data. No header information is required although comment
+	lines starting with <code>#</code> are ignored and permitted at any point in the file.
+	<br /><br />
+	Point data are stored in <i>x</i> <i>y</i> [<i>att1</i>] [<i>att2</i>] order, one point per
+	line and can be space, tab or comma separated. All values can be in either integer 
+	or floating point formats. Attributes are optional. If only one attribute per point is provided
+	and it is numeric (e.g. height value), it is stored as the primary attribute. If more than 1
+	attribute is provided, or the first attribute is non-numeric, they are stored in a separate
+	attribute table with an automatically computed point ID. Non-numeric attributes that consist
+	of more than one word should be enclosed in double quotation marks.
+	</td></tr>
+</table>
+
+<a name="genericRaster"></a>
+<h2 class="blocktitle">Generic Raster Text File</h2>
+
+<p>
+	<b>Default file extension: .txt</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	390 392 393 393 393 <i>..etc </i><br />
+	391 391 392 392 393 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	ASCII file for storing raster data. No header information is used, by default the grid resolution
+	is assumed to be 50x the vertical units.
+	<br /><br />
+	Raster data are stored in <i>nrows</i> rows from north to south, each row consisting of <i>ncols</i>
+	values from west to east. 
+	<br /><br />
+	Raster values can be floating point or integer numbers and are separated by any number of whitespace
+	characters (including new lines) or a comma. Lines starting with <code>#</code> are assumed to be comments and
+	are ignored.
+	<br /><br />
+	When output from LandSerf, null values are given the numeric value -32766. If you wish to use another
+	number to represent null on output, the raster should be transformed in LandSerf ('Transform raster values').
+	</td></tr>
+</table>
+
+<a name="genericVector"></a>
+<h2 class="blocktitle">Generic Vector Text File</h2>
+
+<p>
+	<b>Default file extension: .txt</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	P	340000.0 483520.0 14.16	5<br />
+	P	345000.0 479050	13.01	5<br />
+	L	2	7<br />
+	366000.0 489530.0 14.5<br />		
+	375210.0 488100.0 10<br />	
+	A	3	9<br />		
+	366000.0 489550.0 14.5<br />		
+	368100.0 488780.0 10.0<br />
+	368200.0 488180.0 12.0<br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Text file for storing point, line, flow and area vector data. No header information is necessary
+	although lines starting with <code>#</code> are assumed to be comments and are ignored.
+	x,y and z values all assumed to be in the same units.
+	<br /><br />
+	Feature type is identified by a P, L or A prefix representing point, line and area features 
+	respectively.	Point data are stored in <i>x</i> <i>y</i> [<i>z</i>] <i>Attrib</i> order, one
+	point per line. z values are optional. Line and Area data have an initial line containing the 
+	number of coordinates and an optional feature attribute. Coordinates follow in <i>x</i> <i>y</i> 
+	[<i>z</i>] order where the z value is optional.
+	<br /><br />
+	All coordinates and attributes can be in either integer or floating point formats. If multiple
+	attributes are required, they should be stored in a separate attribute table.
+	</td></tr>
+</table>
+
+<a name="gshhs"></a>
+<h2 class="blocktitle">Global Self-consistent, Hierarchical, High-resolution Shoreline Files</h2>
+<p>
+	<b>Default file extension: .ghs</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	Binary floating point lat/long coordinates.</td>
+	<td width="60%" valign="top">
+	Binary format file holding global shorelines, rivers and lakes as closed areas. Available at a number of 
+	generalisation levels from <a href="http://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html" target="_blank">
+	www.ngdc.noaa.gov/mgg/shorelines/gshhs.html</a>. This site includes more detailed information on the file
+	format.
+	</td></tr>
+</table>
+
+
+<a name="gpx"></a>
+<h2 class="blocktitle">GPS Exchange (GPX) Files</h2>
+<p>
+	<b>Default file extension: .gpx</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	&nbsp;	
+	</td>
+	<td width="60%" valign="top">
+	XML file for storing GPS waypoints, tracks and routes. A <i>de facto</i> standard for sharing GPS
+	data between applications. Can include a range of metadata in addition to geometric data. For full
+	details of the format see <a href="http://www.topografix.com/gpx.asp" target="_blank">www.topografix.com/gpx.asp</a>.
+	Note that all georeferencing uses lat/long coordinates and WGS84.
+	<br /><br />
+	Note: To have full control over GPX attributes when saving from LandSerf, the vector map should have an attribute table
+	with at least the headings <code>ID</code>, <code>GPSObject</code> and optionally <code>Name</code>, <code>Description</code>,
+	<code>Comment</code> and <code>Elevation</code>. Valid attributes for the <code>GPSObject</code> column are <code>Waypoint</code>,
+	<code>Routepoint</code> for point objects and <code>Track</code> for line objects. If an appropriate attribute table is not
+	found when saving as a GPS file, LandSerf defaults to saving all point objects as waypoints and all line objects as tracks.	
+	</td>
+	</tr>
+	
+	<tr><td colspan="2">
+	<tt>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot; ?&gt;<br />
+&lt;gpx xmlns=&quot;http://www.topografix.com/GPX/1/1&quot; creator=&quot;MapSource 6.5&quot; version=&quot;1.1&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd&quot;&gt;<br />
+ <br />
+&nbsp;&nbsp;&lt;metadata&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;link href=&quot;http://www.garmin.com&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;text>Garmin International&lt;/text&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/link&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;time>2005-07-24T22:20:35Z&lt;/time&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;bounds maxlat=&quot;52.292004&quot; maxlon=&quot;1.632300&quot; minlat=&quot;51.541886&quot; minlon=&quot;-0.058193&quot;/&gt;<br />
+&nbsp;&nbsp;&lt;/metadata&gt;<br />
+<br />
+&nbsp;&nbsp;&lt;wpt lat=&quot;51.542000&quot; lon=&quot;-0.058100&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ele&gt;15.000000&lt;/ele&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;01Strt&lt;/name&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;cmt&gt;Pub on the Park, London Fields&lt;/cmt&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;desc&gt;Pub on the Park, London Fields&lt;/desc&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;sym&gt;Waypoint&lt;/sym&gt;<br />
+&nbsp;&nbsp;&lt;/wpt&gt;<br />
+&lt;/gpx&gt;<br />
+</tt>
+	
+	</td></tr>
+</table>
+
+
+<a name="gtopo30"></a>
+<h2 class="blocktitle">GTOPO30 DEM Files</h2>
+
+<p>
+	<b>Default file extension: .dem (with .hdr, .dmw, .prj files containing metadata)</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<i>.hdr file:</i><br />
+	<tt>BYTEORDER M<br />
+		LAYOUT BIL<br />
+		NROWS 6000 <br />
+		NCOLS 4800 <br />
+		NBANDS 1 <br />
+		NBITS 16 <br />
+		BANDROWBYTES 9600 <br />
+		TOTALROWBYTES 9600 <br />
+		BANDGAPBYTES 0 <br />
+		NODATA -9999 <br />
+		ULXMAP -99.99583333333334 <br />
+		ULYMAP 39.99583333333333 <br />
+		XDIM 0.00833333333333 <br />
+		YDIM  0.00833333333333</tt>
+	<br /><br />
+	<i>.dmw file:</i><br />
+	<tt>30.0<br />
+		0.00833333333333<br />
+		0.00000000000000 <br />
+		0.00000000000000 <br />
+		-0.00833333333333 <br />
+		-99.99583333333334 <br />
+		39.99583333333333</tt>
+    <br /><br />
+	<i>.prj file:</i><br />
+	<tt>Projection GEOGRAPHIC<br />
+		Datum WGS84 <br />
+		Zunits METERS <br />
+		Units DD <br />
+		Spheroid WGS84 <br />
+		Xshift 0.0000000000 <br />
+		Yshift 0.0000000000 </tt>
+		<br /><br />
+	<i>.dem file - binary equivalent of:</i><br />
+	<tt>386 393 393 393 393 <i>..etc </i><br />
+	387 395 396 396 394 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Global DEM files distributed as a min binary integer .DEM file with a collection of metadata files. Those used by LandSerf
+	include the .hdr file that contains file format metadata, a .dmw  that contains spatial transformation metadata and a .prj
+	file that contains global map projection information. All spatial metadata are recorded as decimal degrees. Note that
+	this collection is a specific case of the more general <a href="#arcImage">Binary Image file</a> distribution.
+	<br /><br />
+	<code><i>fileName</i>.dem</code> contains the raster values in row-wise order in the format indicated by the 
+	associated .hdr file.
+	<br /><br />
+	<code><i>fileName</i>.hdr</code> contains image	metadata including the number of rows, columns and bits per cell. 
+	Byte order is 'big-endian' if BYTEORDER is set to M (Motorola), or 'little-endian' if set to I (Intel).
+	LandSerf assumes only 1 interleaved layer.
+	<br /><br />
+	<code><i>fileName</i>.dmw</code> contains the georeferencing information including grid resolution, and coordinates of the
+	centre of the upper-left pixel of the image. The six values represent the affine transformation from image to georeferenced
+	coordinates. If the order of the 6 values are represented by A-F, the transformation is
+	<br /><br />
+	x' = Ax + By + E<br />
+	y' = Cx + Dy + F
+	<br /><br />
+	Therefore, values (A,D) give (xRes,-yRes), (E,F) give (xOrigin,yOrigin) and (B,C) define the rotation
+	(always 0 for GTOPO30). Note that D is negative since the image origin is at the top, but georeferenced origin
+	will be at the bottom.
+	<br /><br />
+	<code><i>fileName</i>.prj</code> contains global map projection information such as the spheroid used and projection type.
+	It can also contain projection parameters. All GTOPO30 data use WGS84 geographic (lat/long) coordinates with the addition
+	that an antarctic DEM is provided using a polar stereographic projection.
+	<br /><br />
+	For more details on the format and distribution of GTOPO30 files, see <a href="http://edcdaac.usgs.gov/gtopo30/README.asp" target="_blank">http://edcdaac.usgs.gov/gtopo30/README.asp</a>.
+	</td></tr>
+</table>
+
+
+
+<a name="graphics"></a>
+<h2 class="blocktitle">Graphics Image File</h2>
+<p>
+	<b>Default file extensions: .jpg, .gif, .png, .tif, or .bmp</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	GIF, TIF, JPEG or PNG file.</td>
+	<td width="60%" valign="top">
+	Binary image file. Export is in either GIF, JPEG or PNG format (plus .bmp format from 3d viewer).
+	Import can read  GIF, JPEG, PNG or TIF (including GeoTIFF) format. Currently LZW compressed TIF 
+	files and CMYK colour scales cannot be read. Since most graphics images formats do not generally store
+	geographical limits, they require some geographical information	to be defined. 
+	<br /><br />
+	Import allows image files to be stretched over primary raster. If an ArcGIS 'world' transformation file
+	is present with same name and '.w' extension (ie. .GFW, .JGW, .PGW or .TFW), the image will be georeferenced
+	on import.
+	<br /><br />
+	<br /><br />
+	Exported images are given the dimensions of LandSerf's graphical display at the point at which the image is saved.
+	</td></tr>
+</table>
+
+<a name="grassRaster"></a>
+<h2 class="blocktitle">GRASS Raster Text File</h2>
+<p>
+	<b>Default file extension: .txt</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	north: 517000<br />
+	south: 506000<br />
+	east: 350000<br />
+	west: 333000<br />
+	rows: 220<br />
+	cols: 340<br />
+	null: -32766<br />
+	type: float<br />
+	multiplier: 10<br />
+	<br />
+	647 662 680 695 709 <i>..etc </i><br />
+	644 660 680 694 707 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	ASCII file for storing raster data. Header information consists of at the outer bounds of the raster 
+	and the number of rows/columns (in any order). It can optionally include the value representing null
+	cells, the type of cell (float or int), and the value by which cells are multiplied.
+	<br /><br />
+	Raster data are stored in <i>nrows</i> rows from north to south, each row consisting of <i>ncols</i>
+	values from west to east. 
+	<br /><br />
+	Raster values can be floating point or integer numbers and are separated by any number of whitespace 
+	characters.
+	</td></tr>
+</table>
+
+<a name="grassVector"></a>
+<h2 class="blocktitle">GRASS Vector Text File</h2>
+<p>
+	<b>Default file extension: .txt</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<i>Geometry file...</i><br />
+	<tt>
+	ORGANIZATION: Jo Wood<br />
+	DIGIT DATE:   2.5.03<br />
+	DIGIT NAME:   <br />
+	MAP NAME:     contours from lakes.dem<br />
+	MAP DATE:     <br />
+	MAP SCALE:    25000<br />
+	OTHER INFO:   <br />
+	ZONE:         0<br />
+	WEST EDGE:    333000<br />
+	EAST EDGE:    350000<br />
+	SOUTH EDGE:   506000<br />
+	NORTH EDGE:   517000<br />
+	MAP THRESH:   0<br />
+	VERTI:<br />
+	L  3<br />
+ 	506025       336625<br />  
+ 	506025       336625<br />      
+ 	506025       336625<br />
+ 	<i>:</i><br />
+	<i>etc.</i></tt><br />
+	<br />
+	<i>Attribute file...</i><br />
+	<tt>
+	L 336625.0000 506025.0000 50 <br />  
+	L 333165.2545 507005.2545 100<br />   
+	L 334774.6173 506041.1564 100<br />
+	<i>:</i><br />
+	<i>etc.</i></tt><br />
+	<br />
+	<i>Category file...</i><br />
+	<tt>
+	# 2 categories<br />
+	0.00 0.00 0.00 0.00<br />
+	50: low risk<br />  
+	100: high risk</tt>
+	</td>
+	<td width="60%" valign="top">
+	Text files for storing point, line, and area vector data. Geometry, primary and 
+	an optional secondary attribute set are stored in separate files in subdirectories 
+	<code>dig_ascii</code>,	<code>dig_att</code> and <code>dig_cats</code> respectively.
+	<br /><br />
+	The geometry file contains header information in the first 14 lines. The bounds of the
+	vector map are used to set the edge values in the header, the remaining items are either
+	ignored by LandSerf or stored as 'notes' when importing.
+	<br /><br />
+	Feature type is identified by a P, L or A prefix representing point, line
+	and area features respectively. Each new feature contains the type and number
+	of coordinates to follow. Note that coordinate data are stored in <i>y</i> <i>x</i> 
+	order, one pair per line in the geometry file, but <i>x</i> <i>y</i> order in the attribute
+	file. 
+	<br /><br />
+	The primary attributes are stored in a separate file with the same name in the subdirectory 
+	<code>dig_att</code>. Attributes are linked to geometry by identifying a coordinate pair in
+	common (the first pair) followed by the attribute (one per line).
+	<br /><br />
+	If secondary attributes (i.e. the attribute selected in an attribute table that is not a primary ID)
+	are present, they are stored in a separate file with the same name in the subdirectory <code>dig_cats</code>
+	<br /><br />
+	All coordinates and primary attributes can be in either integer or floating point formats.
+	Secondary attributes (category labels in GRASS) can be numeric or textual.
+	</td></tr>
+</table>
+
+<a name="kmlRaster"></a>
+<h2 class="blocktitle">KML (Google Earth) Raster File</h2>
+<p>
+	<b>Default file extension: .kmz</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	Compressed binary format containing 'ground overlay' raster(s).<br />
+	
+	</td>
+	<td width="60%" valign="top">
+	KMZ files can be imported directly into Google Earth. See <a href="http://code.google.com/apis/kml/documentation" target="_blank">http://code.google.com/apis/kml/documentation</a> for more details. LandSerf outputs the current display as a georeferenced raster. If called via LandScript, output is the selected raster.
+	</td></tr>
+</table>
+
+
+<a name="kmlVector"></a>
+<h2 class="blocktitle">KML (Google Earth) Vector File</h2>
+<p>
+	<b>Default file extension: .kml</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;<br />
+&lt;!--KML file created by LandSerf 2.3--&gt;<br />
+&lt;kml xmlns=&quot;http://earth.google.com/kml/2.1&quot;&gt;<br />
+&nbsp;&lt;Document xmlns:xlink=&quot;http://www.w3/org/1999/xlink&quot;&gt;<br />
+&nbsp;&nbsp;&lt;Folder&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;name&gt;Vector map title&lt;/name&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;Placemark&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;name&gt;1.0&lt;/name&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;Point&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;coordinates&gt;-1.681592,53.186565,0&lt;/coordinates&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Point&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/Placemark&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;Style id=&quot;ls3.0&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;LineStyle&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;width&gt;3&lt;/width&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;color&gt;ff000000&lt;/color&gt;<br />
+&nbsp;&nbsp;&nbsp;&lt;/LineStyle&gt;<br />
+&nbsp;&nbsp;&lt;/Style&gt;<br />
+&nbsp;&lt;/Document&gt;<br />
+&lt;/kml&gt;</tt><br />
+	</td>
+	<td width="60%" valign="top">
+	KML files can be imported directly into Google Earth. See <a href="http://code.google.com/apis/kml/documentation" target="_blank">http://code.google.com/apis/kml/documentation</a> for more details. LandSerf outputs the primary vector map when saving in this format.
+	</td></tr>
+</table>
+
+<a name="landscript"></a>
+<h2 class="blocktitle">LandScript File</h2>
+
+<p>
+	<b>Default file extension: .lsc</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	# Script to contour a surface<br />
+    baseDir = "c:\data\";<br />
+    surf = open(baseDir &amp; &quot;fractal1.srf&quot;);<br />
+    contours = contour(surf,0,5,1);<br />
+    save(contours,baseDir &amp; &quot;contours.vec&quot;);
+    </tt>
+	</td>
+	<td width="60%" valign="top">
+	Text file storing <i>LandScript</i> commands. See the <a href="../landscript/index.html">LandScript user's guide</a> for details.
+	</td></tr>
+	
+	</table>
+	
+<a name="rasterMap"></a>
+<h2 class="blocktitle">LandSerf Native Raster File</h2>
+
+<p>
+	<b>Default file extension: .srf</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	Compressed binary format.
+	</td>
+	<td width="60%" valign="top">
+	This is the default format in which LandSerf raster maps are stored. In addition to raster values, full metadata, colour tables and attributes are stored
+	in the single zip compressed file.
+	</td></tr>
+	
+	</table>
+	
+<a name="vectorMap"></a>
+<h2 class="blocktitle">LandSerf Native Vector File</h2>
+
+<p>
+	<b>Default file extension: .vec</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	Compressed binary format.
+	</td>
+	<td width="60%" valign="top">
+	This is the default format in which LandSerf vector maps are stored. In addition to vector geometry, full metadata, colour tables and attributes are stored
+	in the single zip compressed file.
+	</td></tr>
+	
+	</table>
+	
+	<a name="mastermap">
+</a>
+<h2 class="blocktitle">MasterMap Vector Text File</h2>
+
+<p>
+	<b>Default file extensions: .gz or .xml</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>&lt;?xml version='1.0' encoding='UTF-8'?&gt;<br />
+        &lt;osgb:FeatureCollection<br />
+		xmlns:gml='http://www.opengis.net/gml'<br />
+		xmlns:xlink='http://www.w3.org/1999/xlink'<br />
+		xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'<br />
+        fid='GDS-2183-1'></tt> <br />
+		<i>:</i><br />
+	    <i>etc.</i></td>
+	    <td width="60%" valign="top">
+	    GML format vector of GB Ordnance Survey's 'MasterMap' large scale spatial database. See 
+		<a href="http://www.ordnancesurvey.co.uk/oswebsite/products/osmastermap" target="_blank">www.ordnancesurvey.co.uk/oswebsite/products/osmastermap/</a>
+		for more details.
+	</td></tr>
+	
+	</table>
+
+<a name="ntfRaster"></a>
+<h2 class="blocktitle">NTF Raster Text File</h2>
+
+<p>
+	<b>Default file extension: .ntf</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>07</tt> Section header record (raster bounds)<br />
+	<tt>50</tt> Grid header record (DEM range)<br />
+	<tt>51</tt> Grid record (DEM values)<br />
+	<i>:</i><br />
+	<i>etc.</i></td>
+	<td width="60%" valign="top">
+	ASCII file for storing geographical data. This is a complex transfer format used largely by
+	the GB Ordnance Survey for distributing their pre-MasterMap digital data. It is also referred to as 
+	British Standard BS 7567 'Electronic Transfer of Geographic Information'. For details see e.g. 
+	<a href="http://www.bsi-global.com/" target="_blank">http://www.bsi-global.com/</a> (select a catalogue
+	search for BS 7567). Header information is stored in section and grid header records, the elevation values in a grid record.
+	</td></tr>
+	
+	</table>
+	
+<a name="ntfVector"></a>
+<h2 class="blocktitle">NTF Vector Text File</h2>
+
+<p>
+	<b>Default file extension: .ntf</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>02</tt> Database header record (product type)<br />
+	<tt>07</tt> Section header record (vector bounds)<br />
+	<tt>05</tt> Feature class record (attribute labels)<br />
+	<tt>15</tt> Point record<br />
+	<tt>23</tt> Line record<br />
+	<tt>21</tt> Geometry record (coordinates)<br />
+	<i>:</i><br />
+	<i>etc.</i></td>
+	<td width="60%" valign="top">
+	ASCII file for storing geographical data. This is a complex transfer format used largely by
+	the GB Ordnance Survey for distributing their pre-MasterMap digital data. It is also referred to as 
+	British Standard BS 7567 'Electronic Transfer of Geographic Information'. For details see e.g. 
+	<a href="http://www.bsi-global.com/" target="_blank">http://www.bsi-global.com/</a> (select a catalogue
+	search for BS 7567) or	<a href="http://gdal.velocet.ca/~warmerda/projects/ntf" target="_blank">
+	gdal.velocet.ca/~warmerda/projects/ntf</a>. LandSerf can read Profile and Panorama contour and form-line files, 
+	LandLine (large scale), Meridian (medium scale)	and Strategi (small scale) vector data in this format.
+	</td></tr>
+	
+	</table>
+
+<a name="svg"></a>
+<h2 class="blocktitle">Scalable Vector Graphics (SVG) File</h2>
+
+<p>
+	<b>Default file extensions: .svg or .svgz</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">&nbsp;</td>
+	<td width="60%" valign="top">
+	Scalable vector graphics viewable over the web with any SVG plugin. If file has extension
+	.svgz, then it will be compressed using GZIP deflation. Most SVG plugins should be able
+	to decompress .svgz files on the fly. The geometry is mirrored in the X axis since the default
+	SVG origin is the top-left corner. Styles are defined separately allowing easy user customisation
+	of vector appearance. Polygons should have repeated first and last coordinates to ensure closing
+	boundary.
+	</td></tr>
+	
+	<tr><td colspan="2" valign="top">
+	<tt>
+&lt;?xml version="1.0" encoding="iso-8859-1"?&gt;<br />
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 1020.0 1020.0&quot;&gt;<br />
+
+&lt;!-- Format definitions --&gt;<br />
+&lt;defs&gt;<br />
+&nbsp;&lt;style type=&quot;text/css&quot;&gt;&lt;![CDATA[<br />
+&nbsp;&nbsp;polyline { stroke:black; stroke-linejoin:round; stroke-linecap:round; stroke-width:17.435898; stroke-opacity:1; fill:none; }<br />
+&nbsp;&nbsp;path  { stroke:#ffffff; stroke-linejoin:round; stroke-width:17.435898; stroke-opacity:0.19607843; fill-opacity:0.75; }<br />
+&nbsp;&nbsp;circle   { stroke:none; fill-opacity:1; }<br />
+&nbsp;&nbsp;text     { stroke:none; fill-opacity:1.0; fill:#000000; font-family:sans-serif}<br />
+&nbsp;]]>&lt;/style&gt;<br />
+&lt;/defs&gt;<br />
+<br />
+&lt;!-- Object metadata --&gt;<br />
+&lt;title&gt;Combined vector&lt;/title&gt;<br />
+&lt;desc&gt;Union of Simple shapes and Simple shapes&lt;/desc&gt;<br />
+<br />
+&lt;!-- Geometry --&gt;<br />
+&lt;g id=&quot;spatialObject&quot; transform=&quot;translate(10.0,1010.0) scale(1,-1)&quot;&gt;<br />
+&nbsp;&lt;path style=&quot;fill:#cb6b66; &quot; d=&quot;M300.0,300.00006 L100.0,0 500.0,0 300.0,300.00006 Z &quot;/&gt;<br />
+&nbsp;&lt;path style=&quot;fill:#e488ed; &quot; d=&quot;M150.0,1000.0 L0.0,700.0 300.0,700.0 150.0,1000.0 Z &quot;/&gt;<br />
+&nbsp;&lt;circle style=&quot;fill:#cb6b66;stroke-opacity:1.0; &quot; cx=&quot;300.0&quot; cy=&quot;100.0&quot; r=&quot;0.2&quot;/&gt;<br />
+&nbsp;&lt;circle style=&quot;fill:#e488ed;stroke-opacity:1.0; &quot; cx=&quot;150.0&quot; cy=&quot;800.0&quot; r=&quot;0.2&quot;/&gt;<br />
+&lt;/g&gt;<br />
+<br />
+&lt;!-- Point labels --&gt;<br />
+&lt;text x=&quot;313.05127&quot; y=&quot;919.1539&quot; font-size=&quot;30&quot; text-anchor=&quot;middle&quot; >Thing one&lt;/text&gt;<br />
+&lt;text x=&quot;163.05128&quot; y=&quot;219.15387&quot; font-size=&quot;30&quot; text-anchor=&quot;middle&quot; >Thing two&lt;/text&gt;<br />
+&lt;/svg&gt;<br />
+	</tt></td>
+	</tr>
+	</table>
+	
+	
+<a name="srtm"></a>
+<h2 class="blocktitle">Shuttle Radar Topography Mission (SRTM) DEM</h2>
+<p>
+	<b>Default file extensions: .hgt or .srtm</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>Binary equivalent of the following...<br />
+	218 218 219 219 219 <i>..etc </i><br />
+	217 217 218 218 219 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Binary file for storing global elevation data, sampled at 1 arc-second, 3 arc-second or 30 arc-second resolution. No header
+	information is included, but the file name indicates the geographic origin of the DEM. See 
+	<a href="http://www2.jpl.nasa.gov/srtm/" target="_blank">www2.jpl.nasa.gov/srtm/</a> for details. LandSerf can also read 'srtm30Plus'
+	files that comprises combined SRTM, GTOPO30 and bathymetric data at 30 arc-second resolution. For more details see
+	<a href="http://topex.ucsd.edu/WWW_html/srtm30_plus.html" target="_blank">http://topex.ucsd.edu/WWW_html/srtm30_plus.html</a>.
+	<br /><br />
+	Raster data are stored in <i>nrows</i> rows from north to south, each row consisting of <i>ncols</i> 
+	values from west to east. Raster will consist of 1201x1201 cells (3 arc-second DEM), 3601x3601 cells(1 arc-second DEM),
+	48000x6000 cells (30 arc-second srtm30plus), or 7200x3600 cells (30 arc-second antarctic srtm30plus).
+	<br /><br />
+	
+	</td></tr>
+</table>
+	
+	
+<a name="terragenBRaster"></a>
+<h2 class="blocktitle">Terragen Raster Binary File</h2>
+<p>
+	<b>Default file extension: .raw</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>Binary equivalent of the following...<br />
+	218 218 219 219 219 <i>..etc </i><br />
+	217 217 218 218 219 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Binary file for storing raster data. No header information is included in the file.
+	<br /><br />
+	Raster data are stored in <i>nrows</i> rows from south to north, each row consisting of <i>ncols</i> 
+	values from west to east. 
+	<br /><br />
+	On export from LandSerf raster values will be a square of side 2^n+1, for example, 257x257, 513x513, 1025x1025
+	depending on the original raster size. Attribute values will be 8 bit integers. LandSerf will automatically scale
+	any raster to these dimensions with a range of 0-255. On import a choice of 8, 16 or 32 bit Intel (low byte first) ordered
+	integers can made.
+	</td></tr>
+</table>
+
+<a name="terragenNative"></a>
+<h2 class="blocktitle">Terragen Native Binary File</h2>
+<p>
+	<b>Default file extension: .ter</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>Binary equivalent of the following...<br />
+	218 218 219 219 219 <i>..etc </i><br />
+	217 217 218 218 219 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Binary file for storing terrain data. Unlike Terragen's 'raw' binary file format, this contains
+	header information and can be used to export non-square terrain data without resampling of elevation
+	values.
+	<br /><br />
+	For details of the format, see <a href="http://www.planetside.co.uk/terragen/dev/tgterrain.html" target="_blank">www.planetside.co.uk/terragen/dev/tgterrain.html</a>.
+	</td></tr>
+</table>
+
+<a name="threedroute"></a>
+<h2 class="blocktitle">3D Route File</h2>
+<p>
+	<b>Default file extensions: .r3d .xml</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">&nbsp;</td>
+	<td width="60%" valign="top">
+	XML file for storing 3d viewing parameters. The optional &lt;environment&gt; tag stores parameters 
+	describing the surrounding space. The optional &lt;surface&gt; tag contains parameters describing the
+	surface appearance. The &lt;waypoint&gt; tags describe a sequence of camera positions and views. These
+	are used to construct 'flythroughs' in the 3d viewer, but can also be imported as 2d vectors in LandSerf.
+	</td>
+	</tr>
+	<tr><td colspan="2">
+	<tt>&lt;?xml version=&quot;1.0&quot; ?&gt;<br />
+&lt;!--3d route and viewing parameters generated by LandSerf 2.3--&gt;<br />
+&lt;fieldtrip&gt;<br />
+ &lt;title&gt;3d route generated by LandSerf 2.3&lt;/title&gt;<br />
+ &lt;environment fogdensity=&quot;0.1&quot; sky=&quot;true&quot; skycolour=&quot;#ff1a801f&quot; seacolour=&quot;#ffad69aa&quot; fogcolour=&quot;#ffccb4b3&quot; wallcolour=&quot;#ffdcdef5&quot;&gt;&lt;/environment&gt;<br />
+ &lt;surface resolution=&quot;4&quot; vscale=&quot;1.9&quot; smooth=&quot;true&quot; grid=&quot;false&quot;&gt;&lt;/surface&gt;<br />
+ &lt;route&gt;<br />
+  &lt;waypoint name=&quot;waypoint1&quot;&gt;<br />
+   &lt;view heading=&quot;320.0&quot; pitch=&quot;-33.0&quot; fov=&quot;70.0&quot;&gt;<br />
+    &lt;spatial type=&quot;point&quot; x=&quot;50.0&quot; y=&quot;-25.0&quot; z=&quot;51.5&quot;&gt;&lt;/spatial&gt;<br />
+   &lt;/view&gt;<br />
+  &lt;/waypoint&gt;<br />
+  &lt;waypoint name=&quot;waypoint2&quot;&gt;<br />
+   &lt;view heading=&quot;328.0&quot; pitch=&quot;-23.0&quot; fov=&quot;30.8&quot;&gt;<br />
+    &lt;spatial type=&quot;point&quot; x=&quot;89.2&quot; y=&quot;6.8&quot; z=&quot;17.4&quot;&gt;&lt;/spatial&gt;<br />
+   &lt;/view&gt;<br />
+  &lt;/waypoint&gt;<br />
+ &lt;/route&gt;<br />
+&lt;/fieldtrip&gt;</tt></td>
+	</tr>
+</table>
+
+<a name="usgsRaster"></a>
+<h2 class="blocktitle">USGS Native DEM Text File</h2>
+
+<p>
+	<b>Default file extension: .dem</b>
+</p>
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	<tr><td valign="top" width="40%">
+<tt>MOUNT RAINIER WEST, WA-24000  LAT::   46 45  0.0000 N LONG:: -121 45  0.0000 W SCALE:: 24000 <i>...etc
+...</i> 392 393 393 393 393 <i>...etc</i> <br />
+</tt></td>
+	<td valign="top" width="60%">
+	ASCII file for storing elevation data. Header information contains spatial extent, resolution,
+	geometry, projection and error information in 1024 byte blocks. Structure is relatively complex
+	and is documented at <a href="http://rockyweb.cr.usgs.gov/nmpstds/demstds.html" target="_blank">rockyweb.cr.usgs.gov/nmpstds/demstds.html</a>.
+	See also <a href="http://www.cs.arizona.edu/topovista/sdts2dem" target="_blank">www.cs.arizona.edu/topovista/sdts2dem/</a>
+	for an error-corrected and updated version of the <b>sdts2dem</b> converter.
+	<br /><br />
+	Raster data are stored in columns rows from west to east, each row consisting of values from south
+	to north. Because of the projection or potentially large areas into planar coordinates, each S-N
+	profile can be of a different length.
+	<br /><br />
+	Raster values are integers but can be scaled by a multiplier stored in the header file.
+	They are stored in fixed-width 1024 byte records, although LandSerf will use whitespace delimiters
+	to read in the raster body.
+	</td></tr>
+</table>	
+
+<a name="vectorstyles"></a>
+<h2 class="blocktitle">Vector Drawing Styles</h2>
+
+<p>
+	<b>Default file extension: .vst</b>
+</p>
+
+<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	&lt;?xml version=&quot;1.0&quot; ?&gt;<br />
+&lt;!--Vector drawing styles--&gt;<br />
+&lt;vectorstyles&gt;<br />
+&nbsp;&lt;point fixed=&quot;true&quot; size=&quot;2&quot; surround=&quot;false&quot;>&lt;/point&gt;<br />
+&nbsp;&lt;line fixed=&quot;true&quot; size=&quot;1&quot; surround=&quot;false&quot;>&lt;/line&gt;<br />
+&nbsp;&lt;polygon boundary=&quot;true&quot; boundarycolour=&quot;#000000ff&quot;<br />
+&nbsp;&nbsp;opacity=&quot;0.25&quot;>&lt;/polygon&gt;<br />
+&nbsp;&lt;label align=&quot;northeast&quot; background=&quot;#ffffff80&quot;<br />
+&nbsp;&nbsp;foreground=&quot;#000000ff&quot; size=&quot;10&quot; visible=&quot;false&quot;><br />
+&nbsp;&lt;/label&gt;<br />
+&nbsp;&lt;rendering style=&quot;quality&quot;>&lt;/rendering&gt;<br />
+&lt;/vectorstyles&gt;
+	</tt></td>
+	<td width="60%" valign="top">
+	XML file that defines the drawing styles for vector maps. Point, line, polygon and label styles can be
+	defined along with rendering style (<code>speed</code> or <code>quality</code>). Each attribute corresponds to 
+	a setting shown in LandSerf's 'Vector appearance' window. Colours are defined using 8 digit hex numbers
+	in the form <code>#RRGGBBAA</code> (red, green, blue and opacity). 
+	</td></tr>
+</table>
+
+<a name="vistaBRaster"></a>
+<h2 class="blocktitle">VistaPro Raster Binary File</h2>
+<p>
+	<b>Default file extension: .bin</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>Binary equivalent of the following...<br />
+	390 392 393 393 393 <i>..etc </i><br />
+	391 391 392 392 393 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	Binary file for storing raster data. No header information is used, by 
+	default the grid resolution is assumed to be 50x the vertical units.
+	<br /><br />
+	Raster data are stored in <i>nrows</i> rows from south to north, each
+	row consisting of <i>ncols</i> values from west to east. 
+	<br /><br />
+	Raster values should be 16 bit Intel (low byte first) integers. If floating point values are required,
+	scale up to largest possible integer value (65535) and rescale after file has been transferred.
+	</td></tr>
+</table>
+	
+<a name="vistaRaster"></a>
+<h2 class="blocktitle">VistaPro Raster Text File</h2>
+<p>
+	<b>Default file extension: .txt</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	390 392 393 393 393 <i>..etc </i><br />
+	391 391 392 392 393 <i>..etc </i><br />
+	<i>:</i><br />
+	<i>etc.</i></tt></td>
+	<td width="60%" valign="top">
+	ASCII file for storing raster data. No header information is used, by 
+	default the grid resolution is assumed to be 50x the vertical units.
+	<br /><br />
+	Raster data are stored in <i>nrows</i> rows from south to north, each
+	row consisting of <i>ncols</i> values from west to east. 
+	<br /><br />
+	Raster values should be integers and are separated by any number of whitespace characters (including new lines).
+	</td></tr>
+</table>
+
+<a name="vrmlRaster"></a>
+<h2 class="blocktitle">VRML Raster 'World'</h2>
+<p>
+	<b>Default file extensions: .wrl, .wrz or .vrml</b>
+</p>
+
+	<table border="0" cellspacing="0" cellpadding="10">
+	<tr><td class="inlineHeading" width="40%" valign="top"><b>Example</b></td>
+	    <td class="inlineHeading" width="60%" valign="top"><b>Description</b></td>
+	</tr>
+	
+	<tr><td width="40%" valign="top">
+	<tt>
+	#VRML V2.0 utf8#<br />
+	# Converted from LandSerf file: Soil<br />
+	# SW corner was originally: 320000.0,435020.0<br />
+	# Scaled so centre is at 0,0,0 with largest side 10 units long<br />
+	Background {<br />
+	&nbsp;&nbsp;  skyColor    [0.0 0.2 0.7, 0.0 0.5 1.0, 1.0 1.0 1.0    ]<br />
+	&nbsp;&nbsp;  skyAngle    [ 1.309, 1.571 ]<br />
+	&nbsp;&nbsp;  groundColor [0.1 0.10 0.0,0.4 0.25 0.2, 0.6 0.60 0.6,    ]<br />
+	&nbsp;&nbsp;  groundAngle [ 1.309, 1.571 ] }<br />
+	Transform {<br />
+	&nbsp;&nbsp; translation -5, -4, -10<br />
+	&nbsp;&nbsp; scale 0.1,0.1,0.1<br />
+	&nbsp;&nbsp; children<br />
+	&nbsp;&nbsp;  [<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;    Shape {<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appearance Appearance { material Material { } }<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;geometry   ElevationGrid {<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xDimension 100<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zDimension 100<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xSpacing 1.0<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; zSpacing 1.0<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; solid FALSE<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; creaseAngle 3<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height [<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.5961194, 2.5735216, <i>etc.</i><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.5961135, 2.5735227, <i>etc.</i><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>etc.</i><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; colorPerVertex TRUE<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color Color {<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color [<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.553 0.163 0.463, <i>etc.</i><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.553 0.121 0.495, <i>etc.</i><br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>etc.</i><br />
+	] } } } ] }<br />
+</tt></td>
+	<td width="60%" valign="top">
+	ASCII file for defining Virtual Reality worlds. If the extension is .wrz, file is GZIP compressed.
+	Raster maps saved in this format consist of raster elevations values in a VRML97 heightfield and vertex 
+	colouring as RGB triplets for each elevation. Vector TINs can be saved as VRML Indexed Face Sets which
+	generally produce smaller and more quickly rendered VRML worlds.
+	<br /><br />
+	All geometry is scaled to form a 20x20 unit grid centred at local coordinates 0,0,0.
+	Null values are represented by the minimum elevation value. You may wish to consider resampling DEM to
+	a reasonably coarse resolution (100x100 or so) or creating a TIN before output to keep the VRML world
+	a manageable size.
+	<br /><br />
+	Includes a simple ground plane and sky to provide background context.
+	<br /><br />
+	Elevation values are floating point and are separated by any number of whitespace characters.
+	<br /><br />
+	Output has been tested with the excellent <a href="http://www.parallelgraphics.com/products/cortona" target="_blank">
+	Cortona VRML client</a> compatible with most web browsers (IE, Opera, Firefox, Mozilla).
+	</td></tr>
+	
+</table>
+
+<!-- Footer area -->
+<div id="footer">
+ <div id="lastModified">Last Modified, 20th April, 2009</div>
+</div>
+
+</div> <!-- End of container area -->
+</body>
+</html>

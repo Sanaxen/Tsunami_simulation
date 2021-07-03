@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <link rel="Stylesheet" rev="Stylesheet" href="../css/landserf.css" media="All" />
+
+<!-- LandSerf Header -->
+
+ <title>LandScript Commands</title>
+ <meta name="description" content="Controlling LandSerf with scripting commands" />
+ <meta name="keywords" content="LandSerf, GIS, DEM, Java, scripting, map algebra, LandScript, programming, Terrain modelling" />
+</head>
+
+<body>
+<div id="header">
+ <a href="../../index.html">
+  <img src="../images/landserfText.gif" width="304" height="57" alt="Go to LandSerf documentation" />
+  <span id="lsicon">
+   <img src="../images/iconTitle.gif" width="57" height="57" alt="Go to Landserf documentation" />
+  </span>
+ </a>
+ <br />
+
+ <div id="breadcrumbs">
+  <span id="currentLocation">Commands</span>       |
+  <a href="./index.html">LandScript</a> |
+  <a href="../../index.html">LandSerf 2.3 Documentation</a> |
+  <a href="http://www.landserf.org">landserf.org</a>
+ </div>
+</div>
+
+<div id="container">
+
+ <!-- End of header -->
+
+<table border="0" cellspacing="0" cellpadding="2">
+ <tr><td><a href="#colouredit">colouredit</a></td> <td>Edits the colour table associated with a spatial object. Can use either preset or user-defined colour rules.</td></tr>
+ <tr><td><a href="#combine">combine</a></td> <td>Combines two spatial objects to form a new spatial object.</td></tr>
+ <tr><td><a href="#contour">contour</a></td> <td>Creates a contour map of a raster surface.</td></tr>
+ <tr><td><a href="#datetime">datetime</a></td> <td>Retrieves the current date or time.</td></tr>
+ <tr><td><a href="#density">density</a></td> <td>Creates a density surface from a set of point values.</td></tr>
+ <tr><td><a href="#draw">draw</a></td> <td>Creates a graphics file representing spatial objects.</td></tr>
+ <tr><td><a href="#echo">echo</a></td> <td>Displays text on screen or writes it to a file.</td></tr>
+ <tr><td><a href="#edit">edit</a></td> <td>Adds a metadata item to a spatial object (raster or vector map).</td></tr>
+ <tr><td><a href="#fractal">fractal</a></td> <td>Fills the given raster with a fractal surface.</td></tr>
+ <tr><td><a href="#freqdist">freqdist</a></td> <td>Calculates a frequency distribution of a raster.</td></tr>
+ <tr><td><a href="#info">info</a></td> <td>Extracts a metadata item from a spatial object (raster or vector map).</td></tr>
+ <tr><td><a href="#joinlines">joinlines</a></td> <td>Joins any line objects in the given vector map.</td></tr>
+ <tr><td><a href="#new">new</a></td> <td>Creates a new spatial object (raster or vector map).</td></tr>
+ <tr><td><a href="#newraster">newraster</a></td> <td>Creates a new raster map with the given bounds and metadata.</td></tr>
+ <tr><td><a href="#newvector">newvector</a></td> <td>Creates a new vector map with the given bounds and metadata.</td></tr>
+ <tr><td><a href="#open">open</a></td> <td>Opens a file representing a spatial object.</td></tr>
+ <tr><td><a href="#peakclass">peakclass</a></td> <td>Identifies peaks and summits from a DEM.</td></tr>
+ <tr><td><a href="#rcolourat">rcolourat</a></td> <td>Extracts a colour component from a raster map using row and column coordinates.</td></tr>
+ <tr><td><a href="#rectify">rectify</a></td> <td>Produces a rectified raster map from a set of control points.</td></tr>
+ <tr><td><a href="#removepits">removepits</a></td> <td>Removes pits from a DEM. Creates a new pitless surface based on the given input surface.</td></tr>
+ <tr><td><a href="#removevoids">removevoids</a></td> <td>Removes voids from a raster by interpolating neighbours.</td></tr>
+ <tr><td><a href="#reproject">reproject</a></td> <td>Reprojects a spatial object into a new coordinate system.</td></tr>
+ <tr><td><a href="#rvalueat">rvalueat</a></td> <td>Extracts or assigns a single attribute associated with a raster map using row and column coordinates.</td></tr>
+ <tr><td><a href="#save">save</a></td> <td>Saves a spatial object as a file.</td></tr>
+ <tr><td><a href="#simplify">simplify</a></td> <td>Simplifies any line or area objects in the given vector map.</td></tr>
+ <tr><td><a href="#surfnetwork">surfnetwork</a></td> <td>Calculates the metric surface network from a DEM and surface feature map.</td></tr>
+ <tr><td><a href="#surfparam">surfparam</a></td> <td>Calculates a raster map of surface parameter values such as slope or aspect.</td></tr>
+ <tr><td><a href="#tocentroids">tocentroids</a></td> <td>Finds centroids of any polygons in the given vector map.</td></tr>
+ <tr><td><a href="#toraster">toraster</a></td> <td>Converts a TIN or vector map into a raster map.</td></tr>
+ <tr><td><a href="#triangulate">triangulate</a></td> <td>Creates a TIN from a raster surface or a Delaunay triangulation of points in a vector map.</td></tr>
+ <tr><td><a href="#valueat">valueat</a></td> <td>Extracts or sets a single attribute associated with a spatial object (raster or vector map).</td></tr>
+ <tr><td><a href="#vectorstyle">vectorstyle</a></td> <td>Sets the vector appearance when drawn in a graphics file.</td></tr>
+ <tr><td><a href="#version">version</a></td> <td>Identifies or queries the LandScript version to be used when interpreting this script.</td></tr>
+</table>
+<br /><br />
+<h2 class="blocktitle"><a name="colouredit">colouredit()</a> - Edits the colour table associated with a spatial object. Can use either preset or user-defined colour rules.</h2>
+<p>
+<i>Does not return a value.</i><br /><br />
+  <i>Usage:</i> <b>colouredit</b>  (&lt;<code>spatial_object</code>&gt;<b>spObj</b>, [&lt;<code>string</code>&gt;<b>type</b>], [&lt;<code>string</code>&gt;<b>rules</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>spObj</b>: Spatial Object to have new colour table.</li>
+ <li><b>type</b>: Type of colour table . Should be one of 'default', 'land1', 'land2','land3','land4','sea1','sea2','seaLand','random','grey1','grey2','exp1','diverging1','diverging2','raw','file','rules', 'addRule' Default is 'default'.</li>
+ <li><b>rules</b>: Name of file containing colour table, or set of numeric rules, or 'null' if not used. Default is 'null'.</li>
+ </ul>
+</p>
+<p>All preset colour tables are scaled between the minimum and maximum values of the spatial object with which it is associated unless the <code>rules</code> parameter is provided (see below). If the <code>type</code> is set to '<code>raw</code>', the object associated with the colour table is assumed to contain raw 32-bit colour values.<br /><br />If <code>type</code> is set to one of the preset colour tables, <code>rules</code> can optionally provide minimum and maximum values between which the colour table is scaled. This should be provided as a whitespace separated pair of values.<br /><br />If <code>type</code> is set to '<code>file</code>', '<code>rules</code>' or '<code>addRule</code>', user-defined colour rules should be provided. They should either be stored in a standard '<code>.ctb</code>' (<code>file</code>) colourtable file, or provided as a single string of comma separated rules (<code>rules</code> and <code>addRule</code>). If type is set to '<code>file</code>' or '<code>rules</code>' the new rules replace any that might exist in the colour table. If it is set to '<code>addRule</code>', the given rules are added to any which exist in the colour table. Each rule consists of a <i>value colour</i> sequence, where <i>value</i> represents the attribute with which to associate a colour and <i>colour</i> is either single greyscale number between 0-255, or an <code>rgb</code> triplet or and <code>rgba</code> quad. An optional <code>(D)</code> value can also be provided to indicate discrete colour rule. If <code>(D)</code> not provided colour rules are assumed to be continuous interpolations.</p>
+
+<h2 class="blocktitle"><a name="combine">combine()</a> - Combines two spatial objects to form a new spatial object.</h2>
+<p>
+<i>Returns a value of type &lt;<code>spatial_object</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>combine</b>  (&lt;<code>spatial_object</code>&gt;<b>first</b>, &lt;<code>spatial_object</code>&gt;<b>second</b>, [&lt;<code>string</code>&gt;<b>type</b>], [&lt;<code>string</code>&gt;<b>rule</b>], [&lt;<code>boolean</code>&gt;<b>replaceNull</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>first</b>: first spatial object to combine.</li>
+ <li><b>second</b>: second spatial object to combine.</li>
+ <li><b>type</b>: type of combination (intersection or union). Default is 'union'.</li>
+ <li><b>rule</b>: raster object to prioritise ('first', 'second' or 'average') or type of vector intersection ('object', 'map' or 'points'). Default is 'first'.</li>
+ <li><b>replaceNull</b>: Indicates whether null values are replaced where possible. Default is 'true'.</li>
+ </ul>
+</p>
+<p>The type of combination will depend on the types of spatial objects provided and the <code>rule</code> parameter. If two raster maps are provided, the combination rule determines whether the attributes of the first, second or average of the two are used to create the attributes of the combined raster. In the case of raster cells with a <i>null</i> value, this rule can be superceded if <code>replaceNull</code> is true. For two intersecting vector maps <code>rule</code> determines if the intersection is based on the bounding rectangle of each vector ('<code>map</code>'), or the intersection of any area objects within each map ('<code>object</code>)'. <br /><br />If the two supplied spatial objects are of different types, the type of combination is determined by the order of objects provided to the command. If '<code>first</code>' is a raster map, it will be 'cookie cut' according to the objects or bounding rectangle of the vector map, again depending on the supplied <code>rule</code>. If '<code>first</code>' is a vector map containing points, a new attribute will be added to the vector map's attribute table that will be contain the raster at each point location.</p>
+
+<h2 class="blocktitle"><a name="contour">contour()</a> - Creates a contour map of a raster surface.</h2>
+<p>
+<i>Returns a value of type &lt;<code>vector_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>contour</b>  (&lt;<code>raster_map</code>&gt;<b>surface</b>, &lt;<code>number</code>&gt;<b>min</b>, &lt;<code>number</code>&gt;<b>interval</b>, [&lt;<code>number</code>&gt;<b>gridWidth</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>surface</b>: Raster surface to contour.</li>
+ <li><b>min</b>: minimum contour value.</li>
+ <li><b>interval</b>: contour interval.</li>
+ <li><b>gridWidth</b>: Grid cell spacing of sample points. Default is '4'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="datetime">datetime()</a> - Retrieves the current date or time.</h2>
+<p>
+<i>Returns a value of type &lt;<code>string</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>datetime</b>  ([&lt;<code>string</code>&gt;<b>format</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>format</b>: Format of date or time to report. Should be one of 'full', 'date', 'time', 'milliseconds' Default is 'milliseconds'.</li>
+ </ul>
+</p>
+<p>Allows the current date and/or time to be retrieved. If the <code>format</code> is set to '<code>full</code>', text representing the current date and time is returned. If '<code>date</code>' or '<code>time</code>' is requested, text representing the current date or current time is returned. All of these can be useful for adding metadata descriptions to newly created objects. The default value of '<code>milliseconds</code>' returns a number representing the number of milliseconds that have elapsed since some arbitrary start time. This can be useful for benchmarking or providing real-time information on how long a script has been running for.</p>
+
+<h2 class="blocktitle"><a name="density">density()</a> - Creates a density surface from a set of point values.</h2>
+<p>
+<i>Returns a value of type &lt;<code>raster_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>density</b>  (&lt;<code>vector_map</code>&gt;<b>vector</b>, &lt;<code>number</code>&gt;<b>windowSize</b>, &lt;<code>number</code>&gt;<b>xRes</b>, [&lt;<code>number</code>&gt;<b>yRes</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>vector</b>: vector map storing points from which to calculate density.</li>
+ <li><b>windowSize</b>: window size used to calculate density. Should be odd and at least 1.</li>
+ <li><b>xRes</b>: resolution of resulting density surface in x direction.</li>
+ <li><b>yRes</b>: resolution of resulting density surface in y direction or 'null' if same as xRes. Default is 'null'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="draw">draw()</a> - Creates a graphics file representing spatial objects.</h2>
+<p>
+<i>Does not return a value.</i><br /><br />
+  <i>Usage:</i> <b>draw</b>  (&lt;<code>string</code>&gt;<b>fileName</b>, [&lt;<code>raster_map</code>&gt;<b>raster1</b>], [&lt;<code>raster_map</code>&gt;<b>raster2</b>], [&lt;<code>vector_map</code>&gt;<b>vector1</b>], [&lt;<code>vector_map</code>&gt;<b>vector2</b>], [&lt;<code>string</code>&gt;<b>type</b>], [&lt;<code>number</code>&gt;<b>blendWeight</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>fileName</b>: Name of graphics file to create. Should have a .png, .jpg or .gif extension.</li>
+ <li><b>raster1</b>: Primary raster map to draw. Default is 'null'.</li>
+ <li><b>raster2</b>: Secondary raster map to draw. Default is 'null'.</li>
+ <li><b>vector1</b>: Primary vector map to overlay. Default is 'null'.</li>
+ <li><b>vector2</b>: Secondary vector map to overlay. Default is 'null'.</li>
+ <li><b>type</b>: Type of image to draw. Should be one of 'raster','relief','hueInt', 'hueSat','blend' or 'add'. Default is 'raster'.</li>
+ <li><b>blendWeight</b>: The blending weight given to the primary raster. This only applies if the 'blend' type is selected. Default is '50'.</li>
+ </ul>
+</p>
+<p>This command can be used for more sophisticated graphical output from a script. For simple display of a single raster or vector map, consider using <code>save()</code> instead, selecting 'image' as the output type.<br /><br />The <code>type</code> options '<code>hueInt</code>' (hue-intensity image), '<code>hueSat</code>' (hue-saturation image), '<code>blend</code>' (blended image) and '<code>add</code>' (image addition) require both a primary and secondary raster to be supplied. The type '<code>relief</code> will use the shaded relief of the primary raster and the colours of the secondary raster is it is provided. If '<code>blend</code>' is requested, the optional parameter <code>blendWeight</code> can be used to determine the weighting given to the primary and secondary rasters.</p>
+
+<h2 class="blocktitle"><a name="echo">echo()</a> - Displays text on screen or writes it to a file.</h2>
+<p>
+<i>Does not return a value.</i><br /><br />
+  <i>Usage:</i> <b>echo</b>  ([&lt;<code>string</code>&gt;<b>text</b>], [&lt;<code>string</code>&gt;<b>fileName</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>text</b>: Text, variable or expression to display. Default is an empty string.</li>
+ <li><b>fileName</b>: File to store output Default is an empty string.</li>
+ </ul>
+</p>
+<p>The text to display can be a combination of literal strings enclosed in &quot;quotes&quot;, variables and expressions. Can also include spectial control characters '<code>\n</code>'  to indicate a new line and '<code>\t</code>' to indicate a tab stop. Literal text is separated from variables and expressions using the <code>&amp;</code> operator. For example<br /><br /><code>mapNum = 5;<br />echo(&quot;Map number &quot;&amp;mapNum&amp;&quot; contains &quot;&amp;240*240&amp;&quot; pixels.&quot;);</code><br /><br />would display the following output:<br /><br /><code><b>Map number 5 contains 57600 pixels.</b></code><br /><br />If the optional <code>fileName</code> parameter is given, the text is written to the given file instead.</p>
+
+<h2 class="blocktitle"><a name="edit">edit()</a> - Adds a metadata item to a spatial object (raster or vector map).</h2>
+<p>
+<i>Does not return a value.</i><br /><br />
+  <i>Usage:</i> <b>edit</b>  (&lt;<code>spatial_object</code>&gt;<b>spObj</b>, &lt;<code>string</code>&gt;<b>item</b>, &lt;<code>string</code>&gt;<b>value</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>spObj</b>: Spatial object to edit.</li>
+ <li><b>item</b>: Type of metadata to edit. Should be one of 'N','S','E','W','xRes','yRes','projection','ellipsoid','type','attributes','attCol','title', 'notes', 'sunElev', 'sunAzim', 'pShade', 'vExag', 'aBias', 'ambient', 'shine', 'diffuse' or 'specular'.</li>
+ <li><b>value</b>: Value of to be associated with the metadata item.</li>
+ </ul>
+</p>
+<p>Metadata items can be provided as strings or numeric values. In the case of raster maps, if any of the bounding values or resolution are changed, the change must not affect the number of rows or columns in the raster. Note that changing the bounding values (N, S, E, W) of a map will not cookie-cut it. To subset a map, create a new empty object (e.g. <code>newraster</code> or <code>newvector</code>) then intersect it with the map using <code>combine</code>. <br /><br />For valid values of '<code>type</code>', '<code>projection</code>' and '<code>ellipsoid</code>', see <code>newRaster()</code> or <code>newVector()</code>. <br /><br/>The value associated with the '<code>attributes</code>' type should be an <code>.atr</code> file containing an attribute table or 'noTable' if an object should not have an attribute table. If an attribute table exists, the <i>active attribute</i> can be set by setting <code>attCol</code> to a number representing the column of the active attribute.<br /><br />The lighting parameters <code>sunElev</code>, <code>sunAzim</code> determine sun direction when calculating shaded relief and should be expressed in degrees. <code>pShade</code> and <code>aBias</code> should be percentages and represent the proportion of greyscale shading and the aspect bias respectively when calculating shaded relief. <code>vExag</code> determines the vertical exaggeration used when calculating shaded relief. Finally, the light parameters <code>shine</code>, <code>ambient</code>, <code>diffuse</code>, and <code>specular</code> are all expressed as percentages and are used when calculating shaded relief as a surface parameter (e.g. with the command <code>surfparam()</code>)</p>
+
+<h2 class="blocktitle"><a name="fractal">fractal()</a> - Fills the given raster with a fractal surface.</h2>
+<p>
+<i>Does not return a value.</i><br /><br />
+  <i>Usage:</i> <b>fractal</b>  (&lt;<code>raster_map</code>&gt;<b>raster</b>, [&lt;<code>number</code>&gt;<b>dimension</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>raster</b>: Raster to contain the fractal surface</li>
+ <li><b>dimension</b>: Fractal dimension of surface to create. Default is '2.1'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="freqdist">freqdist()</a> - Calculates a frequency distribution of a raster.</h2>
+<p>
+<i>Does not return a value.</i><br /><br />
+  <i>Usage:</i> <b>freqdist</b>  (&lt;<code>raster_map</code>&gt;<b>raster</b>, &lt;<code>string</code>&gt;<b>fileName</b>, [&lt;<code>number</code>&gt;<b>min</b>], [&lt;<code>number</code>&gt;<b>binWidth</b>], [&lt;<code>string</code>&gt;<b>ignoreVals</b>], [&lt;<code>boolean</code>&gt;<b>calcHammock</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>raster</b>: Raster map from which to measure frequency distribution.</li>
+ <li><b>fileName</b>: Name of file to store frequency distribution values.</li>
+ <li><b>min</b>: Lower bound of minimum frequency class. If null, raster's minimum value used. Default is 'null'.</li>
+ <li><b>binWidth</b>: Width of each frequency class or modulus if hammock distribution is to be calculated. If not specified, frequency distribution bin width will be 1, and hammock modulus will be 10. Default is 'null'.</li>
+ <li><b>ignoreVals</b>: Optional list of values to be ignored when calculating distribution. If more than one value is to be ignored, a space-separated list of numbers should be provided in quotes. Default is 'null'.</li>
+ <li><b>calcHammock</b>: If true, a hammock distribution will be calculated instead of frequency distribution. Default is 'false'.</li>
+ </ul>
+</p>
+<p>The raster's frequency distribution is calculated in classes ranging from its minimum value to maximum values in widths defined by the <code>binWidth</code> parameter. The <code>ignoreVals</code> parameter can be used to exclude certain values from contributing to the distribution, for example sea areas with value of 0. If more than one value is to be ignored, a string of space separated values should be provided.<br /><br />If <code>calcHammock</code> is <code>true</code>, the frequency distribution of the modulus of raster values is found instead. When generating a hammock distribution, the modulus is taken from the <code>binWidth</code> parameter. For example, a <code>binWidth</code> of 10 would find the distribution of raster value remainders after dividing each cell by 10. This allows a comparison of those values ending in 0 with those ending in digits 1-9 and can be useful for detecting contour and rounding artifacts in interpolated DEMs.<br /><br />In all cases a text file is created with one category per line consisting of a comma-separated lower bin value and frequency.</p>
+
+<h2 class="blocktitle"><a name="info">info()</a> - Extracts a metadata item from a spatial object (raster or vector map).</h2>
+<p>
+<i>Returns a value of type &lt;<code>string</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>info</b>  (&lt;<code>spatial_object</code>&gt;<b>spObj</b>, &lt;<code>string</code>&gt;<b>item</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>spObj</b>: Spatial object from which to extract information.</li>
+ <li><b>item</b>: Type of metadata to extract. Should be one of 'N', 'S', 'E', 'W', 'xRes', 'yRes', 'numRows', 'numCols', 'projection', 'min', 'max', 'mean', 'median', 'percentileN', 'mode', 'modef', 'sum', 'numVals', 'stdev', 'skew', 'kurtosis', 'moran', 'fracD', 'type', title', 'notes', 'sunElev', 'sunAzim', 'pShade', 'vExag', 'aBias', 'ambient', 'shine', 'diffuse' or 'specular'.</li>
+ </ul>
+</p>
+<p>The result of calling this command can be either text or a number depending on the type of metadata selected. Statistical information that can be extracted from raster maps includes number of non-null cells (<code>numVals</code>), sum of all cells (<code>sum</code>), measures of average  - <code>mean</code>, <code>median</code>, <code>mode</code>, and frequency of modal value (<code>modef</code>); measures of dispersion - <code>stdev</code>, <code>skew</code> and <code>kurtosis</code>, <code>percentile<i>N</i></code> (where <code><i>N</i></code> is any number between 0-100); measures of spatial autocorrelation (<code>moran</code>) and fractal dimension (<code>fracD</code>).</p>
+
+<h2 class="blocktitle"><a name="joinlines">joinlines()</a> - Joins any line objects in the given vector map.</h2>
+<p>
+<i>Returns a value of type &lt;<code>vector_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>joinlines</b>  (&lt;<code>vector_map</code>&gt;<b>vector</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>vector</b>: Vector map containing lines to join.</li>
+ </ul>
+</p>
+<p>The result of this operation is a new vector map identical to the original except that any linear features will be joined as a single line. If the original lines have different attributes, the new joined line will take the attribute of the first one to be joined. Uses for this operation include the defragmenting a GPS track with patchy signal, the joining of a multi-session line digitization, the rejoining of lines truncated during vector map tiling.</p>
+
+<h2 class="blocktitle"><a name="new">new()</a> - Creates a new spatial object (raster or vector map).</h2>
+<p>
+<i>Returns a value of type &lt;<code>spatial_object</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>new</b>  (&lt;<code>spatial_object</code>&gt;<b>spObj</b>, [&lt;<code>boolean</code>&gt;<b>copyContents</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>spObj</b>: Spatial object upon which to base the new object.</li>
+ <li><b>copyContents</b>: If true contents and metadata are copied into new object, otherwise only the metadata are copied. Default is 'false'.</li>
+ </ul>
+</p>
+<p>The result of this command, which is always a spatial object of some kind, is normally placed in a variable.<br /><br />For example,<br /><br /><code>myRaster = new(existingRaster);</code><br /><br />will create a new empty raster map called <code>myRaster</code> that contains the same metadata as those in <code>existingRaster</code>. <br /><br /><code>myRaster = new(existingRaster,&quot;true&quot;);</code><br /><br /> will create a duplicate of <code>existingRaster</code> including data and metadata.</p>
+
+<h2 class="blocktitle"><a name="newraster">newraster()</a> - Creates a new raster map with the given bounds and metadata.</h2>
+<p>
+<i>Returns a value of type &lt;<code>raster_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>newraster</b>  (&lt;<code>number</code>&gt;<b>xOrigin</b>, &lt;<code>number</code>&gt;<b>yOrigin</b>, &lt;<code>number</code>&gt;<b>xRes</b>, &lt;<code>number</code>&gt;<b>yRes</b>, &lt;<code>number</code>&gt;<b>numRows</b>, &lt;<code>number</code>&gt;<b>numCols</b>, [&lt;<code>string</code>&gt;<b>title</b>], [&lt;<code>string</code>&gt;<b>notes</b>], [&lt;<code>string</code>&gt;<b>projection</b>], [&lt;<code>string</code>&gt;<b>ellipsoid</b>], [&lt;<code>string</code>&gt;<b>type</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>xOrigin</b>: Western boundary of raster</li>
+ <li><b>yOrigin</b>: Southern boundary of raster</li>
+ <li><b>xRes</b>: E-W width of single raster cell</li>
+ <li><b>yRes</b>: N-S height of single raster cell</li>
+ <li><b>numRows</b>: Number of rows in raster</li>
+ <li><b>numCols</b>: Number of columns in raster</li>
+ <li><b>title</b>: Title of new raster. Default is 'New raster map'.</li>
+ <li><b>notes</b>: Notes associated with new raster. Default is 'Raster created by LandScript'.</li>
+ <li><b>projection</b>: Map projection used by new raster (e.g. 'AlbersBC', 'FrenchNTF', 'LatLong', 'OSGB', 'SwissNG', 'UTM 12 a', 'undefined'). Default is 'undefined'.</li>
+ <li><b>ellipsoid</b>: Projection ellipsoid used by new raster (e.g. 'Airy 1830', 'Australian National', 'Bessel 1841', 'Bessel 1841 (Namibia)', 'Clarke 1866', 'Clarke 1880', 'Everest', 'Fischer 1960', 'Fischer 1968', 'GRS 1967', 'GRS 1980', 'Helmert 1906', 'Hough', 'International', 'Krassovsky', 'Modified Airy', 'Modified Everest', 'Modified Fischer 1960', 'South American', 'WGS 60', 'WGS 66', 'WGS 72', 'WGS 84', 'undefined'). Default is 'undefined'.</li>
+ <li><b>type</b>: Type of raster (e.g. 'Elevation', 'Slope', 'Image', 'Fuzzy' , 'Other'). Default is 'other'.</li>
+ </ul>
+</p>
+<p>The result of this command, which is always a raster map, is normally placed in a variable. Each new declaration must include at least enough metadata to define the origin and dimensions of the new raster map to be created. The origin is defined relative to the bottom left corner, and the number of rows/columns along with the resolution in the x and y directions implicitly define the top-right corner. These bounding values should represent the <i>outer edges</i> of the corner cells in the raster map.<br /><br />For example,<br /><br /><code>myRaster = newraster(100,100, 50, 50, 800,1000);</code><br /><br />will create a new empty raster with a bottom left corner at (100,100) and top right corner at (50100,40100). Other metadata can be optionally specified. For example,<br /><br /><code>myRaster = newraster(100,100, 50, 50, 800,1000,&quot;My title&quot;, &quot;Raster created by landscript command&quot;,&quot;OSGB&quot;,&quot;Airy 1830&quot;,&quot;Elevation&quot;);</code></p>
+
+<h2 class="blocktitle"><a name="newvector">newvector()</a> - Creates a new vector map with the given bounds and metadata.</h2>
+<p>
+<i>Returns a value of type &lt;<code>vector_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>newvector</b>  (&lt;<code>number</code>&gt;<b>west</b>, &lt;<code>number</code>&gt;<b>south</b>, &lt;<code>number</code>&gt;<b>east</b>, &lt;<code>number</code>&gt;<b>north</b>, [&lt;<code>string</code>&gt;<b>title</b>], [&lt;<code>string</code>&gt;<b>notes</b>], [&lt;<code>string</code>&gt;<b>projection</b>], [&lt;<code>string</code>&gt;<b>ellipsoid</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>west</b>: Western boundary of vector map</li>
+ <li><b>south</b>: Southern boundary of vector map</li>
+ <li><b>east</b>: Eastern boundary of vector map</li>
+ <li><b>north</b>: Northern boundary of vector map</li>
+ <li><b>title</b>: Title of new vector map. Default is 'New vector map'.</li>
+ <li><b>notes</b>: Notes associated with new vector. Default is 'Vector map created by LandScript'.</li>
+ <li><b>projection</b>: Map projection used by new raster (e.g. 'AlbersBC', 'FrenchNTF', 'LatLong', 'OSGB', 'SwissNG', 'UTM 12 a', 'undefined'). Default is 'undefined'.</li>
+ <li><b>ellipsoid</b>: Projection ellipsoid used by new raster (e.g. 'Airy 1830', 'Australian National', 'Bessel 1841', 'Bessel 1841 (Namibia)', 'Clarke 1866', 'Clarke 1880', 'Everest', 'Fischer 1960', 'Fischer 1968', 'GRS 1967', 'GRS 1980', 'Helmert 1906', 'Hough', 'International', 'Krassovsky', 'Modified Airy', 'Modified Everest', 'Modified Fischer 1960', 'South American', 'WGS 60', 'WGS 66', 'WGS 72', 'WGS 84', 'undefined'). Default is 'undefined'.</li>
+ </ul>
+</p>
+<p>The result of this command, which is always a vector map, is normally placed in a variable. Each new declaration must include at least enough metadata to define the bottom-left and top-right of the map. <br /><br />For example,<br /><br /><code>myVectorMap = newvector(302100,450000, 303100, 451000);</code><br /><br />will create a new empty vector map with a bottom left corner at (302100,450000) and top right corner at (303100,451000). Other metadata can be optionally specified. For example,<br /><br /><code>myVectorMap = new(302100,450000, 303100, 451000,&quot;My title&quot;, &quot;Vector map created by landscript command&quot;,&quot;OSGB&quot;,&quot;Airy 1830&quot;);</code>.</p>
+
+<h2 class="blocktitle"><a name="open">open()</a> - Opens a file representing a spatial object.</h2>
+<p>
+<i>Returns a value of type &lt;<code>spatial_object</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>open</b>  (&lt;<code>string</code>&gt;<b>file</b>, [&lt;<code>string</code>&gt;<b>type</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>file</b>: full pathname of file to open.</li>
+ <li><b>type</b>: type of file to open. For list of available types, see the LandSerf 'Howto' document on file formats. Specifying 'guess' will try to guess the file type from its extension. Default is 'guess'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="peakclass">peakclass()</a> - Identifies peaks and summits from a DEM.</h2>
+<p>
+<i>Returns a value of type &lt;<code>raster_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>peakclass</b>  (&lt;<code>raster_map</code>&gt;<b>dem</b>, &lt;<code>number</code>&gt;<b>minDrop</b>, [&lt;<code>number</code>&gt;<b>minElev</b>], [&lt;<code>raster_map</code>&gt;<b>fuzzyPeakRaster</b>], [&lt;<code>vector_map</code>&gt;<b>summitNetwork</b>], [&lt;<code>raster_map</code>&gt;<b>hierarchyRaster</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>dem</b>: DEM from which to identify peaks and summits.</li>
+ <li><b>minDrop</b>: Minimum vertical drop defining summit.</li>
+ <li><b>minElev</b>: Minimum elevation for any summit. If null, minimum elevation value is not used to define summit. Default is 'null'.</li>
+ <li><b>fuzzyPeakRaster</b>: Raster into which fuzzy peak values are placed. If null, fuzzy peaks are not calculated. Default is 'null'.</li>
+ <li><b>summitNetwork</b>: Vector map into which summit network is placed. If null, summit network is not calculated. Default is 'null'.</li>
+ <li><b>hierarchyRaster</b>: Raster into which peak hierarchy values are placed. If null, peak hierarchy is not calculated. Default is 'null'.</li>
+ </ul>
+</p>
+<p>Uses 'relative drop' to identify summits and their catchments from the given DEM. The <code>minDrop</code> parameter sets the minimum vertical drop required for a path from a summit to a higher neighbour. The larger the value the fewer the summits, but the larger in scale. If <code>minElev</code> is also defined, an additional constraint can be applied to summit definition. Only locations with at least this height will be considered as candidate summits. In all cases, a raster containing summit points and their contributing areas is generated. Additionally, a number of optional output maps can also be generated. If a <code>fuzzyPeakRaster</code> is given, this will be filled with values indicating peak membership ranging from 1 at the summit point to 0 at the boundary of its contributing area. If a <code>summitNetwork</code> vector map is given, this will be filled with a set of points representing summits, their passes and connecting topological ridge lines. If a <code>hierarchyRaster</code> is supplied, this will be populated with each peak's nested hierarchy value.</p>
+
+<h2 class="blocktitle"><a name="rcolourat">rcolourat()</a> - Extracts a colour component from a raster map using row and column coordinates.</h2>
+<p>
+<i>Returns a value of type &lt;<code>number</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>rcolourat</b>  (&lt;<code>raster_map</code>&gt;<b>raster</b>, &lt;<code>number</code>&gt;<b>row</b>, &lt;<code>number</code>&gt;<b>col</b>, &lt;<code>string</code>&gt;<b>component</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>raster</b>: Raster map from which to query colour.</li>
+ <li><b>row</b>: Row coordinate of raster to query. This should be between 0 and (numRows-1) of the raster.</li>
+ <li><b>col</b>: Column coordinate of raster to query. This should be between 0 and (numCols-1) of the raster.</li>
+ <li><b>component</b>: Colour component to extract. Should be one of 'red', 'green', 'blue', or 'alpha'</li>
+ </ul>
+</p>
+<p>The raster's row and column origin is assumed to be at the top left. Note also that the order of coordinates is <code>row</code> followed by <code>col</code>. The red, green, blue or alpha component is scaled between 0 and 255. If the query location is outside the raster's bounds, a warning message is reported and 0 is returned.<br /><br />See also <code>rgb()</code>, <code>red()</code>, <code>green()</code> and <code>blue()</code> that can convert to and from colour integers and red, green and blue values. These functions can be used in local map algebra operations and will be much quicker than <code>rcolourat()</code> for processing entire rasters.</p>
+
+<h2 class="blocktitle"><a name="rectify">rectify()</a> - Produces a rectified raster map from a set of control points.</h2>
+<p>
+<i>Returns a value of type &lt;<code>raster_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>rectify</b>  (&lt;<code>raster_map</code>&gt;<b>raster</b>, &lt;<code>string</code>&gt;<b>ctrlPoints</b>, &lt;<code>string</code>&gt;<b>order</b>, &lt;<code>boolean</code>&gt;<b>interpolate</b>, &lt;<code>number</code>&gt;<b>xRes</b>, [&lt;<code>number</code>&gt;<b>yRes</b>], [&lt;<code>number</code>&gt;<b>north</b>], [&lt;<code>number</code>&gt;<b>south</b>], [&lt;<code>number</code>&gt;<b>east</b>], [&lt;<code>number</code>&gt;<b>west</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>raster</b>: Raster to rectify.</li>
+ <li><b>ctrlPoints</b>: File holding the control points used to create the transformation.</li>
+ <li><b>order</b>: type of transformation (one of 'linear', 'quadratic' or 'cubic').</li>
+ <li><b>interpolate</b>: Interpolates between raster cells if true, otherwise selected nearest neighbour.</li>
+ <li><b>xRes</b>: resolution of resulting raster in x direction.</li>
+ <li><b>yRes</b>: resolution of resulting raster in y direction or 'null' if same as xRes. Default is 'null'.</li>
+ <li><b>north</b>: Northern boundary of rectified raster or 'null' if defined by control points. Default is 'null'.</li>
+ <li><b>south</b>: Southern boundary of rectified raster or 'null' if defined by control points. Default is 'null'.</li>
+ <li><b>east</b>: Eastern boundary of rectified raster or 'null' if defined by control points. Default is 'null'.</li>
+ <li><b>west</b>: Western boundary of rectified raster or 'null' if defined by control points. Default is 'null'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="removepits">removepits()</a> - Removes pits from a DEM. Creates a new pitless surface based on the given input surface.</h2>
+<p>
+<i>Returns a value of type &lt;<code>raster_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>removepits</b>  (&lt;<code>raster_map</code>&gt;<b>dem</b>, [&lt;<code>string</code>&gt;<b>type</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>dem</b>: Surface from which to remove pits.</li>
+ <li><b>type</b>: Type of pit processing. 'infill' will flood pits to their spill points; 'channel' will create an outflow channel from a pit to a lower point. Default is 'infill'.</li>
+ </ul>
+</p>
+<p>The most appropriate type of pit processing will depend on the application and nature of the DEM being processed. Infilling is best suited to the removal of small isolated pits in noisy data. It has the advantage of being quick to compute. Channelling outflow from pits is better suited to hydrological applications that require all non-edge points to flow off the DEM. Channelling is not suited to surfaces with large or deep pits.<br /><br />The changed elevation values, whether through infilling or channelling, can be found by taking the difference between the original surface and the one returned by this command.</p>
+
+<h2 class="blocktitle"><a name="removevoids">removevoids()</a> - Removes voids from a raster by interpolating neighbours.</h2>
+<p>
+<i>Returns a value of type &lt;<code>raster_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>removevoids</b>  (&lt;<code>raster_map</code>&gt;<b>raster</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>raster</b>: Raster map containing data with voids.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="reproject">reproject()</a> - Reprojects a spatial object into a new coordinate system.</h2>
+<p>
+<i>Returns a value of type &lt;<code>spatial_object</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>reproject</b>  (&lt;<code>spatial_object</code>&gt;<b>spObj</b>, &lt;<code>string</code>&gt;<b>type</b>, [&lt;<code>boolean</code>&gt;<b>interpolate</b>], [&lt;<code>number</code>&gt;<b>xRes</b>], [&lt;<code>number</code>&gt;<b>yRes</b>], [&lt;<code>number</code>&gt;<b>north</b>], [&lt;<code>number</code>&gt;<b>south</b>], [&lt;<code>number</code>&gt;<b>east</b>], [&lt;<code>number</code>&gt;<b>west</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>spObj</b>: Spatial object to reproject.</li>
+ <li><b>type</b>: Type of reprojection to perform. Options include 'AlbersBC', 'AlbersUS', 'AlbersUSAll', 'FrenchNTF', 'LatLong', 'OSGB', 'SwissNG', and 'UTM'. Note that not all reprojection combinations are available.</li>
+ <li><b>interpolate</b>: Interpolates between raster cells if true, otherwise selected nearest neighbour. This parameter is ignored for reprojection of vector maps. Default is 'true'.</li>
+ <li><b>xRes</b>: resolution of resulting raster in x direction or 'null' if calculated automatically/not relevant. Default is 'null'.</li>
+ <li><b>yRes</b>: resolution of resulting raster in y direction or 'null' if same as xRes. Default is 'null'.</li>
+ <li><b>north</b>: Northern boundary of reprojected spatial object or 'null' if calculated automatically. Default is 'null'.</li>
+ <li><b>south</b>: Southern boundary of reprojected spatial object or 'null' if calculated automatically. Default is 'null'.</li>
+ <li><b>east</b>: Eastern boundary of reprojected spatial object or 'null' if calculated automatically. Default is 'null'.</li>
+ <li><b>west</b>: Western boundary of reprojected spatial object or 'null' if calculated automatically. Default is 'null'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="rvalueat">rvalueat()</a> - Extracts or assigns a single attribute associated with a raster map using row and column coordinates.</h2>
+<p>
+<i>Returns a value of type &lt;<code>string</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>rvalueat</b>  (&lt;<code>raster_map</code>&gt;<b>raster</b>, &lt;<code>number</code>&gt;<b>row</b>, &lt;<code>number</code>&gt;<b>col</b>, [&lt;<code>number</code>&gt;<b>att</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>raster</b>: Raster map from which to query or assign attribute.</li>
+ <li><b>row</b>: Row coordinate of raster to query or assign attribute. This should be between 0 and (numRows-1) of the raster.</li>
+ <li><b>col</b>: Column coordinate of raster to query or assign attribute. This should be between 0 and (numCols-1) of the raster.</li>
+ <li><b>att</b>: Optional attribute to assign to the given location. If not specified, this will query the attribute at the given location. Default is 'null'.</li>
+ </ul>
+</p>
+<p>The raster's row and column origin is assumed to be at the top left. Note also that the order of coordinates is <code>row</code> followed by <code>col</code>, in contrast to <code>valueat()</code> which requires coordinates in <code>easting,northing</code> order.<br /><br />The value to be associated with the given location can be assigned if the <code>att</code> parameter is set. If <code>att</code> not set this command will perform a raster query, the result of which can be either text or a number depending on the attribute selected. If the raster map has an attribute table associated with it,  the <i>active attribute</i> will determine which column from the table is used to return a value. If the object has no attribute table, the numeric attribute is returned. If the query location is outside the raster's bounds, a warning message is reported and a null value is returned.</p>
+
+<h2 class="blocktitle"><a name="save">save()</a> - Saves a spatial object as a file.</h2>
+<p>
+<i>Does not return a value.</i><br /><br />
+  <i>Usage:</i> <b>save</b>  (&lt;<code>spatial_object</code>&gt;<b>spObj</b>, &lt;<code>string</code>&gt;<b>file</b>, [&lt;<code>string</code>&gt;<b>type</b>], [&lt;<code>string</code>&gt;<b>byteOrder</b>], [&lt;<code>number</code>&gt;<b>wordSize</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>spObj</b>: Spatial object to save.</li>
+ <li><b>file</b>: Full pathname of file to save.</li>
+ <li><b>type</b>: Type of file format to save. For list of available types, see the LandSerf 'Howto' document on file formats. Specifying 'native' will save the object in LandSerf's native raster map or vector map format. Default is 'native'.</li>
+ <li><b>byteOrder</b>: Byte order. This only applies to the generic binary raster format. If supplied it should be one of 'bigEndian' (Motorola) or 'littleEndian' (Intel). Default is 'littleEndian'.</li>
+ <li><b>wordSize</b>: Number of bytes per raster cell. This only applies to the generic binary raster format. If supplied it should be one either 1, 2 or 4. Default is '4'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="simplify">simplify()</a> - Simplifies any line or area objects in the given vector map.</h2>
+<p>
+<i>Returns a value of type &lt;<code>vector_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>simplify</b>  (&lt;<code>vector_map</code>&gt;<b>vector</b>, &lt;<code>number</code>&gt;<b>distance</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>vector</b>: Vector map to simplify.</li>
+ <li><b>distance</b>: Tolerance distance that controls the degree of simplification.</li>
+ </ul>
+</p>
+<p>The result of this operation is a new vector map identical to the original except that any linear features or area boundaries will be simplified. Uses the Douglas-Peucker line simplification algorithm.</p>
+
+<h2 class="blocktitle"><a name="surfnetwork">surfnetwork()</a> - Calculates the metric surface network from a DEM and surface feature map.</h2>
+<p>
+<i>Returns a value of type &lt;<code>vector_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>surfnetwork</b>  (&lt;<code>raster_map</code>&gt;<b>surf</b>, &lt;<code>raster_map</code>&gt;<b>features</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>surf</b>: Surface over which to calculate network.</li>
+ <li><b>features</b>: Surface features on which to base network.</li>
+ </ul>
+</p>
+<p>A surface feature network consists of points representing <i>pits</i>, <i>passes</i> and <i>peaks</i> joined by lines repsenting <i>channels</i> (from pits to passes) and <i>ridges</i> (from passes to peaks). Input must consist of a Digital Elevation Model and a raster representing the (possibly fragmented) surface features.</p>
+
+<h2 class="blocktitle"><a name="surfparam">surfparam()</a> - Calculates a raster map of surface parameter values such as slope or aspect.</h2>
+<p>
+<i>Returns a value of type &lt;<code>raster_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>surfparam</b>  (&lt;<code>raster_map</code>&gt;<b>surf</b>, &lt;<code>string</code>&gt;<b>type</b>, [&lt;<code>number</code>&gt;<b>wSize</b>], [&lt;<code>number</code>&gt;<b>decay</b>], [&lt;<code>number</code>&gt;<b>slopetol</b>], [&lt;<code>number</code>&gt;<b>curvetol</b>], [&lt;<code>string</code>&gt;<b>scaleSummary</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>surf</b>: Surface from which to calculate parameter.</li>
+ <li><b>type</b>: Type of surface parameter. Options include 'elev', 'slope', 'aspect', 'profc', 'planc', 'crossc', 'longc', 'minc', 'maxc', 'meanc', 'feature', 'netfeature', 'residual', 'meanresidual, 'shade', 'fractal', 'coeffA', 'coeffB', 'coeffC', 'coeffD', 'coeffE', 'coeffF'.</li>
+ <li><b>wSize</b>: Window size used for calculation. If a multiscale summary is selected (see below), wSize should be the maximum window size over which to measure. In all cases, wSize should be at least 3 and an odd number. If 'null', the window size defined by 'surf' is used. Default is 'null'.</li>
+ <li><b>decay</b>: Distance decay used for calculation. If 'null', the decay exponent defined in 'surf' is used. Default is 'null'.</li>
+ <li><b>slopetol</b>: Slope tolerance used for feature classification (ignored by other parameters). If 'null', the tolerance value defined in 'surf' is used. Default is 'null'.</li>
+ <li><b>curvetol</b>: Curvature tolerance used for feature classification (ignored by other parameters). If 'null', the tolerance value defined in 'surf' is used. Default is 'null'.</li>
+ <li><b>scaleSummary</b>: Multiscale summary surface to create. Valid values are 'average', 'variation', 'min', 'max' and 'null'. If 'null', the parameter is calculated at a single window size only. Default is 'null'.</li>
+ </ul>
+</p>
+<p>The type of surface measurement is determined by the <code>type</code> parameter at the scale determined by <code>size</code>. The <code>decay</code> parameter determines the weighting given to neighbouring cells as a function of distance from the centre of the cell to measure. A value of 0 indicates equal weight to all cells, 1 a linear distance decay, 2 a squared distance decay etc. Most parameter types should be self-explanatory. The values '<code>coeffA</code>', '<code>coeffB</code>' etc. allow the quadratic coefficients a-f of the best fit surface <code>z = ax<sup>2</sup> + by<sup>2</sup> +cxy + dx +ey + f</code> to be retrieved. <br /><br />Parameters can be calculated over a range of window sizes and summarised by including a non-null value for <code>scaleSummary</code>. In which case, <code>wSize</code>, which must be at least 5, represents the largest window size, and the smallest window size is always 3x3.</p>
+
+<h2 class="blocktitle"><a name="tocentroids">tocentroids()</a> - Finds centroids of any polygons in the given vector map.</h2>
+<p>
+<i>Returns a value of type &lt;<code>vector_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>tocentroids</b>  (&lt;<code>vector_map</code>&gt;<b>vector</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>vector</b>: Vector map to in which to find centroids.</li>
+ </ul>
+</p>
+<p>The result of this operation is a new vector map containing only points representing the centroids of each polygon in the original vector map. The centroids share the same attributes and colours as the polygons they represent.</p>
+
+<h2 class="blocktitle"><a name="toraster">toraster()</a> - Converts a TIN or vector map into a raster map.</h2>
+<p>
+<i>Returns a value of type &lt;<code>raster_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>toraster</b>  (&lt;<code>vector_map</code>&gt;<b>vector</b>, &lt;<code>number</code>&gt;<b>xRes</b>, [&lt;<code>number</code>&gt;<b>yRes</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>vector</b>: TIN or vector map to convert.</li>
+ <li><b>xRes</b>: resolution of resulting raster in x direction.</li>
+ <li><b>yRes</b>: resolution of resulting raster in y direction or 'null' if same as xRes. Default is 'null'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="triangulate">triangulate()</a> - Creates a TIN from a raster surface or a Delaunay triangulation of points in a vector map.</h2>
+<p>
+<i>Returns a value of type &lt;<code>vector_map</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>triangulate</b>  (&lt;<code>spatial_object</code>&gt;<b>spObj</b>, [&lt;<code>number</code>&gt;<b>numSamples</b>], [&lt;<code>number</code>&gt;<b>rmse</b>], [&lt;<code>number</code>&gt;<b>maxError</b>], [&lt;<code>raster_map</code>&gt;<b>errorSurface</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>spObj</b>: Raster or points to triangulate.</li>
+ <li><b>numSamples</b>: maximum number of points to sample or 'null' if not relevant. Default is 'null'.</li>
+ <li><b>rmse</b>: maximum root mean squared error allowed or 'null' if not relevant. Default is 'null'.</li>
+ <li><b>maxError</b>: maximum error allowed or 'null' if not relevant. Default is 'null'.</li>
+ <li><b>errorSurface</b>: raster to hold error surface. Default is 'null'.</li>
+ </ul>
+</p>
+
+<h2 class="blocktitle"><a name="valueat">valueat()</a> - Extracts or sets a single attribute associated with a spatial object (raster or vector map).</h2>
+<p>
+<i>Returns a value of type &lt;<code>string</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>valueat</b>  (&lt;<code>spatial_object</code>&gt;<b>spObj</b>, &lt;<code>number</code>&gt;<b>easting</b>, &lt;<code>number</code>&gt;<b>northing</b>, [&lt;<code>number</code>&gt;<b>att</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>spObj</b>: Spatial object from which to query or assign attribute.</li>
+ <li><b>easting</b>: Easting of location to query or assign. This should be in the geographic units used by the spatial object.</li>
+ <li><b>northing</b>: Northing of location to query or assign. This should be in the geographic units used by the spatial object.</li>
+ <li><b>att</b>: Optional attribute to assign to the given location. If not specified, this will query the attribute at the given location. Default is 'null'.</li>
+ </ul>
+</p>
+<p>The origin of the spatial object is assumed to be at the bottom left, and the coordinate system used is defined by the spatial object itself. Both raster and vector maps can be queried or set using this command, but to query or assign raster map attributes using row and column coordinates, use <code>rvalueat()</code> instead. <br /><br />The value to be associated with the given location can be assigned if the <code>att</code> parameter is set. If it is not, the result of calling this command can be either text or a number depending on the attribute selected. If the spatial object has an attribute table associated with it,  the <i>active attribute</i> will determine which column from the table is used to return a value. If the object has no attribute table, the numeric attribute is returned. If the query location is outside the spatial object's bounds, a warning message is reported and null is returned.</p>
+
+<h2 class="blocktitle"><a name="vectorstyle">vectorstyle()</a> - Sets the vector appearance when drawn in a graphics file.</h2>
+<p>
+<i>Does not return a value.</i><br /><br />
+  <i>Usage:</i> <b>vectorstyle</b>  (&lt;<code>string</code>&gt;<b>action</b>, &lt;<code>string</code>&gt;<b>value</b>);<br /><br />
+where<br />
+<ul>
+ <li><b>action</b>: Style action to perform. Should be one of 'open', 'save', 'boundarycolour', 'fixedline', 'fixedpoint', 'labelbackground', 'labelsize', 'labelforeground', 'labelposition', 'linewidth', 'pointsize', 'polygonopacity', 'render', 'showboundary', 'showlabels', 'surroundline' or 'surroundpoint'.</li>
+ <li><b>value</b>: Style setting or name of style file to load or save.</li>
+ </ul>
+</p>
+<p>Allows the vector appearance to be changed when creating graphics files with the <code>draw()</code> or <code>save()</code> commands. The options available correspond to those available in LandSerf's 'Vector Appearance' window. Alternatively, settings can be saved or loaded with the <code>save</code> and <code>open</code> options.<br /><br />The size of point and line rendering can be set with <code>linewidth</code> and <code>pointsize</code>. In both cases, the <i>value</i> parameter should be a number of pixels. This need not be a whole number, for example a <code>linewidth</code> of 0.3 gives faint lines useful for contour rendering or polygon boundaries.<br /><br />Point and line style can also be controlled with the <code>surroundpoint</code> and <code>surroundline</code> options, which should be set to <code>true</code> or <code>false</code>. If true, points or lines are drawn with a surrounding line. This can be useful for highlighting underlying raster objects without obscuring them.<br /><br />Polygon appearance can be controlled with the <code>polygonopacity</code> option that should have a value ranging from 0-1. Non-opaque polygons are useful for showing overlapping areal features or for combining with an underlying raster. Polygon boundary appearance is controlled with the <code>boundarycolour</code> option that takes a colour value defined by a series of space-separated colour values scaled between 0-255. Grey levels are specified with a single number; grey levels with transparency by a pair of numbers; red-green-blue values by a triplet and red-green-blue-transparency with a set of four numbers. Polygon boundaries can be turned on and off by setting <code>showboundary</code> to <code>true</code> or <code>false</code>.<br /><br />Point label colours are set with <code>labelbackground</code> and <code>labelforeground</code> each taking a colour value as described above. Labels can be turned on or off with <code>showLabels</code> that should be set either to <code>true</code> or <code>false</code>. Label size is controlled with the <code>labelsize</code> option requiring a numeric value corresponding to the height in pixels of the label. Its position is controlled with <code>labelposition</code> which should have a value corresponding to one of eight compass directions (<code>north</code>, <code>northeast</code>, <code>east</code> etc.) or <code>centre</code> to centre the label on the point it represents.<br /><br />The type of rendering can be set with <code>render</code> that can take the value <code>speed</code> for faster, low quality rendering or <code>quality</code> for higher quality anti-aliased rendering.</p>
+
+<h2 class="blocktitle"><a name="version">version()</a> - Identifies or queries the LandScript version to be used when interpreting this script.</h2>
+<p>
+<i>Returns a value of type &lt;<code>number</code>&gt;.</i><br /><br />
+  <i>Usage:</i> <b>version</b>  ([&lt;<code>number</code>&gt;<b>versionNum</b>], [&lt;<code>boolean</code>&gt;<b>showDetail</b>]);<br /><br />
+where<br />
+<ul>
+ <li><b>versionNum</b>: LandScript version number Default is '-1'.</li>
+ <li><b>showDetail</b>: If true, a full description of the LandScript version is given; if false, just a number representing the current version is reported. Default is 'false'.</li>
+ </ul>
+</p>
+<p>The LandScript version should be identified at the top of each script to ensure compatibility with future enhancements to the language. If a value of less than 0 is supplied, the current Landscript version is assumed and displayed. If a version more recent (larger) than the current version is supplied, a warning message is displayed. <br /><br />This command will return the version of LandScript that will be used to interpret the script, which was either set by this command, or is the current version if out of range or not supplied. The result can be stored in a variable and used to perform sections of script conditionally dependent on the version number.<br /><br />If <code>showDetail</code> is true more detailed information is displayed including the version of Java used to run LandScript.</p>
+
+
+<!-- Footer area -->
+ <div id="footer">
+  <div id="lastModified">Last Modified, 20th April, 2009</div>
+ </div>
+ 
+</div> <!-- End of container area -->
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <link rel="Stylesheet" rev="Stylesheet" href="../css/landserf.css" media="All" />
+
+<!-- LandSerf Header -->
+
+ <title>LandSerf Programming Guide  - 1. Getting Started</title>
+ <meta name="description" content="LandSerf Programming Guide" />
+ <meta name="keywords" content="LandSerf, GIS, DEM, Java, programming, Terrain modelling" />
+</head>
+
+<body>
+<div id="header">
+ <a href="../../index.html">
+  <img src="../images/landserfText.gif" width="304" height="57" alt="Go to LandSerf documentation" />
+  <span id="lsicon">
+   <img src="../images/iconTitle.gif" width="57" height="57" alt="Go to Landserf documentation" />
+  </span>
+ </a>
+ <br />
+
+ <div id="breadcrumbs">
+  <span id="currentLocation">Chapter 1</span>       |
+  <a href="index.html">Programming Guide</a> |
+  <a href="../../index.html">LandSerf 2.3 Documentation</a> |
+  <a href="http://www.landserf.org">landserf.org</a>
+ </div>
+</div>
+
+<div id="container">
+
+ <!-- End of header -->
+
+<h1>Chapter 1. Getting Started</h1>
+
+
+<div class="highlightbox">
+By the end of this chapter you will be able to:
+<br /><br />
+<ul>
+ <li>Link your Java programming environment to the relevant LandSerf class libraries. <br /><br /></li>
+ <li>Compile a class to create and save a simple raster with its own metadata. <br /><br /></li>
+ <li>Use the LandSerf API documentation to explore the LandSerf Java class libraries. <br /><br /></li>
+ <li>Create a standalone script to run your Java class.</li> 
+</ul>
+</div>
+<div class="columnbreak"></div>
+
+
+<h2>1.1 Linking your Java code with the LandSerf Class Libraries</h2>
+
+<p>
+ In order to take advantage of the several hundred classes that make up the LandSerf class libraries, you will first
+ need to identify their location in your Java development environment. The libraries are stored in two <i>.jar</i>
+ files in the directory in which you installed LandSerf. <code>landserf230.jar</code> contains LandSerf-specific classes
+ and <code>utils230.jar</code> contains a set of more general utility classes.
+</p>
+
+<p>
+ If you are compiling your own Java code from the command line, you will need to point to these two jar files by
+ using the <code>-classpath</code> option of <code>javac</code>. For example:
+ <br /><br />
+ <code>javac -classpath .;&quot;c:Program Files\LandSerf\landserf230.jar&quot;;&quot;c:Program Files\LandSerf\utils230.jar&quot; <i>myClass.java</i></code> (<i>Windows</i>)<br /><br />
+ <code>javac -classpath .:~/LandSerf/landserf230.jar:~/LandSerf/utils230.jar <i>myClass.java</i></code> (<i>Linux</i>)<br /><br />
+ <code>javac -classpath .:/Applications/LandSerf/LandSerf.app/Contents/Resources/Java/landserf230.jar:/Applications/LandSerf/LandSerf.app/Contents/Resources/Java/utils230.jar <i>myClass.java</i></code> (<i>MacOSX</i>)<br /><br />
+</p>
+
+<p>
+ If you are using an IDE, you will need to make an equivalent link with the two jar files. For example, in Eclipse, create a new project
+ and select <code>Properties-&gt;Java Build Path-&gt;Libraries</code> and then click the <code>Add External JARs...</code> button.
+</p>
+
+
+<h2>1.2 Creating A 'Hello World' Raster Map</h2>
+
+<p>
+ In time honoured fashion, we will start by writting a simple 'hello world' program that will create a simple LandSerf Raster Map, add some
+ metadata, and save it to disk. Consider the following code:
+</p>
+
+<!-- ~~~~ Created using jFormat V2.4.1 ~~~~ -->
+<table cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<pre class="numbering">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre>
+</td>
+<td valign="top">
+<pre class="jSource">
+<span class="jKeyword">import</span> jwo.landserf.structure.*;   <span class="jComment">// For spatial object class.</span>
+<span class="jKeyword">import</span> jwo.landserf.process.io.*;  <span class="jComment">// For file saving.</span>
+
+<span class="jComment">// **********************************************************</span>
+<span class="jDocComment">/** Creates a simple raster map and with metadata.
+  * @author Jo Wood
+  * @version 1.1, 15th October, 2007
+  */</span>
+<span class="jComment">// **********************************************************</span>
+<span class="jKeyword">public</span> <span class="jKeyword">class</span> HelloWorld
+{
+    <span class="jComment">//------------------ Starter Method -----------------</span>
+    
+    <span class="jKeyword">public</span> <span class="jKeyword">static</span> <span class="jPrimitive">void</span> main(String[] args)
+    {
+        <span class="jKeyword">new</span> HelloWorld();
+    }
+
+    <span class="jComment">//------------------- Constructor -------------------</span>
+
+    <span class="jKeyword">public</span> HelloWorld()
+    {
+        <span class="jComment">// Create a blank raster of 100 x 100 cells.</span>
+        RasterMap raster = <span class="jKeyword">new</span> RasterMap(100,100);
+        
+        <span class="jComment">// Add some simple metadata</span>
+        Header header = <span class="jKeyword">new</span> Header(&quot;<span class="jQuote">My first raster</span>&quot;);
+        header.setNotes(&quot;<span class="jQuote">Hello world</span>&quot;);
+        raster.setHeader(header);
+        raster.setDefaultColours();
+        
+        <span class="jComment">// Write new raster to file.</span>
+        LandSerfIO.write(raster,&quot;<span class="jQuote">hello.srf</span>&quot;);
+    }
+}
+</pre>
+</td></tr></table>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>
+ Most of the spatial data structures such as raster maps, vector maps, TINs etc. are represented by classes in the <code>jwo.landserf.structure</code>
+ package. Therefore to use them, this package is <code>import</code>ed in line 1 of the code. Since this first example will save a raster map as
+ a file, we also need to import the <code>jwo.landserf.process.io</code> package that contains most of the file import/export functionality.
+</p>
+
+<p>
+ The constructor (line 24) creates an empty raster map containing 100 rows and 100 columns of data. The <a href="api/jwo/landserf/structure/RasterMap.html" target="_new">
+ RasterMap API documentation</a> provides details of other ways to construct raster maps.
+</p>
+
+<p>
+ The next four lines of code (27-30) create some simple metadata to attach to the raster map. Most metadata are stored in the 
+ <a href="api/jwo/landserf/structure/Header.html" target="_new">jwo.landserf.structure.Header</a> class. This class, which
+ is attached to all <a href="api/jwo/landserf/structure/SpatialObject.html" target="_new">SpatialObject</a>s, allows a title,
+ author, copyright information and supplementary notes to be associated with the raster. In this example, just the title (set
+ via its constructor) and notes are set. Finally, a default <a href="api/jwo/landserf/structure/ColourTable.html" target="_new">ColourTable</a>
+ is attached to the raster map.
+</p>
+
+<p>
+ The last line of the <code>HelloWorld</code> constructor (line 33) saves the raster we have just created to disk with the name <code>hello.srf</code>.
+ Most operations for reading and writing LandSerf files are represented as static methods in the classes in the 
+ <a href="api/jwo/landserf/process/io/package-summary.html" target="_new">jwo.landserf.process.io</a> package. Methods for reading and writing
+ in the default LandSerf file format are found in the <a href="api/jwo/landserf/process/io/LandSerfIO.html" target="_new">LandSerfIO</a> class
+ in that package.
+</p>
+
+
+<h2>1.3 Running the 'HelloWorld' Class</h2>
+
+<p>
+ To run a compiled class simply call the java interpreter making sure the relevant jar files are linked to your code. This may be achieved
+ directly from with your IDE, by setting your machine's <code>CLASSPATH</code> variable, or by explicitly linking the jar files from the command line:
+ <br /><br />
+ <code>java -classpath .;&quot;c:Program Files\LandSerf\landserf230.jar&quot; HelloWorld</code> (<i>Windows</i>)<br /><br />
+ <code>java -classpath .:~/LandSerf/landserf230.jar HelloWorld</code> (<i>Linux</i>)<br /><br />
+ <code>java -classpath .:/Applications/LandSerf/LandSerf.app/Contents/Resources/Java/landserf230.jar HelloWorld</code> (<i>MacOSX</i>)<br /><br />
+ The command line options can be used to create a simple <code>.bat</code> (<i>Windows</i>) or <code>.sh</code> (Unix/Linux/MacOSX)
+ file that will allow your program to be conveniently run without an IDE.
+</p>
+
+<p>
+ You can test the output of the program by starting LandSerf and opening the file <code>hello.srf</code>. Selecting <code>Info-&gt;Summary Info</code>
+ should produce output similar to the figure below.
+<br /><br />
+ <img src="images/figure1.1.png" width="508" height="653" align="bottom" alt="Metadata from simple raster displayed in LandSerf" />
+ <span class="caption">Metadata from simple raster displayed in LandSerf.</span>
+</p>
+
+
+<h3>1.4 Exercises</h3>
+
+<ol>
+ <li>
+  If you have not done so already, create a <code>HelloWorld</code> project in your favourite Java IDE (or use the command line if you prefer).
+  Create a new class <code>HelloWorld</code> and copy the code above into it.
+  <br /><br />
+  After making sure you have linked your code to the <code>landserf230.jar</code> file, compile and run the class. Check that it has behaved
+  as expected by starting LandSerf and loading the new raster file <code>hello.srf</code>.
+  <br /><br />
+ </li>
+ 
+ <li>
+  Using the <a href="api/index.html" target="_new">API documentation</a> as a guide, try adapting the code to add the following metadata to the raster:
+  <br /><br />
+  <div class="indent">
+  <b>Resolution:</b>50<br />
+   <b>Northern Boundary:</b>10000<br />
+   <b>Southern Boundary:</b>5000<br />
+   <b>Western Boundary:</b>20000<br />
+   <b>Eastern Boundary:</b>25000<br />
+   <b>Raster type:</b> <i>Other</i>
+  </div>
+  <br />
+  Check your results by examining the metadata within LandSerf.
+ </li>
+ 
+</ol>
+
+ <!-- Footer area -->
+ <div id="footer">
+  <div id="lastModified">Last Modified, 20th April, 2009</div>
+ </div>
+
+</div> <!-- End of container area -->
+</body>
+</html>

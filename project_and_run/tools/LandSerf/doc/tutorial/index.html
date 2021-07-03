@@ -1,0 +1,1000 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <link rel="Stylesheet" rev="Stylesheet" href="../css/landserf.css" media="All" />
+
+<!-- LandSerf Header -->
+
+ <title>LandSerf 2.3 Tutorial</title>
+ <meta name="description" content="LandSerf 2.3 Tutorial" />
+ <meta name="keywords" content="LandSerf GIS DEM Terrain modelling" />
+</head>
+
+<body>
+<div id="header">
+ <a href="../index.html">
+  <img src="../images/landserfText.gif" width="304" height="57" alt="Go to LandSerf documentation" />
+  <span id="lsicon">
+   <img src="../images/iconTitle.gif" width="57" height="57" alt="Go to Landserf documentation" />
+  </span>
+ </a>
+ <br />
+
+ <div id="breadcrumbs">
+  <span id="currentLocation">Tutorial</span>           |
+  <a href="../userguide/index.html">User's Guide</a> |
+  <a href="../../index.html">LandSerf 2.3 Documentation</a>  |
+  <a href="http://www.landserf.org">landserf.org</a>
+ </div>
+</div>
+
+<div id="container">
+
+ <!-- End of header -->
+
+<h1>LandSerf 2.3 Tutorial</h1>
+
+<div class="abstract">
+	This simple tutorial describes the process that you might go through when using LandSerf for 
+	terrain	analysis. You can follow the steps using the sample data provided with LandSerf or you 
+	can adapt it to use with your own elevation data.
+	<br /><br />
+	<ul>
+	 <li><a href="#step1">Step 1 - Importing an elevation model.</a></li>
+	 <li><a href="#step2">Step 2 - Georeferencing Information</a></li>
+	 <li><a href="#step3">Step 3 - Displaying the surface.</a></li>
+	 <li><a href="#step4">Step 4 - Attaching metadata to Rasters.</a></li>
+	 <li><a href="#step5">Step 5 - Simple morphometric analysis.</a></li>
+	 <li><a href="#step6">Step 6 - Advanced morphometric analysis.</a></li>
+    </ul>
+</div>
+
+<p>
+	You can start LandSerf by using one of the following methods:
+</p>
+<ul>
+	 <li>Selecting it from the Start menu (<i>Windows</i>)</li>
+	 <li>Click on the LandSerf icon <img src="../images/icon16.gif" width="16" height="16" alt="icon" /> on the desktop (<i>Windows</i>)</li>
+	 <li>Click on landserf.command in the Applications folder (<i>MacOSX</i>)</li>
+	 <li>running <code>landserf.sh</code> from the command line (UNIX/Linux/MacOSX)</li>
+     <li>run or click on <code>landserf.bat</code> (Windows)</li>
+	</ul>
+
+
+<!-- - - - - - - - - - Step 1 - - - - - - - - - -->
+<a name="step1"></a>
+<h2 class="blocktitle">Step 1 - Importing an elevation model.</h2>
+
+
+	
+<p>	
+	The first stage of any terrain analysis is to import a digital model of the land surface to analyse.
+	Much of LandSerf's functionality concerns processing <i>Digital Elevation Models</i> (DEMs) so we
+	will concentrate on that here. A DEM is simply a matrix of elevation values that describes the height
+	of some surface at regular spatial intervals.
+</p>
+	
+<p>
+	For this tutorial, we shall import a DEM from the United States' <i>National Elevation Dataset</i>
+	representing part of the Columbia River area in Washington state. You may wish to substitute an 
+	alternative area of interest (in which case you can find further details on 
+	<a href="../howto/importing.html" target="_new">importing data into LandSerf</a>). The DEM
+	we wish to import for this exercise is taken from the United States Geological Survey (USGS)
+	<a href="http://seamless.usgs.gov" target="_new">Seamless data server</a> that allows data to be
+	selected from user-defined regions of the American continent. The data are provided in ArcGIS
+	<i>Binary Interleaved Layer (BIL)</i> format and can be found in the <code>data</code> sub-directory
+	of the LandSerf	installation.
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure1.jpg" width="200" height="196" alt="LandSerf after opening LincolnNED.bil" />
+ <span class="caption">Figure 1</span>
+</div>
+
+<p>
+ To import the elevation file:
+</p>
+
+ <div class="floatright">
+ <ul class="activity">
+  <li>Select either the <code>File-&gt;Open...</code> menu or the <img src="../images/open16.gif" width="16" height="16" alt="button" />
+	  button.</li>
+  <li>In the drop-down menu labelled <code>Files of Type</code>, select the <code>ArcGIS Binary Image (.bil)</code>
+	  format.</li>
+  <li>Use the dialogue window to navigate to the <code>data</code> sub-directory of the LandSerf 
+	  directory (if you have used this version of LandSerf before, the file dialogue will default
+	  to the last directory you have used). Select the file <code>lincolnNED.bil</code> to load this
+	  file.</li>
+  </ul> 
+ </div> 
+
+ <div class="columnbreak"></div>
+ 
+ <p>
+  You should see a square image of the elevation surface as shown in Figure 1. The smaller thumbnail
+  image on the left-hand side of the LandSerf window acts as an 'index' entry. Every time a new object
+  is loaded into LandSerf, a new thumbnail will be added to this index.
+ </p> 
+   
+	 	 
+<!-- - - - - - - - - - Step 2 - - - - - - - - - -->
+<a name="step2"></a>
+<h2 class="blocktitle">Step 2 - Georeferencing Information.</h2>
+
+<p>
+  The elevation model provided by the USGS is currently <i>georeferenced</i> using global latitude
+  and longitude values. That is, each of the four corners of the surface are associated with particular
+  locations on the earth's surface.  To find out these values we can view the georeferencing information
+  by doing the following:
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure2.jpg" width="200" height="159" alt="LincolnNED global georeferencing information" />
+ <span class="caption">Figure 2</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Select either the <code>Info-&gt;Summary Info</code> menu item or the <img src="../images/info16.gif" width="16" height="16" alt="button" />
+      button. This should produce a new window, part of which is shown in Figure 2.
+  </li>
+ </ul>  
+</div>
+
+<div class="columnbreak"></div>
+<p>
+ The problem with using global latitude and longitude values for analysis is that they do not correspond
+ to fixed distances on the ground. One degree of longitude will vary in length depending on the latitude
+ of the measurement. It is therefore useful for us to be able to reproject the surface onto a <i>planar
+ coordinate system</i> where there is a fixed scale between the units used and measurements on the ground.
+ For this tutorial, we will firstly store the fact that the imported file uses global latitude/longitude
+ coordinates, then transform the DEM onto a <i>Universal Transverse Mercator (UTM)</i> projection:
+</p>
+
+
+<div class="floatleft">
+ <img src="./images/figure3.jpg" width="200" height="208" alt="Reprojection information" />
+ <span class="caption">Figure 3</span>
+</div>
+<div class="floatright">
+ <ul class="activity">
+  <li>Double-click on the thumbnail image of the raster on the left of the main display, or select the <code>Edit-&gt;Edit raster</code> menu item. In the new window that appears, click the <code>Edit</code> button in the <code>Map Projection</code> section.</li>
+  <li>Set the projection information to <code>Latitude/longitude</code> from the drop-down menu. Press the <code>OK</code> buttons in
+   the projection and edit windows to confirm your selections.
+  <li>Select the <code>Transform-&gt;Reproject...</code> menu item and in the window that appears, select
+      <code>UTM</code> as the <code>New Projection</code>. This will produce a new window allowing you
+	  to set the dimensions of the new projected raster (see Figure 3)</li>
+  <li>In the new window, enter <code>30</code> in both the <code>E-W Res</code> and
+      <code>N-S Res</code> fields. All the remaining fields can be left with their default values.</li>
+  <li>Click the <code>OK</code> button to create the reprojected raster.</li>
+ </ul>  
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ After a few seconds, a new surface should appear as shown in Figure 4. Note that the index area now shows
+ two images - the original as well as the reprojected surfaces. You can select any of the index objects 
+ at any time by clicking on the chosen image with the left mouse button. The more rectangular shaped
+ surface now has a fixed resolution where each DEM cell represents a square of 30m x 30m on the ground.
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure4.jpg" width="200" height="196" alt="Reprojected surface" />
+ <span class="caption">Figure 4</span>
+</div>
+<div class="floatright">
+ <ul class="activity">
+  <li>Remove the original unprojected (square) DEM by clicking on its small thumbnail image with the left
+      mouse button and then selecting <code>File-&gt;Close raster</code>. Once closed, click on the reprojected
+	  raster in order to select it.</li>
+  <li>Check that the resolution of the reprojected raster is indeed 30m in both an east-west and north-south
+      direction by displaying the summary information as you did above. You should also confirm that the
+	  raster now has 321 columns and 469 rows.</li>
+  <li>We will use this new surface in later stages of this tutorial, so save it by selecting either
+      the <code>File-&gt;Save...</code> menu or the <img src="../images/save16.gif" width="16" height="16" alt="button" />
+	  button. Call the file <code>lincolnNED30m.srf</code> and save it somewhere where you can later open it.
+  </li>
+
+ </ul>  
+</div>
+
+<div class="columnbreak"></div>
+
+
+<!-- - - - - - - - - - Step 3 - - - - - - - - - -->
+<a name="step3"></a>
+<h2 class="blocktitle">Step 3 - Displaying the Surface.</h2>
+
+<p>
+  The images we have seen so far that represent the surface are made by allocating a colour to each
+  cell value in the raster model. So for example, all cells that represent an elevation of around 500m 
+  above sea level are coloured green and all those that are 800m above sea level are purple. LandSerf 
+  can use this same elevation information to model the amount of light or shade on each raster cell by 
+  calculating local slope direction and steepness. This can be combined with the colouring scheme you 
+  have already seen to produce a <i>shaded relief</i> map of the surface:
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure5.jpg" width="200" height="196" alt="Lincoln shaded relief" />
+ <span class="caption">Figure 5</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>To view a shaded relief representation select the <code>Display-&gt;Relief</code> menu item.
+      This should produce an image similar to that shown in Figure 5.
+  </li>
+  <li>Try altering the shaded relief parameters by selecting either the <code>Configure-&gt;Shaded relief</code>
+      menu item or the <img src="../images/shade16.gif" width="16" height="16" alt="button" /> button. In
+	  the new window that appears, you can move the sliders for each parameter and see the effect each has 
+	  on the image. When you are happy with the parameter settings you have selected, press the 
+	  <code>OK</code> button. After a second or two, the new shaded relief image should be displayed
+	  in the main window.</li>
+ </ul>  
+</div>
+<div class="columnbreak"></div>
+
+
+<p>
+  The colour scheme associated with any object can be changed, either by selecting one of LandSerf's 
+  pre-defined colour schemes, or by creating a series of colour rules to be associated with the 
+  object. At this stage, we will select one of the pre-defined colour schemes:
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure6.jpg" width="200" height="278" alt="Selecting a pre-defined colour scheme" />
+ <span class="caption">Figure 6</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Double-click on the raster thumbnail or select the <code>Edit-&gt;Edit raster</code> menu option. 
+      This will display a window allowing you to alter many of the characteristics of the elevation surface.</li>
+  <li>Click the <code>Edit</code> button next to the colour bar about three quarters of the way down the
+      window. This should display a colour editor window similar to that shown in Figure 6.</li>
+  <li>From the drop-down menu in the colour editor window, select the fourth colour scheme from the list
+      (green to orange scheme). </li>
+  <li>You can refine the selected colour table by dragging any of the black vertical lines below the colour
+      bar in the centre of the window. Each one of these lines represents a single colour and by dragging
+	  it to the left or right, you are attaching that colour to a given elevation value. You can also use 
+	  the frequency histogram at the top of the window to see how many raster values will be associated
+	  with each colour.</li>
+  <li>When you are happy with the colour scheme you have created, press the OK buttons on the colour editor
+      window and the <code>Edit Raster</code> window to confirm your changes to the colour table.</li>
+ </ul>  
+</div>
+<div class="columnbreak"></div>
+
+<p>
+ You should now have a new shaded relief representation of the Lincoln elevation model shown in the main
+ display area. LandSerf has used the key colours you have selected and <i>interpolated</i> new colour
+ combinations between each of them to produce the continuously varying colours you now see. 
+</p>
+<p>
+ You will notice that the northern part of our DEM is dominated by part of a large meandering river (the
+ Columbia River) that is coloured green similar to the banks on either side. In order to distinguish the
+ river from its surroundings, we can associate a unique colour with it by finding its elevation and attaching
+ a <i>discrete colour rule</i> to that elevation alone:
+</p>
+
+
+<div class="floatleft">
+ <img src="./images/figure7.jpg" width="200" height="44" alt="Results of interactive query" />
+ <span class="caption">Figure 7</span>
+ <br /> <br />
+ <img src="./images/figure8.jpg" width="200" height="196" alt="New colour scheme with unique river colour" />
+ <span class="caption">Figure 8</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>To find out at what elevation the Columbia River lies within our model, we can put LandSerf into 
+      <i>query mode</i> by selecting either the <code>Info-&gt;query map</code> menu item or by pressing
+	  the <img src="../images/query16.gif" width="16" height="16" alt="button" /> button.</li>
+  <li>Once in query mode, try moving the mouse over the DEM representation. You should see the geographic
+      position and elevation of the current mouse location being reported at the bottom of the window. Make
+	  sure you move the mouse over the river area and note its elevation (see Figure 7).</li>
+  <li>To move out of query mode, simply select the same option again which will toggle LandSerf back into
+      its normal mode.</li>
+  <li>Bring up the colour editor window just as you did previously. This time, select the <code>Numeric</code>
+      tab at the top of the window. This will display the colour scheme as a series of numeric rules rather 
+	  than the graphical display we have previously seen.</li>
+  <li>To associate the elevation of the river we have just found out (394m above sea level) with a blue 
+      colour, type the following four numbers in the <code>Edit colour rule</code> field: <code>394 141 141 166</code>.
+	  and then press the <code>Add Discrete</code> button. This will associate the red-green-blue colour combination
+	  represented by the triplet (141,141,166) with any raster cells with the value 394.</li>
+  <li>Finally, accept the changes you have made to the colour scheme by pressing the <code>OK</code> buttons
+      in both the colour editor window and the raster edit window. You should now be presented with an 
+	  image of the Lincoln DEM similar to that shown in Figure 8.</li>
+ </ul>  
+</div>
+<div class="columnbreak"></div>
+
+
+<p>
+ Sometimes the level of detail represented by an elevation model is greater than that displayed on the
+ screen. It is therefore useful to be able to 'zoom in' to an image in order to examine it in greater
+ detail. This is one way of exploring how the characteristics of a surface vary with scale.
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure9.jpg" width="200" height="196" alt="A zoomed in portion of the DEM with new colour scheme" />
+ <span class="caption">Figure 9</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Put LandSerf into <i>zoom mode</i> by selecting either the <code>Display-&gt;zoom mode</code> menu
+      item or by pressing the <img src="../images/zoom16.gif" width="16" height="16" alt="button" /> button.
+  </li>
+  <li>Holding the left mouse button down, try moving the mouse up and down over the main image in LandSerf.
+      This should allow you to zoom in and out of the map, centred on the location at which you first
+	  press the mouse down. If you have a scroll wheel on your mouse, this will also allow you to zoom in and out.</li>
+  <li>Holding the right mouse button down (or Command and mouse button on MacOSX), try moving the mouse up, down, left and right over the main image.
+      This should allow you to 'pan' across the map. In combination with the zooming function, you should
+	  now be able to centre the map on any location of interest at any scale you wish. Note that the currently viewed area of the raster
+	  is highlighted on the thumbnail image.</li>
+  <li>Use the zooming and panning features to centre the map on the tributary identified in Figure 9.</li>
+  <li>To come out of zoom mode, simply press the zoom button or <code>Display-&gt;zoom mode</code> item again.
+      You can restore the image to its original position and scale by selecting either the <code>Display-&gt;Full image</code> 
+      menu item, or the <img src="../images/full16.gif" width="16" height="16" alt="button" /> button.</li>
+  <li>Finally, save the surface with its new colour scheme just as you did at the end of Step 2.</li>
+  
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+
+<!-- - - - - - - - - - Step 4 - - - - - - - - - -->
+<a name="step4"></a>
+<h2 class="blocktitle">Step 4 - Attaching metadata to Rasters.</h2>
+
+<p>
+  A spatial object in LandSerf consists of the data (elevation values in the DEM we have used so far)
+  and a collection of <i>metadata</i> attached to that object. We have already seen some of those
+  metadata in the form of the georeferencing of the boundaries of the surface, the map projection used,
+  the resolution of each raster cell and the colour rules used to display the raster. We can also create 
+  and examine other metadata such as the title, lineage and attribute categories associated with a spatial object.
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure10.jpg" width="200" height="388" alt="Editable metadata associated with a raster" />
+ <span class="caption">Figure 10</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>If you haven't just moved on from the previous step, load a saved copy of <code>lincolnNED30m.srf</code>
+      into LandSerf.</li>
+  <li>Bring up the editable metadata by selecting the <code>Edit-&gt;Edit raster</code> menu option. This
+      should display a window similar to Figure 10.</li>
+  <li>The title of the raster was created automatically when we previously projected it into UTM coordinates.
+      Change it to something more explanatory by typing <code>Lincoln 30m DEM</code> in the <code>Title</code>
+	  field.</li>
+  <li>The 'Notes' field at the bottom of the window contains details of the original file used to create
+      the raster as well as the UTM projection information. This information may be useful if we later
+	  wish to trace the <i>lineage</i> of the data. We can however add some further useful information
+	  about the source of the data. Add the following text to the bottom of the Notes field: 
+	  <code>Elevation data from USGS National Elevation Dataset (NED) available from
+	  http://seamless.usgs.gov</code></li>
+  <li>Accept these amendments to the raster by pressing the <code>OK</code> button, and save a copy
+      of this object using either the <code>File-&gt;Save...</code> menu or the <img src="../images/save16.gif" width="16" height="16" alt="button" />
+	  button.</li> 
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ LandSerf allows several datasets to be stored and displayed simultaneously. We will add a further
+ raster layer representing <i>landcover</i> measured and classified from satellite remote sensing. 
+ We will then add some additional metadata to this new layer. Unlike elevation, landcover classes are
+ <i>categorical</i> rather than direct measurements. Each cell is allocated a numeric value that represents
+ a class of landcover (water, shrubland, woodland etc.). The value of that number is not directly important
+ other than providing a unique identifier to a given landcover type.
+</p>
+
+
+<div class="floatleft">
+ <img src="./images/figure11.jpg" width="200" height="299" alt="Landcover reprojection values" />
+ <span class="caption">Figure 11</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Load the file <code>lincolnLandcover.bil</code> that is in ArcGIS <i>Binary Image Layer (BIL)</i>
+      format and is stored in the <code>data</code> sub-directory of LandSerf (see Step 1 if you have
+	  forgotten how to do this). If you have just moved on from the previous step, you may wish to set
+	  the display from 'relief' back to 'raster' (<code>Display-&gt;Raster</code>).</li>
+	  
+  <li>These data are again georeferenced using latitude/longitude angles and therefore should be reprojected
+      into UTM coordinates. As you did in Step 2, edit the raster information setting the projection type to
+	  <code>Latitude/longitude</code> (leaving the ellipsoid set to <code>WGS84</code>). Reproject the raster to UTM
+	  by selecting <code>Transform-&gt;Reproject</code> and in the window that appears, set the N-S and E-W 
+	  resolutions both to 30m as you did previously, but this time make sure the <code>Interpolate to new resolution</code>
+	  box is <i>not</i> selected. This is because we wish to create a reprojected raster that only contains 
+	  the same category values as the original dataset and not create new interpolated categories. </li>
+	  
+  <li>Give the raster a new title by typing <code>Lincoln landcover</code> in the <code>Title</code>
+      field (see Figure 11). Press the <code>OK</code> button to perform the transformation.</li>
+ </ul>
+
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ We will change 4 elements of the new landcover dataset - the attribute labels; the colour scheme;
+ the type of raster; and the lineage notes of the layer. These changes will make it easier to process
+ and interpret any analysis we apply to the data at a later stage.
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure12.jpg" width="200" height="226" alt="Landcover attribute categories" />
+ <span class="caption">Figure 12</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Double-click on the landcover thumbnail or select <code>Edit-&gt;Edit raster</code> to bring up the raster editor window.</li>
+  <li>The first element we will change will be the colours, so press the <code>Edit</code> button
+      adjacent to the colour bar. This time, we select the colours from a colour table file, so 
+	  press the <code>Load colours</code> button and select <code>landcover.ctb</code> and press
+	  the <code>OK</code> button to accept these colours (but leave the main <code>Edit Raster</code>
+	  window open). Note that because the landcover layer consists of categories, all the colour rules
+	  are <i>discrete</i> rather than the <i>continuous</i> rules we used for elevation.</li>
+  <li>Next we will associate labels with each of the categories of landcover. To do this press the 
+      <code>Edit</code> button of the <code>Attributes</code> area of the <code>Edit Raster</code>
+	  window. This should display a new <code>Attribute Table</code> window.</li>
+  <li>Press the <code>Load table</code> button and open the file <code>landcover.atr</code>. This file
+      contains the labels associated with each of the numeric attribute values used by the raster. You should
+	  now have a table displayed similar to that shown in Figure 12. Click on one of the values in the third
+	  column to make these attributes 'active'. Finally press <code>OK</code> in this attribute window to
+	  accept the new table.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+
+<div class="floatleft">
+ <img src="./images/figure13.jpg" width="200" height="196" alt="Landcover layer with interactive query" />
+ <span class="caption">Figure 13</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Before leaving the raster editor, we will change two more items of metadata. Firstly, you will notice
+      that the <code>Raster Type</code> identified in the <code>Type</code> are of the window is set to <code>Elevation</code>.
+      Select the drop-down menu in this area and change it to <code>Other</code>. This will prevent LandSerf
+      from attempting to perform elevation-specific operations on the raster.</li>
+  <li>Finally, we will add some lineage information to the raster. Copy and paste the following into the
+      <code>Notes</code> field of the editor window:<br />
+      <code>Originator: U.S. Geological Survey (USGS)<br />
+      Publication_Date: 19990631<br />
+      Title: Washington Land Cover Data Set<br />
+      Edition: 1<br />
+      Geospatial_Data_Presentation_Form: raster digital data<br />
+      Publication_Information:<br />
+      &nbsp;Publication_Place: Sioux Falls, SD USA<br />
+      &nbsp;Publisher: U.S. Geological Survey<br />
+      Online_Linkage: http://landcover.usgs.gov</code>.</li>
+  <li>Save a copy of this newly amended raster as <code>lincolnLandcover.srf</code>.</li>
+  <li>We can query the new raster by putting LandSerf into <i>query mode</i> (see Step 3 above). As
+      you move the mouse over the raster, the numeric and 'active' text labels associated with each cell in the
+      landcover raster should now be displayed (see Figure 13).</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+
+<!-- - - - - - - - - - Step 5 - - - - - - - - - -->
+<a name="step5"></a>
+<h2 class="blocktitle">Step 5 - Simple morphometric analysis.</h2>
+	
+<p>
+	We have already gained some impression of the landscape represented by our DEM simply by visualising
+	it. We can assume for example that the landscape contains a large meandering river, some apparently
+	mountainous region to the north, several tributaries flowing from the south of the DEM northwards
+	into the river. We might characterise the region as a whole as 'hilly'. We also know from the landcover
+	information that large parts of the landscape are grassland with some patches of woodland and agriculture.
+</p>
+<p>
+	Such description however has obvious limitations. It is subjective (you may have gained a different
+	impression of the same landscape), it is rather vague (what exactly	does 'hilly' mean?), and might
+	simply be incorrect (are we sure that is a mountain to the north of the river or is it just a small
+	undulation?). We can use LandSerf to provide us with a more systematic and objective description of
+	the	landscape; one that we can use to compare with other landscapes described by other people.
+</p>
+<p>
+	Firstly it is useful to make sure we have a good idea of the scale and extent of the landscape. We
+	can do this by viewing the metadata associated with the DEM.
+</p>
+
+
+<div class="floatleft">
+ <img src="./images/figure14.jpg" width="200" height="333" alt="DEM summary information" />
+ <span class="caption">Figure 14</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>If you haven't just moved on from the previous step, load a saved copy of <code>lincolnNED30m.srf</code>
+      and <code>lincolnLandcover.srf</code> into LandSerf.</li>
+  <li>Make sure the Lincoln DEM is selected as the <i>primary raster</i> by clicking on its thumbnail
+      view with the left mouse button. You can confirm that it is selected because the thumbnail should
+      be highlighted with a blue background.</li>
+  <li>Additionally we can select or deselect a <i>secondary raster</i> by clicking on one of the thumbnails
+      with the right mouse button (or the command key and button press on MacOSX). Doing so will produce turn the
+      thumbnail background pink. Select <code>Lincoln Landcover</code> as the secondary raster and then and then 
+	  <code>Display-&gt;Relief</code>. LandSerf should display a shaded relief map in the main area using
+	  elevation from the primary raster to calculate shading, and the thematic colours from the secondary
+	  raster to produce the colours of the map.</li>
+  <li>
+	  Try deselecting the secondary raster by clicking on its thumbnail with the right mouse (cmd-mouse press on MacOSX) button and then
+	  redisplaying shaded relief. You should now have a display of the DEM relief without any landcover
+	  information.</li>
+  <li>View the DEM information by selecting <code>Info-&gt;Summary Info</code> or the 
+      <img src="../images/info16.gif" width="16" height="16" alt="button" /> button. You should see that
+	  the raster consists of 321 columns and 469 rows with a resolution of 30m per DEM cell. This means
+	  we are viewing a landscape that is approximately 10km by 14km in extent. We also know	from the 
+	  information that the range of heights within this region is approximately 392m to 891m - a vertical
+	  range of about 500m.</li>
+  <li>Click the <code>OK</code> button to close this information window.</li>
+  </ul>
+  
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ This vertical range or <i>relief</i> we have identified from the raster information window only gives us
+ a broad summary of how elevation changes over the surface. We can get a more detailed view by examining
+ the frequency distribution of elevation values.
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure15.jpg" width="200" height="231" alt="Frequency histogram of the Lincoln DEM" />
+ <span class="caption">Figure 15</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Select either the <code>Info-&gt;Histogram</code> menu item or the 
+      <img src="../images/histo16.gif" width="16" height="16" alt="button" /> button. This should display
+	  a frequency histogram in a new window.</li>
+  <li>You should notice that by far the most frequently occurring elevation value is at 394m, which 
+      corresponds to the height of the river Columbia. You can force the histogram to ignore values at
+	  this elevation by clicking the <code>Ignore values at</code> box and typing <code>394</code> in
+	  the text area to the right (see Figure 15).</li>
+  <li>You can change the category widths of the histogram by moving the slider left and right. The most
+      obvious feature of the distribution is the peak in the histogram at about 750m. This corresponds
+	  to the plateau area that dominates the southern half of the DEM.</li>
+  <li>Close the histogram window by pressing the <code>OK</code> button.</li>
+  </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ So can we get a better idea of the 'roughness' of the terrain? One way of doing this
+ is to measure the steepest slope at all cells in the DEM and visualise the results:
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure16.jpg" width="200" height="196" alt="Slope map of the Lincoln DEM" />
+ <span class="caption">Figure 16</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Select either the <code>Analyse-&gt;Surface Parameter</code> menu item or the 
+      <img src="../images/param16.gif" width="16" height="16" alt="button" /> button. Select 
+	  <code>Slope</code> from the list of properties and press the <code>OK</code> button.
+	  You should see a message <code>Calculating Surface Parameterisation...</code> appear at the
+	  bottom of the LandSerf window and a percentage progress indicated in the bottom-right corner. 
+	  After a few seconds a new slope image should be displayed (see Figure 16). Slope is coloured from
+	  white (horizontal) through yellow to red (steepest slope). This new image shows the flat plateau 
+	  in the south-west and the steeper slopes bordering the Columbia river and its larger tributaries.</li>
+  <li>We can examine the slope map in more detail by selecting it as the <i>primary raster</i>. Do this by
+      clicking on the slope map thumbnail image with the left mouse button, and then <code>Display-&gt;Raster</code>
+	  to redisplay the slope map.</li>
+  <li>Try using the <i>query mode</i> and <i>zoom mode</i> to explore the slope map in more detail (see 
+      Step 3 if you have forgotten how to do this).</li>
+  <li>Display the frequency histogram of slope map (<code>Info-&gt;Histogram</code> or 
+      <img src="../images/histo16.gif" width="16" height="16" alt="button" />).  You may wish to widen
+	  the graph window so that the histogram bars are more obvious. The histogram is dominated by the 
+	  large number of horizontal cells (corresponding to the plateau and the river surface) with steeper
+	  cells being relatively less common. This distribution shows an approximately <i>log-normal</i> 
+	  distribution typically exhibited by many slope maps.</li>
+  <li>Save a copy of this slope map as <code>lincolnSlope.srf</code> for later analysis.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ Slope represents one of the four <i>surface parameters</i> that are often used	to characterise surface
+ behaviour. The other three are <i>aspect</i> which identifies the azimuthal direction of steepest slope,
+ <i>profile curvature</i>, which describes the rate of change of slope in profile, and <i>plan curvature</i>,
+ which describes the rate of change of aspect in plan. We shall use LandSerf to view each of these in turn:
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure17.jpg" width="200" height="196" alt="Zoomed in portion of plan curvature map" />
+ <span class="caption">Figure 17</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Make sure the Lincoln DEM is selected as the primary raster by left-clicking its thumbnail view. Set
+      the display to show shaded relief.</li>
+  <li>Select <code>Analyse-&gt;Surface Parameter</code> (or the 
+      <img src="../images/param16.gif" width="16" height="16" alt="button" /> button), but this time choose
+	  <code>Aspect</code> from the list of properties and press the <code>OK</code> button.</li>
+  <li>Use the techniques you have used so far, such as zooming, querying and histogram calculation to
+      identify any further characteristics of the DEM. Repeat this task for <code>Profile Curvature</code>
+	  and <code>Plan Curvature</code> (see Figure 17) measures.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ Finally, we shall examine one further characterisation of the surface. Rather than	measure <i>surface 
+ parameters</i> we can classify the terrain into <i>surface features</i> using some of the parameters we
+ have already investigated. One of the commonest (and most useful) classifications is to group all points
+ on a terrain into one of the following:
+</p>
+
+<p class="indent">
+ <i>pits</i><br />
+ <i>channels</i><br />
+ <i>passes</i><br />
+ <i>ridges</i><br />
+ <i>peaks</i><br />
+ <i>planar regions</i>
+</p>
+
+<p>
+ This can be done by measuring both the slope and curvature of each cell in the DEM	and performing the
+ appropriate classification (for more details on how this may be done see the 
+ <a href="../theory/index.html" target="_new">theory documentation</a>).
+ We will perform such a classification on our DEM:
+</p>
+
+
+<div class="floatleft">
+ <img src="./images/figure18.jpg" width="200" height="196" alt="Zoomed in portion of the feature classification map" />
+ <span class="caption">Figure 18</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Make sure the Lincoln DEM is selected as the primary raster by left-clicking its thumbnail view. Set
+      the display to show shaded relief.</li>
+  <li>Select <code>Analyse-&gt;Surface Parameter</code> (or the 
+      <img src="../images/param16.gif" width="16" height="16" alt="button" /> button), and choose
+	  <code>Feature extraction</code> from the list of properties and press the <code>OK</code> button.</li>
+  <li>You should see a predominantly grey, blue and yellow image appear. The grey areas represent planar
+      regions, blue areas represent channels and yellow ridges.	If you look carefully (you may have to
+	  use the zoom mode to see this), you should also see occasional red cells that represent local peaks
+	  and green cells that represent passes in the landscape (see Figure 18).</li>
+  <li>Save a copy of this feature classification by selecting it as the primary raster (left-click its
+      thumbnail image) and saving it with the name <code>LincolnFeatures.srf</code>.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+	Feature classifications like this are useful for several reasons. The pattern of channels
+	appears somewhat similar to a drainage network, thus giving us an idea of where water would
+	flow over the surface. Perhaps less obviously the pattern of yellow cells gives us an 
+	equivalent ridge network, identifying portions of the landscape where water is likely to 
+	flow from. Consequently, the ridge network is related to the drainage divides/watersheds that
+	define drainage basins. In theory at least, the green passes identify points of intersection
+	between the channel and ridge networks. Along with pits and peaks, passes represent what
+	are sometimes called <i>surface specific points</i> - points on the landscape that carry
+	special significance in its structure.
+</p>
+
+
+<!-- - - - - - - - - - Step 6 - - - - - - - - - -->
+<a name="step6"></a>
+<h2 class="blocktitle">Step 6 - Advanced morphometric analysis.</h2>
+
+<p>
+	When we wish to characterise a real terrain using a computer, the closest we can get is
+	to characterise the <i>elevation model</i> that represents it. In doing so we hope that
+	the model is sufficiently accurate for the purposes of analysis. As far as possible we
+	should strive to produce characterisations of landscape that are as dependent as possible 
+	on the surface we are interested in, but as independent as possible of the particular model
+	we have used.
+</p>
+
+<p>
+	One of the most significant limitations of the models and processing we have carried out so far 
+	has been the scale of analysis implied by the DEM resolution. You will remember	that each cell in
+	the Lincoln DEM is 30m x 30m. Since most of the analytical functions we have used so far work by
+	comparing one cell with its 8 adjacent neighbours, the results of that analysis	are likely to be at
+	the resolution of approximately 3 times the grid cell size. So for example,	the blue valleys we 
+	identified in the previous step will be those that have a width around 30-90m. This scale is really
+	rather arbitrary; we might be more interested in characterisation of features have expression over
+	1km or 10cm. Unfortunately, the DEM cannot provide us with direct information at a finer scale than
+	its resolution (30m), but we can use it to perform analysis at a broader scale.
+</p>
+
+<p>
+	The basis for most of the analytical functions in LandSerf is the process of <i>quadratic approximation</i>
+	(see theoretical details on <a href="../theory/index.html" target="_new"> surface characterisation</a> for further
+	information). This involves taking a local window of DEM cells (3 x 3 in the examples we have seen so 
+	far), and fitting the most appropriate continuous quadratic function through them. LandSerf then uses
+	this quadratic function to calculate parameters such as slope and curvature. We can set the size of the
+	local window that LandSerf uses before it does any calculation. This allows us to perform analysis
+	at much broader scales than that implied by the DEM resolution.
+</p>
+
+<p>
+	Firstly, we will view the effect of changing window size by smoothing out features that are smaller
+	than about 330m wide. Since each cell is 30m, we will need to process the surface using
+	window sizes of 11x11 cells rather than 3x3:
+</p>
+
+
+<div class="floatleft">
+ <img src="./images/figure19.jpg" width="200" height="196" alt="DEM smoothed using a 350m window" />
+ <span class="caption">Figure 19</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>If you have just moved on from the previous step, close all rasters except the Lincoln DEM. To 
+      remove an object from LandSerf, select it as the primary raster with the left mouse button, then
+	  select the <code>File-&gt;Close raster</code> menu option.</li>
+  <li>Make sure the Lincoln DEM is the primary raster and that display is set to <code>Shaded Relief</code>.
+  </li>
+  <li>Select either the <code>Configure-&gt;Window scale...</code> menu item or the
+      <img src="../images/window16.gif" width="16" height="16" alt="button" /> button, and set the
+	  window size to 11 rather than 3 (we shall leave the 'distance decay exponent' set to 0). Press
+	  the <code>OK</code> button to close the dialogue box.</li>
+  <li>By changing window scale, any subsequent analysis will be performed at this new 330m scale. To
+	  demonstrate this effect we shall reinterpolate our DEM at the new scale. Select  
+	  <code>Analyse-&gt;Calculate Surface Parameter</code> (or the 
+	  <img src="../images/param16.gif" width="16" height="16" alt="button" /> button) and choose the 
+	  <code>Elevation</code> item. You will notice that processing at this new scale takes longer than
+	  previous examples since LandSerf is having to process 13 times as many cells for each calculation.
+  </li>
+  <li>To view the effect of this smoothing, select the <code>Smoothed Elevation</code> layer as the 
+      primary raster and then <code>Display-&gt;Refresh</code> (see Figure 19). You can quickly alternate
+	  between the original and smoothed DEM by selecting either as the primary raster and then pressing
+	  <code>Ctrl-R</code> to refresh the display.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ 	The result of broadening the scale of analysis is to smooth out many of the finest scale details
+	while leaving the larger features of the landscape unaltered. You may also notice that the entire
+	raster also appears smaller than the original. This is produced because analysis based on square
+	windows of size <i>n</i>x <i>n</i> cannot process cells within <i>(n-1)/2</i> cells of the edge. As
+	a consequence, LandSerf fills the border cells of the raster with <i>null values</i> that are not
+	displayed or processed.
+</p>
+
+<p>
+	We can see the effect of further broadening the scale of analysis by setting the window size to
+	65 (corresponding to a distance on the ground of 65*30m = 1.95km):
+</p>
+
+
+<div class="floatleft">
+ <img src="./images/figure20.jpg" width="200" height="196" alt="DEM smoothed using a 1.95km window" />
+ <span class="caption">Figure 20</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Make the original DEM the primary raster and then set the window size to 65 (
+      <code>Configure-&gt;Window scale...</code> or 
+	  <img src="../images/window16.gif" width="16" height="16" alt="button" />).</li>
+  <li>Select the <code>Analyse->Calculate Surface Parameter</code> menu item, and choose 
+	  the <code>Elevation</code> option again. Processing will be much slower this time as LandSerf
+	  is now processing 470 times as many cells as the original 3x3 window. This might be a good time to
+	  make yourself a cup of coffee. If you ever find yourself waiting for a very slow process to complete in LandSerf, you can
+      always stop it by clicking somewhere on the process bar in the bottom-right corner.</li>
+  <li>When you have drunk your cup of coffee and LandSerf has finished calculating the surface, view it
+	  by making it the primary raster and refreshing the display.</li> 
+  <li>Save a copy of this smoothed DEM as <code>lincolnNED65.srf</code> for later use.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+	So do the parameters that we can measure from the surface also vary if we calculate them at this new
+	broader scale? We can find out the answer to this question by measuring a surface parameter at many
+	different scales and seeing how it varies:
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure21.jpg" width="200" height="202" alt="Multiscale query of aspect" />
+ <span class="caption">Figure 21</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Make the original unsmoothed DEM the primary raster and ensure the display is refreshed.</li>
+  <li>Select <code>Info-&gt;Multiscale query...</code> and choose <code>Aspect</code> as the
+      surface parameter to examine. Press the <code>OK</code> button to display the multi-scale query
+	  window (see Figure 21).</li>
+  <li>Move the new window so it is not overlapped by the main LandSerf window and resize it if 
+      it is too small. Try clicking the mouse at various point on the main DEM display. The query 
+	  window shows how aspect varies with scale. The line drawn on the graph shows the direction
+	  of steepest slope measured from 3 x 3 windows at the centre to 65 x 65 cell windows at the outer
+	  edge.	If the line remains in a relatively constant direction, aspect is said to be scale-invariant
+	  at this location. If the line appears to meander as it moves out from the centre, the slope direction
+	  must be dependent on the scale at which it is measured. A numerical measure of this dependency is
+	  shown in the bottom of the window. The first two numbers give the location of the point being
+	  queried, while the second two give the (circular) mean and standard deviation of the aspect measure.
+  </li>
+  <li>If you try dragging the mouse over the DEM, the aspect graph is updated continuously. This allows you
+	  to investigate the spatial pattern of scale dependency. By moving the 'trails' slider to the left or
+	  right, you can control how much of a 'query history' is displayed on the graph. This allows you to 
+	  explore visually, the spatial variation in scale dependency.</li>
+  <li>By dragging the mouse over the main DEM display, identify which parts of the landscape produce 
+      scale-invariant measures, and which produce scale-dependent measures. Are there any critical
+	  scales at which aspect does not vary over space?</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+
+<p>
+ We will use a similar process to explore the scale dependency of other measures.
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure22.jpg" width="200" height="148" alt="Multiscale query of feature classification" />
+ <span class="caption">Figure 22</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Leaving the aspect query window open  reselect the <code>Info->Multi-scale query...</code> menu item.
+	  Choose <code>Profile curvature</code> and click or drag various points on the DEM. The maximum
+	  size of the query window (representing processing of a 65x65 cell window in this case) is indicated
+	  by the black square on the main display. Try to relate the curve plotted and the location and 
+	  character of the landscape you have queried.</li>
+  <li>Repeat this step with some of the other measures, including feature classification (see Figure 22)
+	  in order to investigate the degree to which their measurement is dependent on the scale of analysis.
+  </li>
+  <li>When you have finished, close all the query windows by clicking their <code>OK</code> buttons.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+ One of the advantages of multi-scale processing of terrain is that we can relate our analysis to scales 
+ that are of most interest to us. We shall round of this section by calculating the network of surface
+ features at two different scales. First we shall identify the network of ridges and channels at a fine
+ scale:
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure23.jpg" width="200" height="196" alt="Feature network extraction." />
+ <span class="caption">Figure 23</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Making sure the Lincoln 30m DEM is selected as the primary raster, select 
+      <code>Configure-&gt;Window scale...</code> (or 
+	  <img src="../images/window16.gif" width="16" height="16" alt="button" />) and set the window size 
+	  to <code>5</code> and the distance decay exponent to <code>1.0</code>. This will set the processing
+	  back to using a 5 x 5 cell window, but additionally, by specifying a positive distance decay value,
+	  we have told LandSerf to give a greater weighting to cells nearer the centre of a window than ones
+	  that are further away. The higher the value of this exponent, the greater the importance given to
+	  near cells in the calculation of parameters such as slope and aspect.</li>
+  <li>Select <code>Analyse->Calculate Surface Parameter</code> (or 
+	  <img src="../images/param16.gif" width="16" height="16" alt="button" />) and this time choose the
+	  <code>Feature network extraction</code> option. This will will produce a similar classification to
+	  the surface features seen previously, but will emphasise the network of channels and ridges (see 
+	  <a href="http://www.soi.city.ac.uk/~jwo/sdh98/" target="_new">www.soi.city.ac.uk/~jwo/sdh98</a> for
+	  more details of this process). Even so, you should see that the resultant image is still somewhat 
+	  discontinuous - both the blue channel	network and the yellow ridge network have plenty of gaps.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p>
+	We can improve the representation of the network by forcing LandSerf to connect some of these
+	ridges and channels together. As this network would describe the <i>topology</i> of the surface,
+	LandSerf will represent it using a <i>vector</i> rather than raster coverage:
+</p>
+
+<div class="floatleft">
+ <img src="./images/figure24.jpg" width="200" height="196" alt="Vector feature network over DEM." />
+ <span class="caption">Figure 24</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Select either the <code>Analyse->Vector Feature Network</code> menu item or the 
+      <img src="../images/msn16.gif" width="16" height="16" alt="button" /> button. This will process
+	  the raster network and after a minute or so, will produce a vector network and new thinned raster
+	  version of the network.</li>
+  <li>To display the vector over the original DEM, unselect the thinned raster network as the secondary
+      raster by right-clicking (ctrl-clicking on MacOSX) on its thumbnail view. Select the <code>Display->Vector</code> to see the
+	  <i>metric surface network</i> (see Figure 24). You may wish to use the zoom mode to examine the
+	  network in greater detail.</li>
+  <li>For more details on Metric Surface Networks, see <a href="http://www.soi.city.ac.uk/~jwo/geoComp2000/" target="_new">
+	  www.soi.city.ac.uk/~jwo/geoComp2000</a>.</li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+
+<p>
+	Notice how both the blue channel network and the yellow ridge network appear similarly tree-like.
+	The plateau to the south-west is dominated by local passes, pits and peaks (green, black and red dots).
+	This is because at this scale, errors in the DEM tend to dominate flatter regions. We can broaden our
+	scale of analysis, and therefore reduce the impact of DEM error, by repeating the process using
+	a larger window size:
+</p>
+
+
+<div class="floatleft">
+ <img src="./images/figure25.jpg" width="200" height="196" alt="Vector feature network over DEM." />
+ <span class="caption">Figure 25</span>
+</div>
+
+<div class="floatright">
+ <ul class="activity">
+  <li>Set the window size to <code>25</code> (corresponding to a distance of 25 x 30 = 750m on the ground)
+      leaving the distance decay value at <code>1.0</code>.</li>
+  <li>Select the <code>Analyse->Calculate Surface Parameter</code> menu item and again choose 
+      <code>Feature Network Extraction</code> and press the <code>OK</code> button.	</li>
+  <li>Select <code>Analyse->Create Vector Feature Network</code> (
+      <img src="../images/msn16.gif" width="16" height="16" alt="button" />) to start the network calculation.
+	  </li>
+  <li>When complete, you can again display the vector over the original DEM, by unselecting the new raster
+      thinned network and refreshing the display (see Figure 25). You can contrast this broader scale
+	  network that represents the topology of larger ridges and channels with that of the finer scale
+	  network produced previously.</li>
+      
+  <li>You may wish to save a copy of the vector network for later analysis. To do this select 
+      <code>File-&gt;Save...</code> (<img src="../images/save16.gif" width="16" height="16" alt="button" />)
+	  and then set the <code>Files of type</code> drop-down menu to <code>LandSerf vector</code> and 
+	  save the file with the name <code>LincolnMSN25.vec</code>.
+  </li>
+ </ul>
+</div>
+
+<div class="columnbreak"></div>
+
+<p class="abstract">
+	This ends the tutorial. This has been an introduction to LandSerf and the process of terrain
+	analysis. To get the most of the software, you should experiment with some of the other 
+	functions available and apply them to your own data. See the 
+	<a href="../userguide/index.html">user guide</a> for more details.
+</p>
+
+<!-- Footer area -->
+ <div id="footer">
+  <div id="lastModified">Last Modified, 20th April, 2009</div>
+ </div>
+
+</div> <!-- End of container area -->
+</body>
+</html>

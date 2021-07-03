@@ -1,0 +1,464 @@
+/* *******************************************************************************
+   LandSerf stylesheet.
+   v.1.4.2, Jo Wood, 7th February, 2007
+   *******************************************************************************/
+
+/* ------------------ General layout, text colours and sizes  ------------------ */
+
+/* Page-wide styles. By setting the font-size to a %, all other size measurements
+   can be declared in terms of ems, keeping the layout elastic with an appropriate
+   range of font sizes depending on the user's browser settings.
+   At 80% font size, 1 em is 12.8 pixels (1 pixel = 0.0779 ems) on IE's 'Medium' 
+   text size setting. The main content area is equivalent to 460 pixels wide on 
+   a medium text setting.
+ */
+body 
+{
+	color:#333333;
+	background-color:white;
+	font-size: 80%;
+	margin: 0;
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+#container
+{
+	margin-left: 1em;
+	margin-right: 1em;
+	text-align: justify;
+	line-height: 1.5;
+	/* border: 1px solid #ccc;  / * Useful for debugging */
+}
+
+p
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-right: 0.2em;
+}
+
+
+h1, h2, h3, h4, h5, h6
+{
+	font-family: century gothic, verdana, arial, sans-serif; 
+	font-weight : bold;
+	letter-spacing:0.09em;
+	color: #666666;
+	margin-top: 0.6em;
+	margin-bottom: 0.5em;
+	padding-right: 0.2em;
+}
+h1
+{
+	font-size: 1.5em;
+}
+h2
+{
+	font-size: 1.2em;
+}
+h3
+{
+	font-size: 1.1em;
+}
+
+h4,h5,h6
+{
+	font-size: 1em;
+}
+	
+h5,h6
+{
+	font-size: 0.9em;
+	font-weight: normal;
+}
+
+h6
+{
+	padding-left: 1em;
+}
+
+ul
+{
+	padding-left: 1em;
+ 	margin-left: 1em;
+	margin-top: 0em;
+	margin-bottom: 1em;
+}
+
+li
+{
+	padding-bottom: 0.3em;
+	text-align: left;
+	margin-left:0;
+	margin-right:0;
+	padding-left:0;
+	padding-right:0;
+}
+
+code, pre
+{
+	text-align: left;
+	font-size: 120%
+}
+
+a:link, a:visited, 
+{
+	text-decoration: none;
+}
+
+a:hover, a:active, 
+{
+
+	text-decoration: underline;
+}
+
+/* ------------------------------ LandSerf Header  --------------------------------- */
+
+#header 
+{
+	margin: 0;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	background: #ffffff;
+}
+
+#header img 
+{
+  float: left;
+  border-width: 0;
+}
+
+#lsicon
+{
+  float: right;
+  padding: 0;
+  padding-right: 1em;
+  margin: 0;
+  margin-top: 2px;
+  margin-bottom: 1em;
+}
+
+#header br, .leftimage br, .rightimage br
+{
+	clear: both;
+	line-height: 0;
+}
+
+/* ------------------------- Navigation breadcrumbs  --------------------------- */
+
+#breadcrumbs
+{
+    background-color : #E1E1EC;
+	font-family: century gothic, verdana, arial, sans-serif; 
+	letter-spacing:0.09em;
+	font-weight : bold;
+	font-size: 1.2em;
+	margin: 0;
+	margin-top: 0.5em; 
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+	padding-left: 1em;
+	padding-right: 1em;
+	border: 0 solid #999999;
+	border-bottom-width: 2px;
+}
+
+#breadcrumbs a
+{
+	color: #999999;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	font-weight : normal;
+}
+
+#currentLocation
+{
+	padding-left: 0;
+	padding-right: 0.5em;
+}
+
+#breadcrumbs a:link, #breadcrumbs a:visited, 
+{
+	font-weight: bold;
+	color: #999999;
+	text-decoration: none;
+}
+
+#breadcrumbs a:hover, #breadcrumbs a:active, 
+{
+	font-weight: bold;
+	color: #333333;
+	text-decoration: underline;
+}
+
+/* ------------------------- Footer layout --------------------------- */
+
+#footer
+{
+    padding-top:1em;
+	text-align: right;
+}
+
+#footer a:link, #footer a:visited, #lastModified
+{
+	font-weight: normal;
+	font-size: 0.8em;
+	color: #666666;
+	text-decoration: none;
+}
+
+#footer a:hover, #footer a:active
+{
+	font-weight: normal;
+	font-size: 0.8em;
+	color: #000000;
+	text-decoration: underline;
+}
+
+/* ------------------------ Useful general formatting classes ---------------------- */
+
+.right 
+{
+	text-align: right;
+}
+
+.justify 
+{
+	text-align: justify; 
+}
+
+.indent 
+{
+	padding-left: 1em;
+}
+
+.reference
+{
+        text-indent: -1em;
+        margin-left: 1em;
+        margin-top: 0.1em; 
+        margin-bottom: 0.1em;   
+} 
+
+.highlightbox, .box, .flushbox
+{
+	float: left;
+}
+
+
+.leftimage img, .rightimage img
+{
+    padding: 0;
+	margin:0;
+	margin-bottom:1em;	
+}
+
+.leftimage img
+{
+	margin-right: 1em;
+	float: left;
+}
+
+.rightimage img
+{
+    margin-left: 1em;
+	float: right;
+}
+
+.floatleft
+{
+	float: left;
+	margin-left: 0;
+	margin-right: 1em;
+}
+
+.floatright
+{
+	float: right;
+	margin-left: 1em;
+	margin-right: 0;
+}
+
+.highlightbox, .box
+{
+	padding: 0.5em;
+	margin-right: 0.5em;
+	margin-top:0.5em;
+	margin-bottom:0.5em;	
+}
+
+.highlightbox
+{
+	background-color: #cccccc;   
+	border-style: solid;
+	border-width: 1px;
+	border-color: #999999;
+}
+
+.columnbreak
+{
+	clear: both;
+}
+
+.largequote
+{
+	font-style:italic;
+	font-size:1.2em;
+	color: #666666;
+	margin: 0.5em;
+}
+
+.prettyTable
+{
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ccc;
+	border-collapse: separate;
+	border-spacing: 1em;
+	border: outset 1px;
+	background-color: #FFF;
+}
+
+.prettyTable td
+{
+	background-color: #cccccc;
+	padding: 0.2em;
+	border-style: solid;
+	border-width: 0.2em;
+	border-color: #fff;
+}
+
+.prettyform
+{
+	border: 1px solid #ccc;
+	background-color: #FFF8F4;
+}
+
+.prettyform input, .pretttyform textArea
+{
+	border: 1px solid #ccc;
+}
+
+.caption 
+{ 
+	font-variant: small-caps;
+	display: block; 
+	font-size: 90%; 
+	margin-top: 0.3em;
+	margin-bottom: 0.5em;
+}
+
+.small
+{
+	font-size: 80%;
+}
+
+.blocktitle
+{
+	margin-top: 2em;
+	background-color : #E1E1EC;
+}
+
+.abstract
+{
+	text-align: justify;
+	font-size: 1.1em;
+	margin-left: 2em;
+	margin-right: 2em;
+	padding: 1em;
+	background-color: #E1E1EC;
+}
+
+.activity
+{
+	padding-left: 2em;
+	padding-right: 2em;
+	margin-left: 1em;
+	margin-right: 1em;
+	border: 1px solid #ccc;
+	background-color: #eef;
+}
+
+.activity li
+{
+	padding-bottom: 0.3em;
+	padding-top: 0.3em;
+}
+
+
+/* ------------------------------- JFormat styles  ------------------------------- */
+/* Used to format java code generated by JFormat.
+ */
+.jSource, .class, .interface .object
+{
+	float:left;
+ 	border:solid; 
+	border-color: #999999; 
+	border-width: 1px;
+	margin:1em;
+	padding:1em;
+}
+ 
+.jSource
+{ 
+ 	background-color: #E1E1EC; 
+	padding-top:0;
+	padding-bottom:0;
+	margin-left:0;
+}
+
+.jSource pre, .numbering pre
+{
+	font-size: 110%;
+}
+ 
+.interface              { background-color: #FEE; }
+.class                  { background-color: #FFD; }
+.numbering              { background-color: #FFF; color: #CCC; text-align: right; margin:1em; margin-right:1px; margin-left:0; padding:1px; padding-left:0}
+.object                 { background-color: #DFF; }
+.jKeyword               { color: #003399; }
+.jPrimitive             { color: #CC0000; }
+.jComment               { color: #006600; }
+.jDocComment            { color: #006600; font-weight: bold }
+.jQuote                 { color: #660033; }
+
+
+/* ------------------------------- Printing styles  ------------------------------- */
+/* Printing is set to a fixed font size. The navigation bar will not be printed.
+ */  
+
+@media print 
+{
+	body , #header, #container
+	{
+		margin: 0;
+		padding: 0;
+		font-size: 8pt;
+		color: black;
+		line-height: 1.3;
+	}
+		
+	#header
+	{
+		padding-bottom: 0.5em;
+	}
+	
+	#container
+	{
+		border: 0 solid #999999;
+		border-top-width: 2px;
+	}
+	
+	#footer
+	{
+		padding-right: 1em;
+	}
+	
+	#lsicon
+	{
+		padding-right: 0;
+	}
+
+	#breadcrumbs { display: none; }
+	
+}

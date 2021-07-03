@@ -1,0 +1,28 @@
+# Script to perform more advanced morphometric analysis on a DEM.
+# v1.2 Jo Wood 21st April, 2009.
+# -------------------------------------------------------------
+version(1.0);
+
+# Store the base directory in a variable to allow easy changing.
+baseDir = "c:/Program Files/LandSerf/data/landscriptTutorial/";
+
+# Open the DEM from the earlier step.
+dem = open(baseDir & "step2.srf");
+
+# Calculate 11x11 cell smothed elevation and draw output.
+winSize = 11*info(dem,"xRes");
+echo("Smoothing elevation using "&winSize&"m x "&winSize&"m window");
+draw(baseDir & "elev11.jpg", surfparam(dem,"elev",11),"null","null","null","relief");
+
+# Calculate 65x65 cell smothed elevation and draw and save output.
+winSize = 65*info(dem,"xRes")/1000;
+echo("Smoothing elevation using "&winSize&"km x "&winSize&"km window");
+elev65 = surfparam(dem,"elev",65);
+draw(baseDir & "elev65.jpg",elev65,"null","null","null","relief");
+save(elev65,baseDir&"elev65.srf");
+
+# Create a 5x5 feature network and metric surface network
+feat5 = surfparam(dem,"netfeature",5,1);
+msn = surfnetwork(dem,feat5);
+draw(baseDir & "featnetwork.jpg",dem,"null",msn,"null","relief");
+save(msn,baseDir&"msn.vec");

@@ -1,0 +1,1 @@
+..\bin\ConvFormat -fcol obj\%1.obj obj\%1.obj

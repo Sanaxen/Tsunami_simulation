@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020.0 1020.0">
+
+<!-- Format definitions -->
+<defs>
+ <style type="text/css"><![CDATA[
+   polyline { stroke:black; stroke-linejoin:round; stroke-linecap:round; stroke-width:17.435898; stroke-opacity:1; fill:none; }
+   path  { stroke:#ffffff; stroke-linejoin:round; stroke-width:17.435898; stroke-opacity:0.19607843; fill-opacity:0.75; }
+   circle   { stroke:none; fill-opacity:1; }
+   text     { stroke:none; fill-opacity:1.0; fill:#000000; font-family:sans-serif}
+ ]]></style>
+</defs>
+
+<!-- Object metadata -->
+<title>Combined vector</title>
+<desc>Union of Simple shapes and Simple shapes</desc>
+
+<!-- Geometry -->
+<g id="spatialObject" transform="translate(10.0,1010.0) scale(1,-1)">
+
+<path style="fill:#a6988f; " d="M700.0,700.0 L746.9,696.3 792.7,685.3 836.2,667.3 876.3,642.7 912.0999,612.1 942.7,576.3 967.2999,536.2 985.2999,492.69998 996.3,446.90002 1000.0,400.0 996.3,353.10004 985.2999,307.30005 967.2999,263.80002 942.7,223.70006 912.0999,187.90002 876.3,157.30002 836.2,132.70001 792.7,114.70001 746.9,103.700035 700.0,99.99997 653.0999,103.700035 607.3,114.70001 563.8,132.70001 523.7,157.30002 487.90002,187.90002 457.30002,223.70006 432.7,263.80002 414.69998,307.30005 403.7,353.10004 400.0,400.0 403.7,446.90002 414.69998,492.69998 432.7,536.2 457.30002,576.3 487.90002,612.1 523.7,642.7 563.8,667.3 607.3,685.3 653.0999,696.3 700.0,700.0 Z "/>
+<path style="fill:#c19d73; " d="M450.00003,850.0 L489.1,846.9 527.3,837.8 563.5,822.8 596.9,802.3 626.8,776.8 652.3,746.9 672.8,713.5 687.8,677.3 696.9,639.1 700.0,600.0 696.9,560.9 687.8,522.7 672.8,486.50003 652.3,453.09998 626.8,423.2 596.9,397.69998 563.5,377.19998 527.3,362.19998 489.1,353.10004 450.00003,349.99997 410.9,353.10004 372.7,362.19998 336.5,377.19998 303.1,397.69998 273.2,423.2 247.69998,453.09998 227.2,486.50003 212.2,522.7 203.1,560.9 200.0,600.0 203.1,639.1 212.2,677.3 227.2,713.5 247.69998,746.9 273.2,776.8 303.1,802.3 336.5,822.8 372.7,837.8 410.9,846.9 450.00003,850.0 Z "/>
+<path style="fill:#cb6b66; " d="M300.0,300.00006 L100.0,2.3961666E-6 500.0,2.3961666E-6 300.0,300.00006 Z "/>
+<path style="fill:#e488ed; " d="M150.0,1000.0 L0.0,700.0 300.0,700.0 150.0,1000.0 Z "/>
+<path style="fill:#6b9ff4; " d="M700.0,950.0 L950.0,950.0 950.0,750.0 700.0,750.0 700.0,950.0 Z "/>
+<circle style="fill:#a6988f;stroke-opacity:1.0; " cx="700.0" cy="400.0" r="0.21794872"/>"/>
+<circle style="fill:#c19d73;stroke-opacity:1.0; " cx="450.0" cy="600.0" r="0.21794872"/>"/>
+<circle style="fill:#cb6b66;stroke-opacity:1.0; " cx="300.0" cy="100.00002" r="0.21794872"/>"/>
+<circle style="fill:#e488ed;stroke-opacity:1.0; " cx="150.0" cy="800.0" r="0.21794872"/>"/>
+<circle style="fill:#6b9ff4;stroke-opacity:1.0; " cx="825.0" cy="850.0" r="0.21794872"/>"/>
+</g>
+<!-- Point labels -->
+<text x="713.0513" y="619.1539" font-size="30.512821" text-anchor="middle" >Circle one</text>
+<text x="463.05127" y="419.15387" font-size="30.512821" text-anchor="middle" >Circle two</text>
+<text x="313.05127" y="919.1539" font-size="30.512821" text-anchor="middle" >Triangle one</text>
+<text x="163.05128" y="219.15387" font-size="30.512821" text-anchor="middle" >Triangle two</text>
+<text x="838.0513" y="169.15387" font-size="30.512821" text-anchor="middle" >Rectangle</text>
+
+</svg>

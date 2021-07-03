@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <link rel="Stylesheet" rev="Stylesheet" href="../../css/landserf.css" media="All" />
+
+<!-- LandSerf Header -->
+
+ <title>LandScript - Example Scripts</title>
+ <meta name="description" content="LandSerf scripting examples" />
+ <meta name="keywords" content="LandSerf, GIS, DEM, Java, scripting, map algebra, LandScript, programming, Terrain modelling" />
+</head>
+
+<body>
+<div id="header">
+ <a href="../../../index.html">
+  <img src="../../images/landserfText.gif" width="304" height="57" alt="Go to LandSerf documentation" />
+  <span id="lsicon">
+   <img src="../../images/iconTitle.gif" width="57" height="57" alt="Go to Landserf documentation" />
+  </span>
+ </a>
+ <br />
+
+ <div id="breadcrumbs">
+  <span id="currentLocation">Example</span>       |
+  <a href="./index.html">Examples index</a> |
+  <a href="../index.html">LandScript</a> |
+  <a href="../../index.html">LandSerf 2.3 Documentation</a> |
+  <a href="http://www.landserf.org">landserf.org</a>
+ </div>
+</div>
+
+<div id="container">
+
+ <!-- End of header -->
+
+<h1>Transforming Between Elevation Models</h1>
+
+
+<h2>Contouring a raster DEM</h2>
+
+<!-- ~~~~ Created using jFormat V2.5 ~~~~ -->
+<table cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<pre class="numbering">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre>
+</td>
+<td valign="top">
+<pre class="jSource">
+<span class="jComment"># Contours a DEM with a 5m vertical interval at the finest resolution of the raster.</span>
+<span class="jKeyword">version</span>(1.0);
+
+<span class="jComment"># Change the directory below to correspond to your file location.</span>
+baseDir = &quot;<span class="jQuote">c:/Program Files/LandSerf/data/landscriptExamples/</span>&quot;;
+
+<span class="jComment"># Open a surface raster and contour it at 50m vertical intervals.</span>
+dem = <span class="jKeyword">open</span>(baseDir&amp;&quot;<span class="jQuote">dem.srf</span>&quot;);
+
+minHeight = <span class="jKeyword">round</span>(<span class="jKeyword">info</span>(dem,&quot;<span class="jQuote">min</span>&quot;)/10)*10;
+contours = <span class="jKeyword">contour</span>(dem,minHeight,50,1);
+
+<span class="jComment"># Colour all contours brown and add metadata</span>
+<span class="jKeyword">colouredit</span>(contours,&quot;<span class="jQuote">rules</span>&quot;,&quot;<span class="jQuote">0 50 10 0</span>&quot;);
+<span class="jKeyword">edit</span>(contours,&quot;<span class="jQuote">notes</span>&quot;,&quot;<span class="jQuote">Contours through </span>&quot;&amp;<span class="jKeyword">info</span>(dem,&quot;<span class="jQuote">title</span>&quot;)&amp;&quot;<span class="jQuote"> at 50m vertical interval</span>&quot;);
+
+<span class="jComment"># Save the new contour vector map.</span>
+<span class="jKeyword">save</span>(contours,baseDir&amp;&quot;<span class="jQuote">contours.vec</span>&quot;);
+</pre>
+</td></tr></table>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<h2>Creating a TIN from a DEM</h2>
+
+<!-- ~~~~ Created using jFormat V2.5 ~~~~ -->
+<table cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<pre class="numbering">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre>
+</td>
+<td valign="top">
+<pre class="jSource">
+<span class="jComment"># Creates a TIN from a DEM with average error of 5% of DEM's standard deviation</span><i> </i>
+<span class="jKeyword">version</span>(1.0);<i> </i>
+<i> </i>
+<span class="jComment"># Change the directory below to correspond to your file location.</span><i> </i>
+baseDir = &quot;<span class="jQuote">c:/Program Files/LandSerf/data/landscriptExamples/</span>&quot;;<i> </i>
+<i> </i>
+<span class="jComment"># Open a surface raster.</span><i> </i>
+dem = <span class="jKeyword">open</span>(baseDir&amp;&quot;<span class="jQuote">dem.srf</span>&quot;);<i> </i>
+<i> </i>
+<span class="jComment"># Used to define precision of triangulation</span><i> </i>
+avError = <span class="jKeyword">round</span>(<span class="jKeyword">info</span>(dem,&quot;<span class="jQuote">stdev</span>&quot;)*0.05);<i> </i>
+<i> </i>
+<span class="jComment"># Perform the triangulation</span><i> </i>
+tin = <span class="jKeyword">triangulate</span>(dem,&quot;<span class="jQuote">null</span>&quot;,avError,&quot;<span class="jQuote">null</span>&quot;);<i> </i>
+<i> </i>
+<span class="jComment"># Save the new TIN as a vector map.</span><i> </i>
+<span class="jKeyword">edit</span>(tin,&quot;<span class="jQuote">notes</span>&quot;,&quot;<span class="jQuote">TIN derived from </span>&quot;&amp;<span class="jKeyword">info</span>(dem,&quot;<span class="jQuote">title</span>&quot;)&amp;&quot;<span class="jQuote"> with max error of </span>&quot;&amp;avError);<i> </i>
+<span class="jKeyword">save</span>(tin,baseDir&amp;&quot;<span class="jQuote">tin.vec</span>&quot;);<i> </i>
+</pre>
+</td></tr></table>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+ <!-- Footer area -->
+ <div id="footer">
+  <div id="lastModified">Last Modified, 21st April, 2009</div>
+ </div>
+
+</div> <!-- End of container area -->
+</body>
+</html>

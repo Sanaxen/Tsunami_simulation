@@ -1,0 +1,34 @@
+del debug_Initial_wave_data.csv
+del debug_water_depth_data.csv
+del elevation_data.csv
+del elevation_data2.csv
+del Initial_wave_data.csv
+del Initial_wave_data2.csv
+del Initial_wave_dataDown.csv
+del Initial_wave_dataUp.csv
+del Initial_wave_data*.csv
+del latitude_data.csv
+del manninig_data.csv
+del topography_data.csv
+del water_depth_data.csv
+del water_depth_data2.csv
+del water_depth_data3.csv
+
+del dx_distance.txt
+del chkpoint_data.bmp
+del chkpoint_data_all.bmp
+del elevation_data.bmp
+del faultLines.bmp
+del FaultParameters.bmp
+del FaultParameters_old.bmp
+del Initial_wave_data.bmp
+del Initial_wave_data2.bmp
+del Initial_wave_data2_old.bmp
+del Initial_wave_data*.bmp
+del Initial_wave_data.bmp_bak
+del output_000000.bmp
+del samplingline_data.bmp
+del topography_data.bmp
+del topography_data_mask.bmp
+del water_depth_data.bmp
+del /Q FaultParameters_*.bmp

@@ -1,0 +1,10 @@
+2021/06/15 13:51:25 LandSerf 2.3, 21st April, 2009 started.
+2021/06/15 13:51:25 Using Java 10.0.1 from Oracle Corporation on Windows 7
+2021/06/15 13:51:25 Menu/button selected [raster]
+2021/06/15 13:51:25 Preparing image...
+2021/06/15 13:51:25 Displayed in 0.02 seconds.
+2021/06/15 13:51:25 LandSerf started
+2021/06/15 13:51:42 Menu/button selected [open]
+2021/06/15 13:52:20 Loading file...
+2021/06/15 13:52:26 File <C:\Users\neutral\Desktop\提案\アジア航測\[水道管路データ（ネットフォース提供用）]2021-06-15_1317\水道管路データ（ネットフォース提供用）\Hkanro.shp> loaded 
+2021/06/15 13:52:26 File loaded in 6.53 seconds.

@@ -1,0 +1,15 @@
+java -version
+
+java version "1.6.0_13"
+Java(TM) SE Runtime Environment (build 1.6.0_13-b03)
+Java HotSpot(TM) Client VM (build 11.3-b02, mixed mode, sharing)
+
+JDKインストール
+PATH環境変数の先頭にjdk1.6_home\binが来るように環境変数を編集します。
+エクスプローラ→マイコンピュータ→右クリック→プロパティ→詳細設定タブ→環境変数ボタン
+設定したら、適用ボタンを押します。
+
+
+SX,SY,EX,EYの説明
+シミュレーション用データ作成\tmp
+シミュレーション用データ作成\シミュレレーション用入力データ

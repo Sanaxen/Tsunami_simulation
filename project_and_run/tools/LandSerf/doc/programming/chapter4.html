@@ -1,0 +1,553 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <link rel="Stylesheet" rev="Stylesheet" href="../css/landserf.css" media="All" />
+
+<!-- LandSerf Header -->
+
+ <title>LandSerf Programming Guide  - 4. Using the jwo.landserf.process classes</title>
+ <meta name="description" content="LandSerf Programming Guide" />
+ <meta name="keywords" content="LandSerf, GIS, DEM, Java, programming, Terrain modelling" />
+</head>
+
+<body>
+<div id="header">
+ <a href="../../index.html">
+  <img src="../images/landserfText.gif" width="304" height="57" alt="Go to LandSerf documentation" />
+  <span id="lsicon">
+   <img src="../images/iconTitle.gif" width="57" height="57" alt="Go to Landserf documentation" />
+  </span>
+ </a>
+ <br />
+
+ <div id="breadcrumbs">
+  <span id="currentLocation">Chapter 4</span>       |
+  <a href="index.html">Programming Guide</a> |
+  <a href="../../index.html">LandSerf 2.3 Documentation</a> |
+  <a href="http://www.landserf.org">landserf.org</a>
+ </div>
+</div>
+
+<div id="container">
+
+ <!-- End of header -->
+
+<h1>Chapter 4. Using the <code>jwo.landserf.process</code> classes</h1>
+
+<div class="highlightbox">
+By the end of this chapter you will be able to:
+<br /><br />
+<ul>
+ <li>Store spatial objects in an object that implements the <code>GISFrame</code> interface. <br /><br /></li>
+ <li>Understand the difference between the <code>GISFrame</code>, <code>GISFrameAdapter</code>, <code>GUIFrame</code> and <code>SimpleGISFrame</code> classes. <br /><br /></li>
+ <li>Create an object from the <code>jwo.landserf.process</code> package and start it as a threaded process. <br /><br /></li>
+ <li>Provide input and extract output from a <code>GISFrame</code> used by a processing class. <br /><br /></li> 
+</ul>
+</div>
+<div class="columnbreak"></div>
+
+
+<h2>4.1 Collecting input and output in a <code>GISFrame</code></h2>
+
+<p>
+ We have already seen how to read, create and write raster and vector spatial objects using Java and the LandSerf 
+ classes. When writing your own programs it is likely that you are doing so because you wish to perform some
+ processing of those spatial objects between the reading and writing stages. You can take advantage of much of the
+ processing functionality of LandSerf by creating objects from the 
+ <a href="api/jwo/landserf/process/package-summary.html" target="_blank"><code>jwo.landserf.process</code></a> package.
+ Classes in this package handle tasks that involve some significant (often time consuming) analysis and processing
+ operations. 
+</p>
+
+<p>
+ Different processing operations will require a range of spatial objects for input, and may create many different
+ output spatial objects. For example, surface peak detection requires a DEM as input, and creates up to three raster
+ maps and one vector map as output. Other routines such as fractal surface generation require no input spatial objects
+ at all. To handle the varying input and output demands of different processes, all the classes in this package use a 
+ <a href="api/jwo/landserf/gui/GISFrame.html" target="_blank"><code>jwo.landserf.gui.GISFrame</code></a> to hold the
+ potential collection of input and output spatial objects. The <code>GISFrame</code> is an interface that defines the
+ minimum requirements for assembling spatial objects, often in the form of a graphical user interface. For example,
+ <a href="api/jwo/landserf/gui/GUIFrame.html" target="_blank"><code>jwo.landserf.gui.GUIFrame</code></a> is the main
+ GUI window that implements a <code>GISFrame</code> and is used when you normally start LandSerf. 
+ </p>
+ 
+ <p>
+  As a programmer, you must decide whether to create a graphical user interface for your program or whether it is
+  to run from the command line. If you do create a GUI, should it use the 'normal' LandSerf GUI or do you wish to
+  create your own GUI? Depending on what you choose, there are various incarnations of <code>GISFrame</code> you
+  can use:
+ </p>
+ 
+ <table border="0" cellspacing="0" cellpadding="8">
+ <tr> <td><b>Type of user interface</b></td> <td><b>GISFrame to use</b></td></tr>
+ <tr>
+  <td valign="top"><img src="images/lsGUI.gif" alt="LandSerf GUI" width="100" height="60" /><br />'LandSerf' GUI</td>
+  <td valign="top"><a href="api/jwo/landserf/gui/GUIFrame.html" target="_blank"><code>jwo.landserf.gui.GUIFrame</code></a></td>
+ </tr>
+ 
+ <tr>
+  <td valign="top"><img src="images/customGUI.gif" alt="Customised GUI" width="100" height="60" /><br />Customised GUI</td>
+  <td valign="top">Inherit <a href="api/jwo/landserf/gui/SimpleGISFrame.html" target="_blank"><code>jwo.landserf.gui.SimpleGISFrame</code></a> or <a href="api/jwo/landserf/gui/GISFrameAdapter.html" target="_blank"><code>jwo.landserf.gui.GISFrameAdapter</code></a></td>
+ </tr>
+ 
+  <tr>
+  <td valign="top"><img src="images/commandline.gif" alt="Command line interface" width="100" height="60" /><br />Command line interface</td>
+  <td valign="top">Inherit <a href="api/jwo/landserf/gui/SimpleGISFrame.html" target="_blank"><code>jwo.landserf.gui.SimpleGISFrame</code></a> </td>
+ </tr>
+ </table>
+ 
+ <p>
+  The easiest to use is probably the <a href="api/jwo/landserf/gui/SimpleGISFrame.html" target="_blank"><code>SimpleGISFrame</code></a> that implements
+  the spatial object storage methods allowing any number of raster maps or vector maps to be added and removed. We will use this class
+  in the discussion below. The <a href="api/jwo/landserf/gui/GISFrameAdapter.html" target="_blank"><code>GISFrameAdapter</code></a> is simply
+  an 'empty' implementation of the <code>GISFrame</code> that contains no functionality, but speeds up the process of creating a class
+  that implements the interface. This is only really necessary if you are creating a customised user interface that behaves in a very
+  different way to the one used by LandSerf.
+ </p>
+  
+ <p>
+  Spatial objects can be added to a <code>GISFrame</code> by calling the <code>addRaster()</code> or <code>addVectorMap()</code>
+  methods. Raster and vector maps can be added as <i>primary</i> (default), <i>secondary</i> or <i>unselected</i> objects. This 
+  distinction is important in determining which objects are selected by the processing classes. Most operator on the currently 
+  selected primary object, while some require both a primary and secondary selected object. Output from the processing classes can be
+  as new primary, secondary or unselected objects stored in the <code>GISFrame</code>.
+ </p>
+ 
+ <p>
+  You can consult the Landserf 2.3 API documentation to find out what input is required and output produced by each of the processing
+  classes. You may also find the table below a useful summary.
+ </p>
+ 
+ 
+ <table border="1" cellspacing="0" cellpadding="4">
+ <tr><td><b>Processing class</b></td> <td><b>Input objects</b></td> <td><b>Output objects</b></td></tr>
+ 
+ <tr>
+  <td><b><a target="_blank" href="api/jwo/landserf/process/BasinThread.html" title="class in jwo.landserf.process">BasinThread</a></b></td>
+  <td>Primary raster (surface) and primary vector (seed points)</td>
+  <td>Secondary raster (drainage basins)</td>
+</tr>
+ 
+<tr>
+  <td><b><a target="_blank" href="api/jwo/landserf/process/CentroidThread.html" title="class in jwo.landserf.process">CentroidThread</a></b></td>
+  <td>Primary vector (polygons)</td>
+  <td>Primary vector (polygon centroids)</td>
+</tr>
+ 
+ <tr>
+  <td><b><a target="_blank" href="api/jwo/landserf/process/CombinePointsWithRasterThread.html" title="class in jwo.landserf.process">CombinePointsWithRasterThread</a></b></td>
+  <td>Primary raster and primary vector (points)</td>
+  <td>Primary vector (points with new raster attributes)</td>
+</tr> 
+ 
+ <tr>
+  <td><b><a target="_blank" href="api/jwo/landserf/process/CombineThread.html" title="class in jwo.landserf.process">CombineThread</a></b></td>
+  <td>Primary and secondary raster <i>or</i> primary and secondary vector</td>
+  <td>Unselected raster <i>or</i> vector</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/ContourThread.html" title="class in jwo.landserf.process">ContourThread</a></b></td>
+  <td>Primary raster (surface)</td>
+  <td>Primary vector (contours)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/DeleteThread.html" title="class in jwo.landserf.process">DeleteThread</a></b></td>
+  <td>Objects provided to constructor</td>
+  <td>None</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/DemToTinThread.html" title="class in jwo.landserf.process">DemToTinThread</a></b></td>
+  <td>Primary raster (surface)</td>
+  <td>Primary vector (TIN) and optional secondary raster (error map)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/DispThread.html" title="class in jwo.landserf.process">DispThread</a></b></td>
+  <td>Primary spatial objects and optional secondary objects</td>
+  <td>None</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/FlowThread.html" title="class in jwo.landserf.process">FlowThread</a></b></td>
+  <td>Primary raster (surface)</td>
+  <td>Secondary raster (flow magnitudes)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/FracSurfaceThread.html" title="class in jwo.landserf.process">FracSurfaceThread</a></b></td>
+  <td>Empty primary raster (for raster dimensions)</td>
+  <td>Primary raster (fractal surface)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/FuzzyFeatureThread.html" title="class in jwo.landserf.process">FuzzyFeatureThread</a></b></td>
+  <td>Primary raster (surface)</td>
+  <td>6 unselected rasters (pits, channels, passes, ridges, peaks, planes)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/JoinVectorThread.html" title="class in jwo.landserf.process">JoinVectorThread</a></b></td>
+  <td>Primary vector (fragmented lines)</td>
+  <td>Primary vector (joined lines)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/OpenThread.html" title="class in jwo.landserf.process">OpenThread</a></b></td>
+  <td>Objects provided to constructor</td>
+  <td>Primary spatial object(s) and optional unselected objects (if more than one raster or vector provided)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/PeakClassificationThread.html" title="class in jwo.landserf.process">PeakClassificationThread</a></b></td>
+  <td>Primary raster (surface)</td>
+  <td>Secondary raster (peaks) and optional primary vector (summits) and optional unselected rasters (fuzzy peaks and peak hierarchy)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/PitRemovalThread.html" title="class in jwo.landserf.process">PitRemovalThread</a></b></td>
+  <td>Primary raster (surface)</td>
+  <td>Secondary raster (pitless surface) and unselected raster (pits map)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/PointDensityThread.html" title="class in jwo.landserf.process">PointDensityThread</a></b></td>
+  <td>Empty raster (for dimensions of density surface) and (points) vector provided to the constructor</td>
+  <td>Primary raster (density surface)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/PolySurfaceThread.html" title="class in jwo.landserf.process">PolySurfaceThread</a></b></td>
+  <td>Primary raster (for dimensions)</td>
+  <td>Primary raster (polynomial surface)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/ProjectionThread.html" title="class in jwo.landserf.process">ProjectionThread</a></b></td>
+  <td>Primary raster <i>or</i> primary vector</td>
+  <td>Primary raster <i>or</i> primary vector (re-projected map)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/RectifyThread.html" title="class in jwo.landserf.process">RectifyThread</a></b></td>
+  <td>Raster provided to the constructor (unrectified)</td>
+  <td>Primary raster (rectified raster)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/SaveThread.html" title="class in jwo.landserf.process">SaveThread</a></b></td>
+  <td>Primary raster <i>or</i> primary vector</td>
+  <td>None</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/ScaleParamThread.html" title="class in jwo.landserf.process">ScaleParamThread</a></b></td>
+  <td>Primary raster (surface)</td>
+  <td>Secondary raster (average surface parameter values), unselected raster (variation in surface parameter values)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/SelectVectorThread.html" title="class in jwo.landserf.process">SelectVectorThread</a></b></td>
+  <td>Primary vector (source map)</td>
+  <td>Primary vector (selected objects)</td>
+</tr>
+
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/SimplifyThread.html" title="class in jwo.landserf.process">SimplifyThread</a></b></td>
+  <td>Primary vector (source map)</td>
+  <td>Primary vector (simplified objects)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/SurfNetworkThread.html" title="class in jwo.landserf.process">SurfNetworkThread</a></b></td>
+  <td>Primary raster (surface) and secondary raster (surface features)</td>
+  <td>Primary vector (surface network) and secondary raster (thinned surface network)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/SurfParamThread.html" title="class in jwo.landserf.process">SurfParamThread</a></b></td>
+  <td>Primary raster (surface)</td>
+  <td>Secondary raster (surface parameter)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/TinPointsThread.html" title="class in jwo.landserf.process">TinPointsThread</a></b></td>
+  <td>Primary vector (points or TIN)</td>
+  <td>Primary vector (TIN or points)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/TinToDemThread.html" title="class in jwo.landserf.process">TinToDemThread</a></b></td>
+  <td>Primary vector (TIN)</td>
+  <td>Primary raster (surface)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/TransRastThread.html" title="class in jwo.landserf.process">TransRastThread</a></b></td>
+  <td>Primary raster (source)</td>
+  <td>Primary raster (transformed raster)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/UpdateThread.html" title="class in jwo.landserf.process">UpdateThread</a></b></td>
+  <td>None</td>
+  <td>None (updates display)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/VectorToRasterThread.html" title="class in jwo.landserf.process">VectorToRasterThread</a></b></td>
+  <td>Empty vector (source) and raster (for dimensions) provided to the constructor</td>
+  <td>Primary raster (rasterized vector)</td>
+</tr>
+
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/View3dThread.html" title="class in jwo.landserf.process">View3dThread</a></b></td>
+  <td>Primary raster (surface), optional primary vector (overlay) and active <code>GraphicsArea</code> (display)</td>
+  <td>None</td>
+</tr>
+<tr>
+<td><b><a target="_blank" href="api/jwo/landserf/process/VoidRemovalThread.html" title="class in jwo.landserf.process">VoidRemovalThread</a></b></td>
+  <td>Primary raster (with voids)</td>
+  <td>Primary raster (without voids)</td>
+</tr>
+ 
+ </table>
+ 
+  <br />
+   
+<br /><br />
+
+ <h2>4.2 Threaded Processing</h2>
+ 
+ <p>
+  All the processing classes mentioned above inherit <a target="_blank" href="api/jwo/landserf/process/LSThread.html"><code>LSThread</code></a> which
+  handles messages by the processor and allows the class to be threaded. This can be useful for constructing GUIs, as many of the processing
+  tasks can take some time to complete. By threading their processing, other GUI activities can continue while processing takes place.
+  To execute one of the processing classes as a threaded process, simply create an object from it and call its <code>start()</code> method.
+  For example,
+  <br /><br />
+  <code>SurfParamThread processor = new SurfParamThread(gisFrame, mySurfParam);<br />
+  processor.start();</code>
+  <br /><br />
+  This will call the <code>processor</code>'s <code>doProcessing()</code> method automatically, and inform the parent GUI 
+  (<code>gisFrame</code>) when it is complete. Calling the <code>start()</code> method is preferred to calling <code>doProcessing()</code>
+  directly, since the former also initialises the message communication between the processing class as the <code>gisFrame</code>.
+ </p>
+ 
+ <p>
+  If you are creating a command line interface where GUI activities are not going to be taking place while the process runs, it may
+  make more sense not to run a process in parallel with other activities. In particular, it may be necessary to know when the process
+  has completed before, for example, saving an output file to disk. The easiest way to do this is probably to let your class 'join'
+  the thread (in other words, halt further execution until the thread has completed). For example,
+  
+  <br /><br />
+  <code>SurfParamThread processor = new SurfParamThread(gisFrame, mySurfParam);<br />
+  processor.start();<br />
+  processor.join();<br />
+  // <i>This point is reached when the processor has completed its task.</i></code>
+  <br /><br />
+ </p>
+ 
+ <p>
+  Alternatively, you can poll the thread repeatedly until it has completed by calling the thread's <code>isAlive()</code>
+  method.
+ </p>
+
+ <p>
+  An example illustrating these ideas showing how processing classes may be used is shown below:
+ </p>
+ <!-- ~~~~ Created using jFormat V2.4.1 ~~~~ -->
+<table cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<pre class="numbering">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+</pre>
+</td>
+<td valign="top">
+<pre class="jSource">
+<span class="jKeyword">import</span> jwo.landserf.structure.*;    <span class="jComment">// For spatial object class.</span>
+<span class="jKeyword">import</span> jwo.landserf.gui.*;          <span class="jComment">// For GISFrame.</span>
+<span class="jKeyword">import</span> jwo.landserf.process.*;      <span class="jComment">// For processing classes.</span>
+<span class="jKeyword">import</span> jwo.landserf.process.io.*;   <span class="jComment">// For file handling.</span>
+
+<span class="jComment">// **********************************************************</span>
+<span class="jDocComment">/** Creates a fractal surface and contours it. Demonstrates
+  * how processing classes can be used. 
+  * @author Jo Wood
+  * @version 1.1, 16th October, 2007
+  */</span>
+<span class="jComment">// **********************************************************</span>
+
+<span class="jKeyword">public</span> <span class="jKeyword">class</span> Fractal
+{
+    <span class="jComment">//------------------ Starter Method -----------------</span>
+    
+    <span class="jKeyword">public</span> <span class="jKeyword">static</span> <span class="jPrimitive">void</span> main(String[] args)
+    {
+        <span class="jKeyword">new</span> Fractal();
+    }
+
+    <span class="jComment">//------------------- Constructor -------------------</span>
+
+    <span class="jKeyword">public</span> Fractal()
+    {
+        <span class="jComment">// Create a GISFrame that will store raster and vector maps.</span>
+        GISFrame gisFrame = <span class="jKeyword">new</span> SimpleGISFrame();
+        
+        <span class="jComment">// Add a blank raster to the GISFrame.</span>
+        RasterMap fracRaster = <span class="jKeyword">new</span> RasterMap(400,400,<span class="jKeyword">new</span> Footprint(450000,280000,50,50));
+        fracRaster.getHeader().setTitle(&quot;<span class="jQuote">Fractal surface</span>&quot;);
+        gisFrame.addRaster(fracRaster,GISFrame.PRIMARY);
+        
+        <span class="jComment">// Create and start threaded process to generate fractal surface.</span>
+        FracSurfaceThread fracThread = <span class="jKeyword">new</span> FracSurfaceThread(gisFrame,2.2f);
+        fracThread.start();
+        <span class="jKeyword">try</span>
+        {
+            fracThread.join();    <span class="jComment">// Join thread (i.e. wait until it is complete).</span>
+        }
+        <span class="jKeyword">catch</span> (InterruptedException e)
+        {
+            System.err.println(&quot;<span class="jQuote">Error: Fractal generation thread interrupted.</span>&quot;);
+            <span class="jKeyword">return</span>;
+        }
+        System.out.println(&quot;<span class="jQuote">Fractal surface created.</span>&quot;);
+        
+        <span class="jComment">// Create and start a threaded process to contour the fractal.</span>
+        <span class="jPrimitive">float</span> minVal = fracRaster.getMinAttribute();
+        <span class="jPrimitive">float</span> range = fracRaster.getMaxAttribute()-minVal;
+        ContourThread contourThread = <span class="jKeyword">new</span> ContourThread(gisFrame,minVal,range/30f,4);
+        contourThread.start();
+        <span class="jKeyword">try</span>
+        {
+            contourThread.join();    <span class="jComment">// Join thread (i.e. wait until it is complete).</span>
+        }
+        <span class="jKeyword">catch</span> (InterruptedException e)
+        {
+            System.err.println(&quot;<span class="jQuote">Error: Contouring thread interrupted.</span>&quot;);
+            <span class="jKeyword">return</span>;
+        }
+        System.out.println(&quot;<span class="jQuote">Fractal surface contoured.</span>&quot;);
+        
+        <span class="jComment">// Write new raster and vector maps to file.</span>
+        LandSerfIO.write(fracRaster,&quot;<span class="jQuote">fractal.srf</span>&quot;);
+        LandSerfIO.write(gisFrame.getVectorMap1(),&quot;<span class="jQuote">contours.vec</span>&quot;);
+    }
+}
+</pre>
+</td></tr></table>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<p>
+ Running the class above produces two new spatial objects - the raster map <code>fractal.srf</code> and the vector
+ map <code>contours.vec</code>. They are shown below (since the fractal is randomly generated each time, the form
+ of the surface will vary each time this program is run).
+ <br /><br />
+<img src="images/figure4.1.jpg" width="508" height="497" align="bottom" alt="Fractal surface and contour output from Fractal" />
+<span class="caption">Fractal surface and contour output from <code>Fractal</code></span>
+</p>
+
+
+<h3>4.3 Exercises</h3>
+
+<ol>
+ <li>
+  Write a program that takes the contour output from <code>Fractal</code> above and creates a new vector map
+  containing only those contour lines above the midpoint between the highest and lowest elevations.
+  <br /><br />
+  <i>Hint:</i> You can achieve this using the <a target="_blank" href="api/jwo/landserf/process/SelectVectorThread.html" title="SelectVectorThread"><code>SelectVectorThread</code></a> to perform the contour selection process.
+  <br /><br />
+ </li>
+ 
+ <li>Write a program that converts a surface (e.g. the fractal surface generated above) into a TIN, and then converts
+ the TIN back to a surface again. Create and save a new raster that is the difference between the original surface 
+ and the version produced via the TIN round-trip.
+  <br /><br />
+  <i>Hint:</i> You can use processing classes to perform the TIN conversions, but you will need to manipulate the individual raster cell values in order to construct the difference map.
+  <br /><br />
+ </li>
+</ol>
+
+
+
+ <!-- Footer area -->
+ <div id="footer">
+  <div id="lastModified">Last Modified, 20th April, 2009</div>
+ </div>
+
+</div> <!-- End of container area -->
+</body>
+</html>

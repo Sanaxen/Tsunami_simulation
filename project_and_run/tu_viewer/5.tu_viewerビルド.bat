@@ -1,0 +1,2 @@
+:msbuild.exe WindowsFormsApplication1\tu_viewer.csproj  /t:Rebuild /p:Configuration="Release" /p:Platform=x86
+msbuild.exe WindowsFormsApplication1\tu_viewer.csproj  /t:Rebuild /p:Configuration="Release" /p:Platform=x64

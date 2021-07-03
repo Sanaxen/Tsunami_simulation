@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+ <link rel="Stylesheet" rev="Stylesheet" href="../../css/landserf.css" media="All" />
+
+<!-- LandSerf Header -->
+
+ <title>LandScript - Example Scripts</title>
+ <meta name="description" content="LandSerf scripting examples" />
+ <meta name="keywords" content="LandSerf, GIS, DEM, Java, scripting, map algebra, LandScript, programming, Terrain modelling" />
+</head>
+
+<body>
+<div id="header">
+ <a href="../../../index.html">
+  <img src="../../images/landserfText.gif" width="304" height="57" alt="Go to LandSerf documentation" />
+  <span id="lsicon">
+   <img src="../../images/iconTitle.gif" width="57" height="57" alt="Go to Landserf documentation" />
+  </span>
+ </a>
+ <br />
+
+ <div id="breadcrumbs">
+  <span id="currentLocation">Example</span>       |
+  <a href="./index.html">Examples index</a> |
+  <a href="../index.html">LandScript</a> |
+  <a href="../../index.html">LandSerf 2.3 Documentation</a> |
+  <a href="http://www.landserf.org">landserf.org</a>
+ </div>
+</div>
+
+<div id="container">
+
+ <!-- End of header -->
+
+<h1>Transforming Raster Values</h1>
+
+
+<h2>Rescaling raster values to range 0-255</h2>
+
+<!-- ~~~~ Created using jFormat V2.5 ~~~~ -->
+<table cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<pre class="numbering">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre>
+</td>
+<td valign="top">
+<pre class="jSource">
+<span class="jComment"># Rescales a raster so all values are integers between 0-255</span>
+<span class="jKeyword">version</span>(1.0);
+
+<span class="jComment"># Change the directory below to correspond to your file location.</span>
+baseDir = &quot;<span class="jQuote">c:/Program Files/LandSerf/data/landscriptExamples/</span>&quot;;
+
+<span class="jComment"># Open the raster </span>
+dem = <span class="jKeyword">open</span>(baseDir&amp;&quot;<span class="jQuote">dem.srf</span>&quot;);
+
+<span class="jComment"># Create rescaled raster.</span>
+rescaledDEM = <span class="jKeyword">new</span>(dem);
+minZ = <span class="jKeyword">info</span>(dem,&quot;<span class="jQuote">min</span>&quot;);
+maxZ = <span class="jKeyword">info</span>(dem,&quot;<span class="jQuote">max</span>&quot;);
+range = maxZ-minZ;
+rescaledDEM = <span class="jKeyword">round</span>(255*(dem-minZ)/range);
+
+<span class="jComment"># Give rescaled raster a grey scale and save it.</span>
+<span class="jKeyword">colouredit</span>(rescaledDEM,&quot;<span class="jQuote">rules</span>&quot;,&quot;<span class="jQuote">0 0, 255 255</span>&quot;);
+<span class="jKeyword">save</span>(rescaledDEM,baseDir&amp;&quot;<span class="jQuote">rescaledDEM.srf</span>&quot;);
+</pre>
+</td></tr></table>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+<h2>Growing raster cells</h2>
+
+<p>
+ This example uses a series of nested focal operations to grow the boundaries of non-null areas in a raster
+ by one pixel. The newly grown cells are saved in their own raster (<code>coastline</code>).
+</p>
+
+
+<!-- ~~~~ Created using jFormat V2.5 ~~~~ -->
+<table cellpadding="0" cellspacing="0"><tr>
+<td valign="top">
+<pre class="numbering">
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre>
+</td>
+<td valign="top">
+<pre class="jSource">
+<span class="jComment"># Creates some fractal islands, then grows the coastlines by 1 pixel.</span><i> </i>
+<span class="jKeyword">version</span>(1.0);<i> </i>
+<i> </i>
+<span class="jComment"># Change the directory below to correspond to your file location.</span><i> </i>
+baseDir = &quot;<span class="jQuote">c:/Program Files/LandSerf/data/landscriptExamples/</span>&quot;;<i> </i>
+<i> </i>
+<span class="jComment"># Create empty raster.</span><i> </i>
+fracSurf = <span class="jKeyword">newraster</span>(1000,1000,10,10,250,250,&quot;<span class="jQuote">Fractal</span>&quot;);<i> </i>
+<i> </i>
+<span class="jComment"># Fill raster with fractal surface.</span><i> </i>
+<span class="jKeyword">fractal</span>(fracSurf,&quot;<span class="jQuote">2.01</span>&quot;);<i> </i>
+islands = <span class="jKeyword">new</span>(fracSurf);<i> </i>
+<i> </i>
+<span class="jComment"># Use data range to get 'sea level';</span><i> </i>
+midPoint = <span class="jKeyword">info</span>(fracSurf,&quot;<span class="jQuote">median</span>&quot;);<i> </i>
+<i> </i>
+<span class="jComment"># Flood all values below 'sea level'</span><i> </i>
+fracSurf = <span class="jKeyword">ifelse</span>(fracSurf &lt; midPoint, null(), fracSurf);<i> </i>
+<i> </i>
+<span class="jComment"># Grow coastline</span><i> </i>
+islands = <span class="jKeyword">ifelse</span>(fracSurf != null(), fracSurf,<i> </i>
+             <span class="jKeyword">ifelse</span>(fracSurf[0,-1] != null(), fracSurf[0,-1],<i> </i>
+                <span class="jKeyword">ifelse</span>(fracSurf[0,1] != null(),  fracSurf[0,1],<i> </i>
+                   <span class="jKeyword">ifelse</span>(fracSurf[-1,0] != null(), fracSurf[-1,0],<i> </i>
+                      <span class="jKeyword">ifelse</span>(fracSurf[1,0] != null(), fracSurf[1,0],null())))));<i> </i>
+<i> </i>
+<span class="jComment"># Find coastline by taking difference between original and grown islands.</span><i> </i>
+coastline = <span class="jKeyword">new</span>(fracSurf);<i> </i>
+coastline = islands-fracSurf;<i> </i>
+<i> </i>
+<span class="jComment"># Save original and expanded islands.</span><i> </i>
+<span class="jKeyword">colouredit</span>(islands,&quot;<span class="jQuote">land1</span>&quot;);<i> </i>
+<span class="jKeyword">edit</span>(islands,&quot;<span class="jQuote">title</span>&quot;,&quot;<span class="jQuote">Fractal islands</span>&quot;);<i> </i>
+<span class="jKeyword">save</span>(islands,baseDir &amp; &quot;<span class="jQuote">islands.srf</span>&quot;);<i> </i>
+<i> </i>
+<span class="jKeyword">colouredit</span>(coastline,&quot;<span class="jQuote">rules</span>&quot;,&quot;<span class="jQuote">0 255, 1 180 180 0</span>&quot;);<i> </i>
+<span class="jKeyword">edit</span>(coastline,&quot;<span class="jQuote">title</span>&quot;,&quot;<span class="jQuote">Fractal coastline</span>&quot;);<i> </i>
+<span class="jKeyword">save</span>(coastline,baseDir &amp; &quot;<span class="jQuote">coastline.srf</span>&quot;);<i> </i>
+</pre>
+</td></tr></table>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+ <!-- Footer area -->
+ <div id="footer">
+  <div id="lastModified">Last Modified, 21st April, 2009</div>
+ </div>
+
+</div> <!-- End of container area -->
+</body>
+</html>

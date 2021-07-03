@@ -1,0 +1,29 @@
+# Script to edit the metadata of a spatial object.
+# v1.2 Jo Wood 21st April, 2009.
+# -------------------------------------------------------------
+version(1.0);
+
+# Store the base directory in a variable to allow easy changing.
+baseDir = "c:/Program Files/LandSerf/data/landscriptTutorial/";
+
+# Open the file from the previous step and store as a variable.
+dem = open(baseDir & "step1.srf");
+
+# Give the raster a new colour table.
+colouredit(dem,"land3");
+
+# Guess at the water level by finding modal elevation
+maxFreq = info(dem,"modef");
+if (maxFreq > 1000);
+{
+  # If there are more than 1000 cells of same height, colour them blue
+  waterLevel = info(dem,"mode");
+  colouredit(dem,"addRule",waterLevel & " 141 141 166 (D)");
+}
+
+# Update title and notes.
+edit(dem,"title","Lincoln 30m DEM");
+edit(dem,"notes","Elevation data from USGS National Elevation Dataset (NED) available from http://seamless.usgs.gov");
+
+# Save the edited raster as a LandSerf file.
+save(dem, baseDir & "step2.srf");

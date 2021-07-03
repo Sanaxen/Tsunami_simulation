@@ -1,0 +1,46 @@
+基盤地図（標高）ダウンロード
+PackDLMap.zip -> 解凍
+
+
+FG-GML-####-##-DEM##.zip
+・・・
+
+全て解凍して一つのフォルダー配下（例えばmap)にコピー
+
+基盤地図情報標高DEM変換ツール
+変換結合.vbs の実行
+
+陰影起伏図作成ー＞「いいえ」
+緯度経度:0
+海域　「いいえ」-9999
+
+GeoTifが生成される。
+merge.tif
+※このファイルは日本語名のついているフォルダーには入れない事。
+
+
+以下「QGIS」
+QGIS Desktop #.##.#
+
+ラスタレイヤ追加
+merge.tifを読み込む
+
+ラスタ(R)->変換->形式変換
+出力ファイル「選択」でArc/Info ASCII Grid(*asc,*ASC)を選択
+ファイル名を決める
+
+以下「LandSerf」
+Edit raster
+[Map projection] ->Latitude/Longitude WGS 84
+
+Colours [Edit]->Load Colours->dem_color_b.ctb
+File->Save-<image [bb.png]
+
+Colours [Edit]->Load Colours->dem_color_c.ctb
+File->Save-<image [cc.png]
+
+Colours [Edit]->Preset Colours->白から黒
+
+
+png->bmp
+シミュレーション用データ作成\tmpにコピー

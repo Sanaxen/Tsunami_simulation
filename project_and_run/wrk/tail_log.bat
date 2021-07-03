@@ -1,0 +1,1 @@
+..\bin\tail -f ‘ä•—201330†(HAIYAN).log

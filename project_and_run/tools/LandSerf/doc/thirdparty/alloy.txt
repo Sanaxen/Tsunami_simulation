@@ -1,0 +1,8 @@
+LandSerf uses a customsised version of INCORS' Alloy Look and Feel (www.incors.com).
+Their copyright statement is reproduced below:
+
+INTELLECTUAL PROPERTY RIGHTS
+The copyright, patents, trade marks and all other intellectual property rights in the
+SOFTWARE and related documentation are owned by INCORS or its suppliers and are 
+protected by national laws and international treaty provisions. You do not obtain any
+rights in the SOFTWARE other than those expressly granted in this License Agreement.
