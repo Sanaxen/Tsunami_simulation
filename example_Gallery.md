@@ -5,7 +5,8 @@
 中央防災会議CASE1_new  
   
 <video width="320" height="240" controls>  <source src="./images/simulation3D18.mp4" type="video/mp4"></video>  
-  
+[example Gallery](https://github.com/Sanaxen/Tsunami_simulation/blob/master/images/simulation3D18.mp4)  
+ 
 東北大モデルVer1.2  
   
 <video width="320" height="240" controls>  <source src="./images/simulation3D2.mp4" type="video/mp4"></video>  
