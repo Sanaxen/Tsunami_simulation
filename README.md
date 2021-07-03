@@ -159,6 +159,12 @@ TSUNAMIƒŠƒAƒ‹ƒ^ƒCƒ€2DViwer.bat
 
 visual studio 2019 community  
 
+### LandSerf 2.3
+[Geographical Information System (GIS) for the visualisation and analysis of surfaces](http://www.landserf.org/)  
+
+### QGIS
+[Geographic Information System](https://qgis.org/)  
+
 ### freeglut-2.8.0  
 
 [OpenGL Utility Toolkit (GLUT) library](http://freeglut.sourceforge.net/)  
