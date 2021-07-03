@@ -1,9 +1,0 @@
-BYTEORDER      I
-LAYOUT       BIL
-NROWS         450
-NCOLS         450
-NBANDS        1
-NBITS         16
-BANDROWBYTES         900
-TOTALROWBYTES        900
-BANDGAPBYTES         0
