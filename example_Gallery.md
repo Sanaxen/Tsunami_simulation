@@ -4,7 +4,7 @@
   
 中央防災会議CASE1_new  
   
-![中央防災会議CASE1_new](https://github.com/Sanaxen/Tsunami_simulation/blob/master/images/simulation3D18.gif)
+![中央防災会議CASE1_new](./images/simulation3D18.gif)
  
 東北大モデルVer1.2  
   
