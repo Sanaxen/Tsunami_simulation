@@ -120,12 +120,12 @@ TSUNAMIリアルタイム2DViwer.bat
 
 3D可視化も可能ですがシミュレーションの実行前に**CalculationParameters.txt**を修正する必要があります。  
 
-``EXPORT_OBJ  
-0``  
+``EXPORT_OBJ``  
+``0``  
 
 を  
-``EXPORT_OBJ  
-1``  
+``EXPORT_OBJ``  
+``1``  
 
   
 
