@@ -129,7 +129,17 @@ TSUNAMIリアルタイム2DViwer.bat
 
   
 
-に修正して下さい。  
+に修正して下さい。 シミュレーション時にobjディレクトリにレンダリング用の3Dデータを出力します。
+
+ **TSUNAMI3DViwer.bat ** を実行すると３Dアニメーションおよび画像をキャプチャして保存します。  
+
+自動でアニメーション画像を作成するには  
+
+- refreshで画像番号を0にセット  
+- Cap で画面キャプチャをONにします。  
+- Ani で次々と3Dデータを読み込んでレンダリング、キャプチャを実施していきます。  
+
+![](./images/image00.png)
 
 # 動画アニメーションへの変換  
 
@@ -146,6 +156,16 @@ TSUNAMIリアルタイム2DViwer.bat
 ` clear.bat `, ` init.bat ` を実行して不要なファイルを削除して下さい。  
 
 ------
+
+過去の災害から再現性を検証
+
+``Tsunami_simulation\tsu_dataset\KONSEKI_DATA‘``  
+
+ここにcsvで痕跡データを入れて下さい。``ファイル名はID名_KONSEKI.csv``　です。  
+
+データの取得は下記から入手可能です。  
+
+[津波痕跡データベース](https://tsunami-db.irides.tohoku.ac.jp/)
 
 ## Requirements  
 
