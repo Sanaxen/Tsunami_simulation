@@ -7,6 +7,7 @@
 
 ### 東北大モデルVer1.2  
 ![東北大モデルVer1.2](./images/simulation3D2.gif)
+![東北大モデルVer1.2](./images/simulation3D20.gif)
 
 ###  佐竹モデルVer8.0  
 ![佐竹モデルVer8.0](./images/simulation3D10.gif)
@@ -19,6 +20,9 @@
 
 ###  安政東海地震v2  
 ![安政東海地震v2](./images/simulation3D1.gif)
+
+###  安政南海地震  
+![安政南海地震v2](./images/simulation3D19.gif)
 
 ###  宝永地震v2  
 ![宝永地震v2](./images/simulation3D9.gif)
