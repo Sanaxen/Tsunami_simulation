@@ -15,9 +15,6 @@
 ###  修正・宝永地震  
 ![修正・宝永地震](./images/simulation3D7.gif)
 
-###  大連動ケース  
-![大連動ケース](./images/simulation3D14.gif)
-
 ###  安政東海地震v2  
 ![安政東海地震v2](./images/simulation3D1.gif)
 
@@ -26,6 +23,12 @@
 
 ###  宝永地震v2  
 ![宝永地震v2](./images/simulation3D9.gif)
+
+###  Furumura_2011  
+![Furumura_2011](./images/simulation3D21.gif)
+
+###  大連動ケース  
+![大連動ケース](./images/simulation3D14.gif)
 
 ###  時間差の連動  
 ![時間差の連動](./images/simulation3D15.gif)
