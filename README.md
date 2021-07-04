@@ -133,7 +133,7 @@ TSUNAMIリアルタイム2DViwer.bat
 
  **TSUNAMI3DViwer.bat ** を実行すると３Dアニメーションおよび画像をキャプチャして保存します。  
 
-自動でアニメーション画像を作成するには  
+#### 自動でアニメーション画像を作成するには  
 
 - refreshで画像番号を0にセット  
 - Cap で画面キャプチャをONにします。  
@@ -157,17 +157,21 @@ TSUNAMIリアルタイム2DViwer.bat
 
 ------
 
-過去の災害から再現性を検証
+
+
+# 過去の災害から再現性を検証
 
 ``Tsunami_simulation\tsu_dataset\KONSEKI_DATA‘``  
 
-ここにcsvで痕跡データを入れて下さい。``ファイル名はID名_KONSEKI.csv``　です。  
+ここにcsvで痕跡データを入れて下さい。ファイル名は``ID名_KONSEKI.csv``　です。  
 
 データの取得は下記から入手可能です。  
 
 [津波痕跡データベース](https://tsunami-db.irides.tohoku.ac.jp/)
 
-## Requirements  
+------
+
+# Requirements  
 
 visual studio 2019 community  
 
