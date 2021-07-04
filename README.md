@@ -25,6 +25,12 @@ Visual Studio 開発者コマンド プロンプトを利用します。(x64 Native Tools Command P
 
 # シミュレーション方法  
 
+#### 初期化  
+
+シミュレーションを実行する前に` clear.bat `, ` init.bat ` を実行して不要なファイルを削除して下さい。  
+
+
+
 ### シミュレーションデータ作成済データセットを使う場合  
 データセットは以下から取得できます。  
 https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_dataset.7z  
@@ -97,14 +103,7 @@ https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_datas
 
   
 
-# シミュレーションの実行  
-
-
-#### 初期化  
-
-シミュレーションを実行する前に` clear.bat `, ` init.bat ` を実行して不要なファイルを削除して下さい。  
-
-  
+# シミュレーションの実行   
 
 津波シミュレーション、台風による高潮シミュレーションの実行  
 `` Tsunami_simulation_Run.bat ``  
