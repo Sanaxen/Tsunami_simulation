@@ -5,7 +5,7 @@ copy x64\Release\*.exe .\bin /v /y
 
 cd tu_viewer
 
-call allƒrƒ‹ƒh.bat
+call all_build.bat
 
 copy freeglut-2.8.0\lib\freeglut.dll  ..\bin /v /y
 copy glew-1.13.0\bin\Release\x64\*.dll ..\bin /v /y

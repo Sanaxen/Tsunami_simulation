@@ -1,0 +1,14 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+*.sln text eol=crlf
+*.bat text eol=crlf
+*.txt text eol=crlf
+*.bat text eol=crlf
+*.csv text eol=crlf
+
+*.png diff=sjis
+*.bmp diff=sjis
+*.bat diff=sjis
+*.csv diff=sjis
+*.txt diff=sjis
