@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Folder><name>runup_area[東北太平洋沖v2-2_東北大モデルVer1.2]</name>
+<GroundOverlay>
+   <name>image</name>
+   <Icon>
+       <href>runup_area.png</href>
+   </Icon>
+   <LatLonBox>
+      <north>45.762500</north>
+      <south>34.920833</south>
+      <east>140.012500</east>
+      <west>145.704167</west>
+   </LatLonBox>
+</GroundOverlay>
+  </Folder>
+</kml>

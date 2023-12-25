@@ -1,0 +1,15 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([((1/exp(1))*(exp(0.85*5/h)-1))^2], [h,0.85*5/log(1+exp(1)),10],
+ [gnuplot_preamble, "set grid;"])$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+wxplot2d([((1/exp(1))*(exp(0.85*1000/h)-1))^2], [h,0.85*1000/log(1+exp(1)),1000],
+ [gnuplot_preamble, "set grid;"])$
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

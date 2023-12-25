@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Folder><name>runup_area[台風201330号(HAIYAN)]</name>
+<GroundOverlay>
+   <name>image</name>
+   <Icon>
+       <href>runup_area.png</href>
+   </Icon>
+   <LatLonBox>
+      <north>14.504167</north>
+      <south>4.954167</south>
+      <east>120.204167</east>
+      <west>128.004167</west>
+   </LatLonBox>
+</GroundOverlay>
+  </Folder>
+</kml>
