@@ -1,0 +1,26 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+f(x,i,j):= (x(i-1,j)+x(i+1,j))/2;
+g(f,x,i,j):=(f(x,i,j-1)+f(x,i,j+1))/2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load("c:\\tmp\\cform.lisp");
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(M,i,j);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+g(f,M,i,j);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+cform(expand(g(f,M,i,j)));
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
