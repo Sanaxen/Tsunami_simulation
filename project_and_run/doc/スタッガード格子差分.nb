@@ -1,0 +1,287 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.1'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      5825,        195]*)
+(*NotebookOutlinePosition[      6490,        218]*)
+(*  CellTagsIndexPosition[      6446,        214]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+    \(Simplify[
+      D[InterpolatingPolynomial[
+            Table[{x\_i + k\ h\/2, f[x\_\(i\  + k\/2\)]}, {k, \(-3\), 3, 2}], 
+            z], {z, 1}] /. z \[Rule] x\_i]\), "\[IndentingNewLine]", 
+    \(Simplify[
+      D[InterpolatingPolynomial[
+            Table[{x\_i + k\ h\/2, f[x\_\(i\  + k\/2\)]}, {k, \(-5\), 5, 2}], 
+            z], {z, 2}] /. z \[Rule] x\_i]\)}], "Input"],
+
+Cell[BoxData[
+    \(\(f[x\_\(\(-\(3\/2\)\) + i\)] - 27\ f[x\_\(\(-\(1\/2\)\) + i\)] + 27\ \
+f[x\_\(1\/2 + i\)] - f[x\_\(3\/2 + i\)]\)\/\(24\ h\)\)], "Output"],
+
+Cell[BoxData[
+    \(\(-\(\(5\ f[x\_\(\(-\(5\/2\)\) + i\)] - 
+            39\ f[x\_\(\(-\(3\/2\)\) + i\)] + 
+            34\ f[x\_\(\(-\(1\/2\)\) + i\)] + 34\ f[x\_\(1\/2 + i\)] - 
+            39\ f[x\_\(3\/2 + i\)] + 
+            5\ f[x\_\(5\/2 + i\)]\)\/\(48\ h\^2\)\)\)\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(UFDWeights[m_, n_, s_] := 
+      CoefficientList[Normal[Series[x^s\ Log[x]^m, {x, 1, n}]/h^m], 
+        x]\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(UFDWeights[1, 3, 3/2]\)], "Input"],
+
+Cell[BoxData[
+    \({1\/\(24\ h\), \(-\(9\/\(8\ h\)\)\), 
+      9\/\(8\ h\), \(-\(1\/\(24\ h\)\)\)}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(UFDWeights[2, 5, 5/2]\)], "Input"],
+
+Cell[BoxData[
+    \({\(-\(5\/\(48\ h\^2\)\)\), 
+      13\/\(16\ h\^2\), \(-\(17\/\(24\ h\^2\)\)\), \(-\(17\/\(24\ h\^2\)\)\), 
+      13\/\(16\ h\^2\), \(-\(5\/\(48\ h\^2\)\)\)}\)], "Output"]
+}, Open  ]],
+
+Cell[BoxData[
+    \(StaggerdDiff[m_, n_] := 
+      Simplify[D[
+            InterpolatingPolynomial[
+              Table[{x\_i + k\ h\/2, f[x\_\(i\  + k\/2\)]}, {k, \(-n\), n, 
+                  2}], z], {z, m}] /. z \[Rule] x\_i]\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(StaggerdDiff[1, 1]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(-f[x\_\(\(-\(1\/2\)\) + i\)]\) + f[x\_\(1\/2 + i\)]\)\/h\)], \
+"Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(StaggerdDiff[1, 3]\)], "Input"],
+
+Cell[BoxData[
+    \(\(f[x\_\(\(-\(3\/2\)\) + i\)] - 27\ f[x\_\(\(-\(1\/2\)\) + i\)] + 27\ \
+f[x\_\(1\/2 + i\)] - f[x\_\(3\/2 + i\)]\)\/\(24\ h\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(StaggerdDiff[2, 3]\)], "Input"],
+
+Cell[BoxData[
+    \(\(f[x\_\(\(-\(3\/2\)\) + i\)] - f[x\_\(\(-\(1\/2\)\) + i\)] - \
+f[x\_\(1\/2 + i\)] + f[x\_\(3\/2 + i\)]\)\/\(2\ h\^2\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(StaggerdDiff[2, 5]\)], "Input"],
+
+Cell[BoxData[
+    \(\(-\(\(5\ f[x\_\(\(-\(5\/2\)\) + i\)] - 
+            39\ f[x\_\(\(-\(3\/2\)\) + i\)] + 
+            34\ f[x\_\(\(-\(1\/2\)\) + i\)] + 34\ f[x\_\(1\/2 + i\)] - 
+            39\ f[x\_\(3\/2 + i\)] + 
+            5\ f[x\_\(5\/2 + i\)]\)\/\(48\ h\^2\)\)\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(StaggerdDiff[3, 3]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(-f[x\_\(\(-\(3\/2\)\) + i\)]\) + 3\ f[x\_\(\(-\(1\/2\)\) + i\)] - 3\
+\ f[x\_\(1\/2 + i\)] + f[x\_\(3\/2 + i\)]\)\/h\^3\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(StaggerdDiff[3, 5]\)], "Input"],
+
+Cell[BoxData[
+    \(\(f[x\_\(\(-\(5\/2\)\) + i\)] - 13\ f[x\_\(\(-\(3\/2\)\) + i\)] + 34\ \
+f[x\_\(\(-\(1\/2\)\) + i\)] - 34\ f[x\_\(1\/2 + i\)] + 13\ f[x\_\(3\/2 + i\)] \
+- f[x\_\(5\/2 + i\)]\)\/\(8\ h\^3\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(StaggerdDiff[4, 5]\)], "Input"],
+
+Cell[BoxData[
+    \(\(f[x\_\(\(-\(5\/2\)\) + i\)] - 3\ f[x\_\(\(-\(3\/2\)\) + i\)] + 2\ f[x\
+\_\(\(-\(1\/2\)\) + i\)] + 2\ f[x\_\(1\/2 + i\)] - 3\ f[x\_\(3\/2 + i\)] + \
+f[x\_\(5\/2 + i\)]\)\/\(2\ h\^4\)\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(StaggerdDiff[4, 7]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(-7\)\ f[x\_\(\(-\(7\/2\)\) + i\)] + 59\ f[x\_\(\(-\(5\/2\)\) + i\)] \
+- 135\ f[x\_\(\(-\(3\/2\)\) + i\)] + 83\ f[x\_\(\(-\(1\/2\)\) + i\)] + 83\ \
+f[x\_\(1\/2 + i\)] - 135\ f[x\_\(3\/2 + i\)] + 59\ f[x\_\(5\/2 + i\)] - 7\ \
+f[x\_\(7\/2 + i\)]\)\/\(48\ h\^4\)\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.1 for Microsoft Windows",
+ScreenRectangle->{{0, 1920}, {0, 982}},
+WindowSize->{1533, 846},
+WindowMargins->{{141, Automatic}, {Automatic, 42}},
+Magnification->2
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1776, 53, 397, 8, 153, "Input"],
+Cell[2176, 63, 158, 2, 94, "Output"],
+Cell[2337, 67, 285, 5, 94, "Output"]
+}, Open  ]],
+Cell[2637, 75, 139, 3, 55, "Input"],
+
+Cell[CellGroupData[{
+Cell[2801, 82, 54, 1, 55, "Input"],
+Cell[2858, 85, 113, 2, 75, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3008, 92, 54, 1, 55, "Input"],
+Cell[3065, 95, 190, 3, 75, "Output"]
+}, Open  ]],
+Cell[3270, 101, 242, 5, 121, "Input"],
+
+Cell[CellGroupData[{
+Cell[3537, 110, 51, 1, 55, "Input"],
+Cell[3591, 113, 96, 2, 93, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3724, 120, 51, 1, 55, "Input"],
+Cell[3778, 123, 158, 2, 94, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3973, 130, 51, 1, 55, "Input"],
+Cell[4027, 133, 152, 2, 119, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4216, 140, 51, 1, 55, "Input"],
+Cell[4270, 143, 285, 5, 119, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4592, 153, 51, 1, 55, "Input"],
+Cell[4646, 156, 156, 2, 118, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4839, 163, 51, 1, 55, "Input"],
+Cell[4893, 166, 221, 3, 119, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5151, 174, 51, 1, 55, "Input"],
+Cell[5205, 177, 217, 3, 119, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[5459, 185, 51, 1, 55, "Input"],
+Cell[5513, 188, 296, 4, 119, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

@@ -1,0 +1,22 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+f(x,mu,alp):=sqrt(mu/(2*%pi*alp^2*x^3))*exp(-(x-mu)^2/(2*mu*alp^2*x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+a:romberg(f(x,118.8,0.2), x, 154, 184);
+b:romberg(f(x,118.8,0.2), x, 154, 10000);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+100*a/b;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(all);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
