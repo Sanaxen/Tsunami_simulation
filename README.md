@@ -2,8 +2,8 @@
 
 It's under maintenance now.    
 It was made more than 10 years ago, so I'm reconditioning it in various ways.    
-���̓����e�i���X���ł��B    
-�P�O�ȏ�N�O�ɍ�������̂Ȃ̂ŐF�X�ƍĐ������Ă��܂��B
+今はメンテナンス中です。    
+１０以上年前に作ったものなので色々と再整備しています。
 
 ![](./images/simulation.gif)  
 
@@ -14,136 +14,150 @@ It was made more than 10 years ago, so I'm reconditioning it in various ways.
 
 ------
 
-# �r���h���@  
+# ビルド方法  
 
-Visual Studio �J���҃R�}���h �v�����v�g�𗘗p���܂��B(x64 Native Tools Command Prompt for VS 2019)   �J���җp�R�}���h���C�� �c�[�����ȒP�Ɏg�p�ł���悤�ɓ���̊��ϐ����ݒ肳��Ă���W���R�}���h �v�����v�g�ł��B  
+Visual Studio 開発者コマンド プロンプトを利用します。(x64 Native Tools Command Prompt
+ for VS 2019)   開発者用コマンドライン ツールを簡単に使用できるように特定の環境変数が設定されている標準コマンド プロンプトです。  
 
 `` cd Tsunami_simulation\project_and_run ``  
 ``tsu_build_all.bat ``  
 
-  
+# データセット  
+https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_dataset.7z
 
-# �V�~�����[�V�������@  
-
-#### ������  
-
-�V�~�����[�V���������s����O��` clear.bat `, ` init.bat ` �����s���ĕs�v�ȃt�@�C�����폜���ĉ������B  
-
-
-
-### �V�~�����[�V�����f�[�^�쐬�σf�[�^�Z�b�g���g���ꍇ  
-�f�[�^�Z�b�g�͈ȉ�����擾�ł��܂��B  
+### シミュレーションデータ作成済データセットを使う場合  
+データセットは以下から取得できます。  
 https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_dataset.7z  
+中身を移動して下さい。  
+<img src=./images/image01.png >  
 
-���p�\�ȃV�~�����[�V��������ьv�Z�f�[�^�ݒ�o�b�`�͈ȉ��̒ʂ�B  
+# シミュレーション方法  
+
+#### 初期化  
+
+- シミュレーションを実行する前に` clear.bat `, ` init.bat ` を実行して不要なファイルを削除して下さい。  
+- 計算データ設定バッチを実行して必要なファイルをコピー
+- Tsunami_simulation_Run.bat を実行
+- リアルタイムで結果をレンダリング   
+ <img src=./images/a.gif >  
+  2Dの場合はTSUNAMIリアルタイム2DViwer.bat  
+  3Dの場合はTSUNAMIリアルタイム3DViwer.bat
+
+レンダリングするには"CalculationParameters.txt"を修正する必要があります。
+<img src=./images/image02.png >  
+
+3Dの場合でレンダリングするには  0を１に書き換えて下さい。
+<img src=./images/image03.png >  
+
+利用可能なシミュレーションおよび計算データ設定バッチは以下の通り。  
 ``cd Tsunami_simulation\project_and_run\Tsunami_simulation_run_example``  
 
-## ���Ôg�V�~�����[�V����  
-- �����h�Љ�cCASE1_new.bat  
-- ���h���f��3�A��.bat  
+## ■津波シミュレーション  
+- 中央防災会議CASE1_new.bat  
+- 中防モデル3連動.bat  
 
-- ���k.bat  
-- ���k�僂�f��Ver1.2.bat  
-- ���k�僂�f��Ver1.2_���{�S��.bat  
-- ���k�����m��v2-2.bat  
-- ���k�����m��v2.bat  
-- ���|���f��Ver4.6.bat  
-- ���|���f��Ver8.0.bat  
+- 東北.bat  
+- 東北大モデルVer1.2.bat  
+- 東北大モデルVer1.2_日本全域.bat  
+- 東北太平洋沖v2-2.bat  
+- 東北太平洋沖v2.bat  
+- 佐竹モデルVer4.6.bat  
+- 佐竹モデルVer8.0.bat  
 
-- �������C�n�kv2.bat  
-- �������C�n�kv2_all.bat  
-- ��i�n�kv2.bat  
-- �C���E��i�n�k.bat  
-- ��A���P�[�X.bat  
-- ��A���i��i�{�c���j.bat  
-- �c���n�k.bat  
+- 安政東海地震v2.bat  
+- 安政東海地震v2_all.bat  
+- 宝永地震v2.bat  
+- 修正・宝永地震.bat  
+- 大連動ケース.bat  
+- 大連動（宝永＋慶長）.bat  
+- 慶長地震.bat  
 
   
 
-## ���䕗�ɂ�鍂���V�~�����[�V����  
-- �ɐ��p�䕗.bat  
-- �䕗201330��(HAIYAN).bat  
+## ■台風による高潮シミュレーション  
+- 伊勢湾台風.bat  
+- 台風201330号(HAIYAN).bat  
 
-## ���͐�×��V�~�����[�V����  
-- �S�{��×����.bat  
+## ■河川氾濫シミュレーション  
+- 鬼怒川氾濫解析.bat  
 
  
 
-�ȉ��͎������̃e�X�g�ɗ��p�����f�[�^�Z�b�g  
-�������_�ŗ��p�ł��邩�͊m�F���Ă��܂���  
+以下は実装時のテストに利用したデータセット  
+※現時点で利用できるかは確認していません  
 
-- ���S����.bat  
-- �󐅌���.bat  
-- �k��.bat  
-- �k��2.bat  
-- �k��3.bat  
-- �k��4.bat  
-- �k��5.bat  
-- ���E�g����.bat  
-- �W������.bat  
-- �����g���b�v����.bat  
+- 完全反射.bat  
+- 浅水効果.bat  
+- 遡上.bat  
+- 遡上2.bat  
+- 遡上3.bat  
+- 遡上4.bat  
+- 遡上5.bat  
+- 境界波現象.bat  
+- 集中効果.bat  
+- 離島トラップ現象.bat  
 
-## ���̑��̃V�~�����[�V����  
+## その他のシミュレーション  
 
-- 覐ΏՓˁiKT_inmpact�����x��)Test
-- 覐ΏՓˁiKT_inmpact�����x��)(���{�S��)  
+- 隕石衝突（KT_inmpact同レベル)Test
+- 隕石衝突（KT_inmpact同レベル)(日本全体)  
 
 ------
 
-### �V�~�����[�V�����f�[�^���ŏ�������ꍇ  
+### シミュレーションデータを最初から作る場合  
 
 `` cd Tsunami_simulation\tsu_dataset\CREATE_DATA ``  
 
-**�n�`�f�[�^�쐬�菇.pdf **���Q�Ƃ��������B  
-���h�L�������g���̃f�B���N�g���i�t�H���_�[���j���قȂ��Ă���\��������܂��̂ł����Ӊ������B  
+**地形データ作成手順.pdf **を参照ください。  
+※ドキュメント中のディレクトリ（フォルダー名）が異なっている可能性がありますのでご注意下さい。  
 
-�K�v�ȃf�[�^�i�n�`�f�[�^���j�������ł���Βn�`�f�[�^�쐬�菇.pdf�́u���̒n�`�f�[�^�A�f�[�^�t�H�[�}�b�g�𗘗p����ꍇ�v���Q�Ƃ��������B�o�b�`�Ŏ����������邱�Ƃ��o���܂��B  
-
-  
+必要なデータ（地形データ等）が準備できれば地形データ作成手順.pdfの「他の地形データ、データフォーマットを利用する場合」を参照ください。バッチで自動生成することが出来ます。  
 
   
 
-# �V�~�����[�V�����̎��s   
+  
 
-�Ôg�V�~�����[�V�����A�䕗�ɂ�鍂���V�~�����[�V�����̎��s  
+# シミュレーションの実行   
+
+津波シミュレーション、台風による高潮シミュレーションの実行  
 `` Tsunami_simulation_Run.bat ``  
 
-�͐�×��V�~�����[�V�����̎��s  
+河川氾濫シミュレーションの実行  
 `` Tsunami_simulation_River_flooding.bat ``  
 
   
 
-# ����  
+# 可視化  
 
-���s���Ƀ��A���^�C���ɉ����\�ł�  
-TSUNAMI���A���^�C��2DViwer.bat  
+実行中にリアルタイムに可視化可能です  
+TSUNAMIリアルタイム2DViwer.bat  
 
-3D�������\�ł����V�~�����[�V�����̎��s�O��**CalculationParameters.txt**���C������K�v������܂��B  
+3D可視化も可能ですがシミュレーションの実行前に**CalculationParameters.txt**を修正する必要があります。  
 
 ``EXPORT_OBJ``  
 ``0``  
 
-��  
+を  
 ``EXPORT_OBJ``  
 ``1``  
 
   
 
-�ɏC�����ĉ������B �V�~�����[�V��������obj�f�B���N�g���Ƀ����_�����O�p��3D�f�[�^���o�͂��܂��B
+に修正して下さい。 シミュレーション時にobjディレクトリにレンダリング用の3Dデータを出力します。
 
- **TSUNAMI3DViwer.bat  ** �����s����ƂRD�A�j���[�V��������щ摜���L���v�`�����ĕۑ����܂��B  
+ **TSUNAMI3DViwer.bat  ** を実行すると３Dアニメーションおよび画像をキャプチャして保存します。  
 
-#### �����ŃA�j���[�V�����摜���쐬����ɂ�  
+#### 自動でアニメーション画像を作成するには  
 
-- refresh�ŉ摜�ԍ���0�ɃZ�b�g  
-- Cap �ŉ�ʃL���v�`����ON�ɂ��܂��B  
-- Ani �Ŏ��X��3D�f�[�^��ǂݍ���Ń����_�����O�A�L���v�`�������{���Ă����܂��B  
+- refreshで画像番号を0にセット  
+- Cap で画面キャプチャをONにします。  
+- Ani で次々と3Dデータを読み込んでレンダリング、キャプチャを実施していきます。  
 
 ![](./images/image00.png)
 
-# ����A�j���[�V�����ւ̕ϊ�  
+# 動画アニメーションへの変換  
 
-[ffmpeg](https://www.ffmpeg.org/)�@���K�v�ł��B  
+[ffmpeg](https://www.ffmpeg.org/)　が必要です。  
 
 ` cnv_move2D.bat `  
 
@@ -151,23 +165,23 @@ TSUNAMI���A���^�C��2DViwer.bat
 
   
 
-#### ��n��  
+#### 後始末  
 
-` clear.bat `, ` init.bat ` �����s���ĕs�v�ȃt�@�C�����폜���ĉ������B  
+` clear.bat `, ` init.bat ` を実行して不要なファイルを削除して下さい。  
 
 ------
 
 
 
-# �ߋ��̍ЊQ����Č���������
+# 過去の災害から再現性を検証
 
-``Tsunami_simulation\tsu_dataset\KONSEKI_DATA�e``  
+``Tsunami_simulation\tsu_dataset\KONSEKI_DATA‘``  
 
-������csv�ō��Ճf�[�^�����ĉ������B�t�@�C������``ID��_KONSEKI.csv``�@�ł��B  
+ここにcsvで痕跡データを入れて下さい。ファイル名は``ID名_KONSEKI.csv``　です。  
 
-�f�[�^�̎擾�͉��L�������\�ł��B  
+データの取得は下記から入手可能です。  
 
-[�Ôg���Ճf�[�^�x�[�X](https://tsunami-db.irides.tohoku.ac.jp/)
+[津波痕跡データベース](https://tsunami-db.irides.tohoku.ac.jp/)
 
 ------
 
