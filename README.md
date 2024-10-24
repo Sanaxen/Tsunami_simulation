@@ -19,6 +19,8 @@ It was made more than 10 years ago, so I'm reconditioning it in various ways.
 Visual Studio 開発者コマンド プロンプトを利用します。(x64 Native Tools Command Prompt
  for VS 2019)   開発者用コマンドライン ツールを簡単に使用できるように特定の環境変数が設定されている標準コマンド プロンプトです。  
 
+project_and_run/bin/util_set.zip を解凍してproject_and_run/bin/　に配置
+
 `` cd Tsunami_simulation\project_and_run ``  
 ``tsu_build_all.bat ``  
 

@@ -1,3 +1,12 @@
+if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\VsDevCmd.bat" (
+	call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\Tools\VsDevCmd.bat"
+)
+if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat" (
+	call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+)
+:pause
+powershell Expand-Archive -Path bin\util_set.zip -DestinationPath .\bin -Force
+
 msbuild.exe .\tsu.sln  /t:Rebuild /p:Configuration=Release /p:Platform=x64
 
 copy x64\Release\*.exe .\bin /v /y

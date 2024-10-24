@@ -6,6 +6,8 @@ copy freeglut-2.8.0\lib\x64\*.lib TSUNAMI_Viewr3D\libs\64bit /v /y
 copy freeglut-2.8.0\lib\x64\*.dll TSUNAMI_Viewr3D\bin\64bit /v /y
 
 set ver=1.13.0
+powershell Expand-Archive -Path glew-%ver%-win32.zip -DestinationPath glew-%ver%\.. -Force
+
 copy glew-%ver%\include\GL\*.* TSUNAMI_Viewr3D\include\GL /v /y
 copy glew-%ver%\bin\Release\Win32\*.* TSUNAMI_Viewr3D\bin\32bit /v /y
 copy glew-%ver%\lib\Release\Win32\*.* TSUNAMI_Viewr3D\libs\32bit /v /y
