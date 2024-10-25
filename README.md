@@ -1,13 +1,10 @@
 # Tsunami_simulation  
-
+<img src=./images/image04.png > 
+<img src=./images/simulation.gif width=1000%> 
 It's under maintenance now.    
 It was made more than 10 years ago, so I'm reconditioning it in various ways.    
 今はメンテナンス中です。    
 １０以上年前に作ったものなので色々と再整備しています。
-
-![](./images/simulation.gif)  
-
-
 
 ------
 # [example Gallery](https://github.com/Sanaxen/Tsunami_simulation/blob/master/example_Gallery.md)  
@@ -44,15 +41,15 @@ https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_datas
 - ``Tsunami_simulation_Run.bat`` を実行  
   Tsunami_simulation_Run.batでは計算環境の調整を環境変数でしていしているため必要に応じて修正
 - リアルタイムで結果をレンダリング   
- <img src=./images/a.gif >  
+ <img src=./images/a.gif width=40%>  
   2Dの場合は `TSUNAMIリアルタイム2DViwer.bat`  
   3Dの場合は `TSUNAMI3DViwer.bat`
 
 レンダリングするには ``CalculationParameters.txt``を修正する必要があります。
-<img src=./images/image02.png >  
+<img src=./images/image02.png  width=40%>  
 
-3Dの場合でレンダリングするには  0 を 1 に書き換えて下さい。
-<img src=./images/image03.png >  
+3Dの場合でレンダリングするには  0 を 1 に書き換えて下さい。  
+<img src=./images/image03.png  width=40%>  
 
 利用可能なシミュレーションおよび計算データ設定バッチは以下の通り。  
 ``cd Tsunami_simulation\project_and_run\Tsunami_simulation_run_example``  
@@ -159,11 +156,11 @@ TSUNAMIリアルタイム2DViwer.bat
 
 #### 自動でアニメーション画像を作成するには  
 
-- refreshで画像番号を0にセット  
+- refreshで画像番号をtimeで指定した番号にセット  
 - Cap で画面キャプチャをONにします。  
 - Ani で次々と3Dデータを読み込んでレンダリング、キャプチャを実施していきます。  
 
-![](./images/image00.png)
+<img src=./images/image00.png  width=70%>  
 
 # 動画アニメーションへの変換  
 
