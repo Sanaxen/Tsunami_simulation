@@ -19,7 +19,6 @@ It was made more than 10 years ago, so I'm reconditioning it in various ways.
 Visual Studio 開発者コマンド プロンプトを利用します。(x64 Native Tools Command Prompt
  for VS 2019)   開発者用コマンドライン ツールを簡単に使用できるように特定の環境変数が設定されている標準コマンド プロンプトです。  
 
-project_and_run/bin/util_set.zip を解凍してproject_and_run/bin/　に配置
 
 `` cd Tsunami_simulation\project_and_run ``  
 ``tsu_build_all.bat ``  
@@ -28,7 +27,9 @@ project_and_run/bin/util_set.zip を解凍してproject_and_run/bin/　に配置
 https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_dataset.7z
 
 ### シミュレーションデータ作成済データセットを使う場合  
-データセットは以下から取得できます。  
+``dataset_install.bat`` でインストールできます。
+
+``dataset_install.bat``でインストール出来ない場合はデータセットは以下から取得できます。  
 https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_dataset.7z  
 中身を移動して下さい。  
 <img src=./images/image01.png >  
@@ -110,7 +111,7 @@ set WAVE_SCALE=8000  -> set WAVE_SCALE=80
 ``
 - 隕石衝突（KT_inmpact同レベル)Test
 - 隕石衝突（KT_inmpact同レベル)(日本全体)  
-
+<img src=./images/simulation3D12.gif width=30%> 
 ------
 
 ### シミュレーションデータを最初から作る場合  
