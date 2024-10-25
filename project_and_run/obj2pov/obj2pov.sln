@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "obj2pov", "obj2pov\obj2pov.vcxproj", "{A40AA7C9-F622-4E1B-AA06-E7B4B08F9C6B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "obj2pov_genbat", "obj2pov_genbat\obj2pov_genbat.vcxproj", "{6C4B7681-56B0-48CE-AE34-9AC70B1FA0BE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clearVertexColor", "clearVertexColor\clearVertexColor.vcxproj", "{1EE4FF1B-F8C2-4507-ADC7-31B5F71C00C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A40AA7C9-F622-4E1B-AA06-E7B4B08F9C6B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A40AA7C9-F622-4E1B-AA06-E7B4B08F9C6B}.Debug|Win32.Build.0 = Debug|Win32
+		{A40AA7C9-F622-4E1B-AA06-E7B4B08F9C6B}.Release|Win32.ActiveCfg = Release|Win32
+		{A40AA7C9-F622-4E1B-AA06-E7B4B08F9C6B}.Release|Win32.Build.0 = Release|Win32
+		{6C4B7681-56B0-48CE-AE34-9AC70B1FA0BE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6C4B7681-56B0-48CE-AE34-9AC70B1FA0BE}.Debug|Win32.Build.0 = Debug|Win32
+		{6C4B7681-56B0-48CE-AE34-9AC70B1FA0BE}.Release|Win32.ActiveCfg = Release|Win32
+		{6C4B7681-56B0-48CE-AE34-9AC70B1FA0BE}.Release|Win32.Build.0 = Release|Win32
+		{1EE4FF1B-F8C2-4507-ADC7-31B5F71C00C9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1EE4FF1B-F8C2-4507-ADC7-31B5F71C00C9}.Debug|Win32.Build.0 = Debug|Win32
+		{1EE4FF1B-F8C2-4507-ADC7-31B5F71C00C9}.Release|Win32.ActiveCfg = Release|Win32
+		{1EE4FF1B-F8C2-4507-ADC7-31B5F71C00C9}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

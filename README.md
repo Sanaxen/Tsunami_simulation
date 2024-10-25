@@ -43,7 +43,7 @@ https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_datas
 - リアルタイムで結果をレンダリング   
  <img src=./images/a.gif >  
   2Dの場合はTSUNAMIリアルタイム2DViwer.bat  
-  3Dの場合はTSUNAMIリアルタイム3DViwer.bat
+  3Dの場合はTSUNAMI3DViwer.bat
 
 レンダリングするには"CalculationParameters.txt"を修正する必要があります。
 <img src=./images/image02.png >  
@@ -101,6 +101,11 @@ https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_datas
 
 ## その他のシミュレーション  
 
+Tsunami_simulation_Run.bat を修正する必要があります。  
+修正しなくても計算上の問題は無いですがViewerで表示すると波高のスケールが大きすぎてしまいます。
+``
+set WAVE_SCALE=8000  -> set WAVE_SCALE=80
+``
 - 隕石衝突（KT_inmpact同レベル)Test
 - 隕石衝突（KT_inmpact同レベル)(日本全体)  
 
