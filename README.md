@@ -38,17 +38,19 @@ https://github.com/Sanaxen/Tsunami_simulation/releases/download/v0.1.0/tsu_datas
 #### 初期化  
 
 - シミュレーションを実行する前に` clear.bat `, ` init.bat ` を実行して不要なファイルを削除して下さい。  
-- 計算データ設定バッチを実行して必要なファイルをコピー
-- Tsunami_simulation_Run.bat を実行
+- 計算データ設定バッチを実行して必要なファイルをコピー  
+  例えば `安政東海地震v2.bat` を実行すると安政東海地震の計算に必要なファイルが設定される。
+- ``Tsunami_simulation_Run.bat`` を実行  
+  Tsunami_simulation_Run.batでは計算環境の調整を環境変数でしていしているため必要に応じて修正
 - リアルタイムで結果をレンダリング   
  <img src=./images/a.gif >  
-  2Dの場合はTSUNAMIリアルタイム2DViwer.bat  
-  3Dの場合はTSUNAMI3DViwer.bat
+  2Dの場合は `TSUNAMIリアルタイム2DViwer.bat`  
+  3Dの場合は `TSUNAMI3DViwer.bat`
 
-レンダリングするには"CalculationParameters.txt"を修正する必要があります。
+レンダリングするには ``CalculationParameters.txt``を修正する必要があります。
 <img src=./images/image02.png >  
 
-3Dの場合でレンダリングするには  0を１に書き換えて下さい。
+3Dの場合でレンダリングするには  0 を 1 に書き換えて下さい。
 <img src=./images/image03.png >  
 
 利用可能なシミュレーションおよび計算データ設定バッチは以下の通り。  
