@@ -232,3 +232,63 @@ visual studio 2019 community
 
 [GLUI User Interface Library](https://sourceforge.net/projects/glui/)  
 
+--- 
+# References  
+**流体数値計算**  
+- モデルを意識した地学教材，とくに地震分野　新しい地学教育の試み － 日本地震学会　岡本義雄（大阪教育大学附属高等学校天王寺校舎）  
+- 応用数値解析特論I　Projection法による混相流体解析　②圧力（非移流相）の解法  
+- High Order Finite Difference Methods　Graeme Sarson　University of Newcastle  
+- 偏微分方程式の数値解法 （津波シミュレーションへの応用） 岡山大学環境生命環境科学研究科 生命環境学専攻 渡辺研究室 應谷 洋二，山本和弘，ハスントヤ，渡辺雅二  
+- Scale-space and edge detection using anisotropic diffusion　 Pietro Perona , Jitendra Malik  
+- Compact Finite Difference Schemes with Spectral-like Resolution　SANJIVA K. LELE  
+  
+**津波解析一般**  
+- 「平 成 17 年 度　宮古湾における津波防災対策検討調査業務委託報告書」  
+- 非線形不規則波浪を用いた数値計算と模型実験の港湾設計への活用に関する研究　平成 １４ 年 １１ 月　平山克也  
+- 津波予報への数値シミュレーション技術の活用　林 豊（気象研究所）  
+- 新潟県沿岸域の離岸流生成機構の解明に関する研究 水工学研究室 竹林 剛 指導教官 細山田 得三  
+- 新潟県中越沖地震における津波シミュレーション　第25 回 土木学会関東支部新潟会研究調査発表会論文集， 2007 年11 月　長岡技術科学大学大学院 前田 祥吾　長岡技術科学大学 正会員 犬飼 直之  
+- 地震動シミュレーションから得られる海底地盤の鉛直変位を用いた 津波シミュレーション　日本地震工学会論文集 第 12 巻、第 4 号（特集号）、2012  
+- 津波浸水想定の設定の手引きVer.1.20平成24 年4 月国土交通省水管理・国土保全局海岸室　国土交通省国土技術政策総合研究所河川研究部海岸研究室  
+- 原子力発電所の津波評価技術 平成14 年2 月　土木学会原子力土木委員会・津波評価部会  
+- 「津波解析コードの整備及び津波の河川遡上解析 に関する報告書/原子力安全基盤機構」  
+- 津波の河川遡上解析の手引き（案）平成19 年５月　(財)国土技術研究センター  
+- 津波の河川遡上に関する数値計算の実際　岩崎敏夫　安部至雄　橋本潔  
+- 「GISを利用した津波遡上計算と被害推定法」小谷　美佐，今村　文彦，首藤　伸夫  
+- 遠地津波の数値計算 ―線形長波式と線形Boussinesq式による計算結果の比較 谷岡勇市郎 北海道大学  
+- 港湾技術研究所　Vol.30,No.1 1991/3  
+- 相田勇，東京大学地震研究所彙報，Vol.52,pp71-101，1977  
+- 相田勇（1977）：陸上に溢れる津波の数値実験－高知県須崎および宇佐の場合－，東京大学地震研究所彙報，Vol.52， pp.441-460.  
+- 松富秀夫(1990):仮想水深法、打ち切り水深法による陸上氾濫計算の精度に関するー考察、東北地域災害科学研究、第２６巻、pp.63-65  
+- Okada, Y(1985). Surface Deformation due to Shear and Tensile Faults in a Half Space,  
+Bull. Seism. Soc. Am. 75, pp.1135-1154  
+- Mansinha, L. and Smylie, D. E.，“The displacement fields of inclined faults”，  
+Bulletin of the Seismological Society of America，Vol.61，No.5，(1971)， 1433-1440  
+- improved linear dispersion characteristics: 2. A slowly varying bathymetry." Coastal Eng.,  
+Vol. 18, PP. 183–205.  
+  
+**非線形分散波**  
+- Madsen, P. A. and Sorensen, O. R. (1992). "A new form of the Boussinesq equations with  
+- 海岸工学論文集 45(1998)非線形分散波理論式に関する多段階混合差分スキームの提案　原信彦・岩瀬浩之・後藤智明  
+- 陽解法による新しい非線形分散波理論の津波数値計算法の提案　鴫原良典、今村文彦  
+- 非線形分散波理論を用いた 実用的な津波計算モデル 岩瀬浩之、見上敏文、後藤智明  
+- 非線形分散波理論の津波数値解析への適用性と新しい数値モデルの提案　鴫原良典、今村文彦  
+  
+**高潮計算**  
+- Super Gradient Wind(SGW)を考慮した台風の風の推算と高潮数値計算　的場萌実・村上和男・柴木秀之  
+- 河口低平農地における高潮氾濫モデルに関する研究　桐　博英  
+- 高潮と高波の同時生起確率特性に関する研究　國富, 將嗣  
+- 台風による高潮被害想定手法の開―数値シミュレーションによる高潮の再現―  
+
+**隕石衝突による津波計算** 
+- シミュレーションの方法は「K/T-impactによる津波の発生」を参考にしている。  
+※「K/T-impactによる津波の発生」藤本浩介・今村文彦  
+
+---  
+# document  
+[津波シミュレータ仕様書](https://github.com/Sanaxen/Tsunami_simulation/tree/main/project_and_run/doc/津波シミュレータ仕様.pdf)  
+[津波シミュレータ・マニュアル](https://github.com/Sanaxen/Tsunami_simulation/tree/main/project_and_run/doc/津波シミュレータ・マニュアル.pdf)  
+[津波シミュレーション・チュートリアル](https://github.com/Sanaxen/Tsunami_simulation/tree/main/project_and_run/doc/津波シミュレーション・チュートリアル.pdf)  
+[断層破壊による地盤変移計算](https://github.com/Sanaxen/Tsunami_simulation/tree/main/project_and_run/doc/断層破壊による地盤変移計算.pdf)  
+[地形データ作成手順](https://github.com/Sanaxen/Tsunami_simulation/tree/main/project_and_run/doc/地形データ作成手順.pdf)  
+[河川氾濫解析](https://github.com/Sanaxen/Tsunami_simulation/tree/main/project_and_run/doc/河川氾濫解析.pdf)  
