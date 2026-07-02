@@ -1,11 +1,23 @@
 # Prerequisites
 *.d
 
+*.lastbuildstate
+*.cache
+
 # Compiled Object files
 *.slo
 *.lo
 *.o
 *.obj
+*.suo
+*.db
+*.ipch
+*.iobj
+*.ipdb
+*.tlog
+*.pdb
+*.user
+*.recipe
 
 # Precompiled Headers
 *.gch
@@ -30,3 +42,4 @@
 *.exe
 *.out
 *.app
+project_and_run/.vs/tsu/FileContentIndex/60557c2b-fd91-497f-a291-3e26719f9d25.vsidx
