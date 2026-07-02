@@ -1,2 +1,3 @@
 #msbuild.exe freeglut-2.8.0\VisualStudio\2019\freeglut.vcxproj  /t:Rebuild /p:Configuration=Release /p:Platform=Win32
-msbuild.exe freeglut-2.8.0\VisualStudio\2019\freeglut.vcxproj  /t:Rebuild /p:Configuration=Release /p:Platform=x64
+#msbuild.exe freeglut-2.8.0\VisualStudio\2019\freeglut.vcxproj  /t:Rebuild /p:Configuration=Release /p:Platform=x64
+msbuild.exe freeglut-2.8.0\VisualStudio\2022\freeglut.vcxproj  /t:Rebuild /p:Configuration=Release /p:Platform=x64
