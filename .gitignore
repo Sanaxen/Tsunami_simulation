@@ -3,6 +3,7 @@
 
 *.lastbuildstate
 *.cache
+*.log
 
 # Compiled Object files
 *.slo
