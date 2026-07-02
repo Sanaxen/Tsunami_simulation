@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files\microsoft visual studio\2022\community\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="17.0">
+ <Targets>
+  <Target Name="D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\bin\x64\Release\tu_viewer.exe">
+   <Modules>
+    <Module Name="tu_viewer.exe">
+     <Namespaces>
+      <Namespace Name="WindowsFormsApplication1">
+       <Types>
+        <Type Name="Form1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Dispose(System.Boolean)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="pfc" TypeName="DisposableFieldsShouldBeDisposed" Category="Microsoft.Usage" CheckId="CA2213" Status="Active" Created="2026-07-01 23:52:56Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1" File="Form1.Designer.cs" Line="16">'Form1' は、IDisposable 型 'PrivateFontCollection' であるフィールド 'Form1.pfc' を含んでいます。このフィールドで Dispose または Close を呼び出すには、'Form1' の Dispose メソッドを変更してください。</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="DisposableFieldsShouldBeDisposed" Category="Microsoft.Usage" CheckId="CA2213">
+   <Name>破棄可能なフィールドは破棄されなければなりません</Name>
+   <Description>IDisposable を実装する型が IDisposable を実装するフィールドを所有する場合、カプセル化する型の Dispose() の実装は、破棄可能な各フィールドで Dispose() を呼び出さなければなりません。</Description>
+   <Resolution Name="Default">{0} は、IDisposable 型 {2} であるフィールド {1} を含んでいます。このフィールドで Dispose または Close を呼び出すには、{0} の Dispose メソッドを変更してください。</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182328.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="17.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">カテゴリ</String>
+  <String Key="Certainty">確実性</String>
+  <String Key="CollapseAll">すべて折りたたむ</String>
+  <String Key="CheckId">ID の確認</String>
+  <String Key="Error">エラー</String>
+  <String Key="Errors">エラー</String>
+  <String Key="ExpandAll">すべて展開</String>
+  <String Key="Help">ヘルプ</String>
+  <String Key="Line">行</String>
+  <String Key="Messages">メッセージ</String>
+  <String Key="LocationNotStoredInPdb">[場所は Pdb に格納されていません]</String>
+  <String Key="Project">プロジェクト</String>
+  <String Key="Resolution">解像度</String>
+  <String Key="Rule">ルール</String>
+  <String Key="RuleFile">規則ファイル</String>
+  <String Key="RuleDescription">規則の説明</String>
+  <String Key="Source">ソース</String>
+  <String Key="Status">状態</String>
+  <String Key="Target">ターゲット</String>
+  <String Key="Warning">警告</String>
+  <String Key="Warnings">警告</String>
+  <String Key="ReportTitle">Code Analysis レポート</String>
+ </Localized>
+</FxCopReport>

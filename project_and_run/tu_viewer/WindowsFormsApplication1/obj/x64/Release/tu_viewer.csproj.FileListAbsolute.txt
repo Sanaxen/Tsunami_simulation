@@ -1,0 +1,17 @@
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\bin\x64\Release\tu_viewer.exe.config
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\bin\x64\Release\tu_viewer.exe.manifest
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\bin\x64\Release\tu_viewer.application
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\bin\x64\Release\tu_viewer.exe
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\bin\x64\Release\tu_viewer.pdb
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\bin\x64\Release\tu_viewer.exe.CodeAnalysisLog.xml
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\bin\x64\Release\tu_viewer.exe.lastcodeanalysissucceeded
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.csproj.AssemblyReference.cache
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\WindowsFormsApplication1.Form1.resources
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.Properties.Resources.resources
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.csproj.GenerateResource.cache
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.csproj.CoreCompileInputs.cache
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.TrustInfo.xml
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.exe.manifest
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.application
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.exe
+D:\github\Tsunami_simulation\project_and_run\tu_viewer\WindowsFormsApplication1\obj\x64\Release\tu_viewer.pdb
