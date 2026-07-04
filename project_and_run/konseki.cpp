@@ -169,7 +169,7 @@ void latitudeLongitude_to_Bitmap(int w, int h, double longitude[4], double latit
 	yy = (int)((h-1)*(la - latitude[0])/(latitude[2] - latitude[0])+0.5);
 }
 
-
+int Konseki_db = 1;
 int Konseki( char* parameterFile)
 {
 	char drive[_MAX_DRIVE];	// ドライブ名
@@ -270,12 +270,23 @@ int Konseki( char* parameterFile)
 
 	sprintf(fname, "%s%s%s_KONSEKI.csv", drive, dir, IDname);
 
+	Konseki_db = 1;
 	fp = fopen( fname, "r");
 	if ( fp == NULL )
 	{
 		printf("[%s]を開くことが出来ません\n", fname);
-		return -1;
+
+		sprintf(fname, "%s%s%s_KONSEKI2.csv", drive, dir, IDname);
+		Konseki_db = 2;
+		fp = fopen( fname, "r");
+
+		if ( fp == NULL )
+		{
+			printf("[%s]を開くことが出来ません\n", fname);
+			return -1;
+		}
 	}
+	
 	std::vector<konsekiValue> konsekiList;
 
 	csv_getline csv;
@@ -348,8 +359,8 @@ int Konseki( char* parameterFile)
 		ko.hight = atof(value);
 		
 		//文献記載_痕跡パターン
-		//getColumValue(csv.buffer(), 37, value);
-		getColumValue(csv.buffer(), 43, value);
+		getColumValue(csv.buffer(), 37, value);
+		if ( Konseki_db == 2 ) getColumValue(csv.buffer(), 43, value);
 
 		ko.type = 999;
 		if ( strcmp(value, "遡上高") == 0 ) ko.type = 1;
@@ -366,15 +377,15 @@ int Konseki( char* parameterFile)
 		}
 
 		//文献記載_高さ定義_信頼度
-		//getColumValue(csv.buffer(), 38, value);
-		getColumValue(csv.buffer(), 44, value);
+		getColumValue(csv.buffer(), 38, value);
+		if ( Konseki_db == 2 ) getColumValue(csv.buffer(), 44, value);
 		if ( strcmp(value, "◎") == 0 ) ko.h_confidence = 'A';
 		if ( strcmp(value, "○") == 0 ) ko.h_confidence = 'B';
 		if ( strcmp(value, "△") == 0 ) ko.h_confidence = 'C';
 
 		//文献信頼度
-		//getColumValue(csv.buffer(), 54, value);
-				getColumValue(csv.buffer(), 60, value);
+		getColumValue(csv.buffer(), 54, value);
+		if ( Konseki_db == 2 ) getColumValue(csv.buffer(), 60, value);
 		if ( strcmp(value, "◎") == 0 ) ko.confidence = 'A';
 		if ( strcmp(value, "○") == 0 ) ko.confidence = 'B';
 		if ( strcmp(value, "△") == 0 ) ko.confidence = 'C';
@@ -389,8 +400,8 @@ int Konseki( char* parameterFile)
 			continue;
 		}
 
-		//getColumValue(csv.buffer(), 46, value);
-		getColumValue(csv.buffer(), 52, value);
+		getColumValue(csv.buffer(), 46, value);
+		if ( Konseki_db == 2 ) getColumValue(csv.buffer(), 52, value);
 		ko.rank = value[0];
 		if ( !isalpha(ko.rank) ) ko.rank = '?';
 
