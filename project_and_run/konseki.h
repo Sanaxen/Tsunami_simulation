@@ -113,7 +113,7 @@ public:
 	csv_getline()
 	{
 		eof = 0;
-		size = 4096;
+		size = 4096*10;
 		buf = new char [size];
 	}
 	~csv_getline()
