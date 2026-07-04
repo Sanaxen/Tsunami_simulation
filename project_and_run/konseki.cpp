@@ -703,8 +703,8 @@ int Konseki( char* parameterFile)
 		"   <LatLonBox>\n"
 		"      <north>%f</north>\n"
         "      <south>%f</south>\n"
-		"      <east>%f</east>\n"
 		"      <west>%f</west>\n"
+		"      <east>%f</east>\n"
 		"   </LatLonBox>\n"
 		"</GroundOverlay>\n",
 		IDname, IDname, latitude[0], latitude[2], longitude[0], longitude[1]

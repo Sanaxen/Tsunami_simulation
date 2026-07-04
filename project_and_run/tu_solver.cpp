@@ -6188,8 +6188,8 @@ void CreateImage(Solver& solv, double* solv_w, int i, double min, double max, do
 				"   <LatLonBox>\n"
 				"      <north>%f</north>\n"
                 "      <south>%f</south>\n"
-				"      <east>%f</east>\n"
 				"      <west>%f</west>\n"
+				"      <east>%f</east>\n"
 				"   </LatLonBox>\n"
 				"</GroundOverlay>\n",
 				h1,m1,s1,
@@ -6375,8 +6375,8 @@ void CreateImage(Solver& solv, double* solv_w, int i, double min, double max, do
 				"   <LatLonBox>\n"
 				"      <north>%f</north>\n"
                 "      <south>%f</south>\n"
-				"      <east>%f</east>\n"
 				"      <west>%f</west>\n"
+				"      <east>%f</east>\n"
 				"   </LatLonBox>\n"
 				"</GroundOverlay>\n"
 				"  </Folder>\n"
