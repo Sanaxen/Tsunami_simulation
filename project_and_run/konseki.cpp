@@ -298,7 +298,7 @@ int Konseki( char* parameterFile)
 	while( csv.get(fp) != NULL )
 	{
 		konsekiValue ko;
-		//printf("%s", buf);
+		//printf("%s\n", buf);
 
 		getColumValue(csv.buffer(), 0, value);
 		ko.id = atoi(value);
@@ -348,7 +348,8 @@ int Konseki( char* parameterFile)
 		ko.hight = atof(value);
 		
 		//文献記載_痕跡パターン
-		getColumValue(csv.buffer(), 37, value);
+		//getColumValue(csv.buffer(), 37, value);
+		getColumValue(csv.buffer(), 43, value);
 
 		ko.type = 999;
 		if ( strcmp(value, "遡上高") == 0 ) ko.type = 1;
@@ -365,13 +366,15 @@ int Konseki( char* parameterFile)
 		}
 
 		//文献記載_高さ定義_信頼度
-		getColumValue(csv.buffer(), 38, value);
+		//getColumValue(csv.buffer(), 38, value);
+		getColumValue(csv.buffer(), 44, value);
 		if ( strcmp(value, "◎") == 0 ) ko.h_confidence = 'A';
 		if ( strcmp(value, "○") == 0 ) ko.h_confidence = 'B';
 		if ( strcmp(value, "△") == 0 ) ko.h_confidence = 'C';
 
 		//文献信頼度
-		getColumValue(csv.buffer(), 54, value);
+		//getColumValue(csv.buffer(), 54, value);
+				getColumValue(csv.buffer(), 60, value);
 		if ( strcmp(value, "◎") == 0 ) ko.confidence = 'A';
 		if ( strcmp(value, "○") == 0 ) ko.confidence = 'B';
 		if ( strcmp(value, "△") == 0 ) ko.confidence = 'C';
@@ -386,7 +389,8 @@ int Konseki( char* parameterFile)
 			continue;
 		}
 
-		getColumValue(csv.buffer(), 46, value);
+		//getColumValue(csv.buffer(), 46, value);
+		getColumValue(csv.buffer(), 52, value);
 		ko.rank = value[0];
 		if ( !isalpha(ko.rank) ) ko.rank = '?';
 
