@@ -2733,6 +2733,14 @@ int tu_solver( char* parameterFile)
 								if (grid.elevation[i*grid.iX + j] > e) grid.elevation[i*grid.iX + j] = e;
 								grid.topog[i*grid.iX + j] = 255;
 							}
+							if (TO_WATER2(topography_data_edit.cell(i, j)))
+							{
+								double e = grid.elevation[(i)*grid.iX + j];
+
+								e = e - max(3.0, 100-topography_data_edit.cell(i, j).b);
+								if (grid.elevation[i * grid.iX + j] > e) grid.elevation[i * grid.iX + j] = e;
+								grid.topog[i * grid.iX + j] = 255;
+							}
 						}
 					}
 					else
