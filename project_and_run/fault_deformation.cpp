@@ -1437,8 +1437,21 @@ int fault_deformation( char* parameterFile)
 
 	int t_flag = 0;
 	char buf[256];
+
+	if (getenv("FAULT_Z_SCALE"))
+	{
+		fault_z_scale = atof(getenv("FAULT_Z_SCALE"));
+		if (fault_z_scale <= 0) fault_z_scale = 1.0;
+	}
+	if (getenv("XY_DISPLACEMENT"))
+	{
+		horizontal_displacement = atoi(getenv("XY_DISPLACEMENT"));
+	}
 	while( fgets(buf, 256, fp ) != NULL )
 	{
+		printf("=>%s\n", buf);
+		if (strncmp(buf, "FAULT_Z_SCALE", 13) == 0) printf("@@@\n");
+
 		if ( strcmp(buf, "ID\n") == 0 )
 		{
 			fgets(IDname, 256, fp);
@@ -1612,11 +1625,7 @@ int fault_deformation( char* parameterFile)
 			horizontal_displacement = atoi(buf);
 			continue;
 		}
-		if (getenv("XY_DISPLACEMENT"))
-		{
-			horizontal_displacement = atoi(getenv("XY_DISPLACEMENT"));
-			continue;
-		}
+
 		//fault_z_scale
 		if (strncmp(buf, "FAULT_Z_SCALE", 13) == 0)
 		{
@@ -1625,15 +1634,10 @@ int fault_deformation( char* parameterFile)
 			if (fault_z_scale <= 0) fault_z_scale = 1.0;
 			continue;
 		}
-		if (getenv("FAULT_Z_SCALE"))
-		{
-			fault_z_scale = atof(getenv("FAULT_Z_SCALE"));
-			if (fault_z_scale <= 0) fault_z_scale = 1.0;
-			continue;
-		}
-
 	}
 	fclose(fp);
+
+
 
 	if (!set_latitude || !set_longitude)
 	{
