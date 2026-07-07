@@ -21,6 +21,8 @@
 #define absorbingZone (25+AREA_OFFSET)
 #define attenuation  0.03
 
+double fault_z_scale = 1.0;
+
 static FILE* logFile = 0;
 void log_printf(char* format, ...)
 {
@@ -1233,6 +1235,8 @@ double* CalcFaultListWrite(char* drive, char* dir, int w, int h, double longitud
 			const int ii = k / w;
 			const int jj = k % w;
 
+			zval[ii * w + jj] = zval[ii * w + jj] * fault_z_scale;
+
 			double dw = absorbingZoneBounray(w, h, ii, jj, -1);
 			zval[ii*w + jj] *= dw;
 			//zval[ii*w+jj] *= Attenuation(zval[ii*w+jj]);
@@ -1613,6 +1617,21 @@ int fault_deformation( char* parameterFile)
 			horizontal_displacement = atoi(getenv("XY_DISPLACEMENT"));
 			continue;
 		}
+		//fault_z_scale
+		if (strncmp(buf, "FAULT_Z_SCALE", 13) == 0)
+		{
+			fgets(buf, 256, fp);
+			fault_z_scale = atof(buf);
+			if (fault_z_scale <= 0) fault_z_scale = 1.0;
+			continue;
+		}
+		if (getenv("FAULT_Z_SCALE"))
+		{
+			fault_z_scale = atoi(getenv("FAULT_Z_SCALE"));
+			if (fault_z_scale <= 0) fault_z_scale = 1.0;
+			continue;
+		}
+
 	}
 	fclose(fp);
 
