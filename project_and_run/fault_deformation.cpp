@@ -566,8 +566,8 @@ void CalcFault(int w, int h, double longitude[4], double latitude[4], FaultLine&
 		//}
 		//double uz = zz[i*w + j] / dupcalc[i*w + j];
 		double uz = zz[i*w + j] ;
-		zval[i*w + j] += uz;
-		depth_map[i*w + j] += uz;
+		zval[i*w + j] += uz* fault_z_scale;
+		depth_map[i*w + j] += uz* fault_z_scale;
 		if (uzmax < uz) uzmax = zval[i*w + j];
 		if (uzmin > uz) uzmin = zval[i*w + j];
 	}
@@ -1235,7 +1235,7 @@ double* CalcFaultListWrite(char* drive, char* dir, int w, int h, double longitud
 			const int ii = k / w;
 			const int jj = k % w;
 
-			zval[ii * w + jj] = zval[ii * w + jj] * fault_z_scale;
+			zval[ii * w + jj] = zval[ii * w + jj];
 
 			double dw = absorbingZoneBounray(w, h, ii, jj, -1);
 			zval[ii*w + jj] *= dw;
@@ -1627,7 +1627,7 @@ int fault_deformation( char* parameterFile)
 		}
 		if (getenv("FAULT_Z_SCALE"))
 		{
-			fault_z_scale = atoi(getenv("FAULT_Z_SCALE"));
+			fault_z_scale = atof(getenv("FAULT_Z_SCALE"));
 			if (fault_z_scale <= 0) fault_z_scale = 1.0;
 			continue;
 		}
