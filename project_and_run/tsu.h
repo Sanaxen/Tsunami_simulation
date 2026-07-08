@@ -77,6 +77,7 @@ using namespace concurrency;
 #define IS_INVIOLABILITY(rgb)	(rgb.r == 255 && rgb.g == 102 && rgb.b == 0)
 
 #define TO_LAND(rgb)	(rgb.r==255 && rgb.g==0 && rgb.b == 0)
+#define TO_LAND2(rgb)	(rgb.r==255 && rgb.g==0 && rgb.b >= 1)
 #define TO_WATER(rgb)	(rgb.r==0 && rgb.g==0 && rgb.b == 255)
 #define TO_WATER2(rgb)	(rgb.r==0 && rgb.g==0 && rgb.b >= 100)
 
