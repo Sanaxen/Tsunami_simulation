@@ -219,6 +219,8 @@ int tu_solver( char* parameterFile)
 	std::vector<Barir> barir;
 	double river_running_time = 600;
 
+	double edit_elev = 0.0;
+
 	char drive[_MAX_DRIVE];	// ドライブ名
     char dir[_MAX_DIR];		// ディレクトリ名
     char fname[_MAX_FNAME];	// ファイル名
@@ -325,6 +327,13 @@ int tu_solver( char* parameterFile)
 					remove(IDname);
 				}
 			}
+			continue;
+		}
+		//edit_elev
+		if (strcmp(buf, "EDIT_ELEV\n") == 0)
+		{
+			fgets(buf, 256, fp);
+			sscanf(buf, "%lf", &edit_elev);
 			continue;
 		}
 		if ( strcmp(buf, "H_MAX\n") == 0 )
@@ -2636,12 +2645,55 @@ int tu_solver( char* parameterFile)
 
 			delete[] elv;
 
+			for (int i = ZERO_AREA_WD; i < JY - ZERO_AREA_WD; i++)
+			{
+				for (int j = ZERO_AREA_WD; j < IX - ZERO_AREA_WD; j++)
+				{
+					int r1 = 0;
+					int r2 = 0;
+					for (int ii = i - 2; ii < i + 2; ii++)
+					{
+						for (int jj = j - 2; jj < j + 2; jj++)
+						{
+							if (grid.topog[ii * grid.iX + jj] == 0) r1 = 1;
+							if (grid.topog[ii * grid.iX + jj] == 255) r2 = 1;
+						}
+						if (r1 == 1 && r2 == 1) break;
+					}
+
+					if (r1 == 1 && r2 == 1)
+					{
+						double e = 0.25 * (grid.h[(i - 1) * grid.iX + j] + grid.h[(i + 1) * grid.iX + j] + grid.h[i * grid.iX + (j - 1)] + grid.h[i * grid.iX + (j - 1)]);
+
+						e = e + edit_elev;
+						if (e < EDIT_WTR_DEPTH )
+						{
+							e = EDIT_WTR_DEPTH;
+						}
+						grid.elevation[i * grid.iX + j] = e;
+					}
+				}
+			}
 
 			///
 			for (int i = ZERO_AREA_WD; i < JY - ZERO_AREA_WD; i++)
 			{
 				for (int j = ZERO_AREA_WD; j < IX - ZERO_AREA_WD; j++)
 				{
+					//標高を下げる
+					if (TO_LAND2(topography_data_edit.cell(i, j)))
+					{
+						double e = 0.25 * (grid.h[(i - 1) * grid.iX + j] + grid.h[(i + 1) * grid.iX + j] + grid.h[i * grid.iX + (j - 1)] + grid.h[i * grid.iX + (j - 1)]);
+
+						e = e - topography_data_edit.cell(i, j).b;
+						if (e < EDIT_WTR_DEPTH )
+						{
+							e = EDIT_WTR_DEPTH;
+						}
+						grid.elevation[i * grid.iX + j] = e;
+						//grid.topog[i * grid.iX + j] = 0;
+					}
+
 					//陸地
 					if (grid.topog[i*grid.iX + j] == 0)
 					{
