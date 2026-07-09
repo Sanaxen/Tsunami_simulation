@@ -154,6 +154,8 @@ int tu_solver( char* parameterFile)
 	int ogjfile = 1;
 	int csv2obj = 0;
 
+	double fault_z_scale = 1.0;
+
 	double stopHeight = -10000000.0;
 
 	int filterCycle1 = FILTER_CYCLE3;
@@ -569,6 +571,14 @@ int tu_solver( char* parameterFile)
 			fgets(buf, 256, fp);
 			sscanf(buf, "%lf,%lf,%lf", &h, &m, &s); longitude[3] = (h+m/60.0 + s/3600.0)*3.1415926535897/180.0;;
 			printf("“ì¼:%d‹%dŒ%.3f -> %f\n", (int)h, (int)m, s, longitude[3]);
+			continue;
+		}
+		//fault_z_scale
+		if (strncmp(buf, "FAULT_Z_SCALE", 13) == 0)
+		{
+			fgets(buf, 256, fp);
+			fault_z_scale = atof(buf);
+			if (fault_z_scale <= 0) fault_z_scale = 1.0;
 			continue;
 		}
 
@@ -4712,7 +4722,7 @@ int tu_solver( char* parameterFile)
 
 						//for (int jj = ZERO_AREA_WD; jj < grid.iX - ZERO_AREA_WD; jj++)
 						{
-							grid.w[ii*grid.iX + jj] += solv.initial_wave_list[displacementList[k]].w_last[ii*grid.iX + jj] * inv_tau_n;
+							grid.w[ii*grid.iX + jj] += solv.initial_wave_list[displacementList[k]].w_last[ii*grid.iX + jj] * inv_tau_n * fault_z_scale;
 							if (CrustalMovement)
 							{
 								www[ii*grid.iX + jj] = grid.w_start_org[ii*grid.iX + jj] * inv_tau_n;
