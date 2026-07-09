@@ -1440,8 +1440,8 @@ int fault_deformation( char* parameterFile)
 
 	if (getenv("FAULT_Z_SCALE"))
 	{
-		fault_z_scale = atof(getenv("FAULT_Z_SCALE"));
-		if (fault_z_scale <= 0) fault_z_scale = 1.0;
+		//fault_z_scale = atof(getenv("FAULT_Z_SCALE"));
+		//if (fault_z_scale <= 0) fault_z_scale = 1.0;
 	}
 	if (getenv("XY_DISPLACEMENT"))
 	{
@@ -1450,7 +1450,7 @@ int fault_deformation( char* parameterFile)
 	while( fgets(buf, 256, fp ) != NULL )
 	{
 		printf("=>%s\n", buf);
-		if (strncmp(buf, "FAULT_Z_SCALE", 13) == 0) printf("@@@\n");
+		//if (strncmp(buf, "FAULT_Z_SCALE", 13) == 0) printf("@@@\n");
 
 		if ( strcmp(buf, "ID\n") == 0 )
 		{
@@ -1627,12 +1627,15 @@ int fault_deformation( char* parameterFile)
 		}
 
 		//fault_z_scale
-		if (strncmp(buf, "FAULT_Z_SCALE", 13) == 0)
+		if (0)
 		{
-			fgets(buf, 256, fp);
-			fault_z_scale = atof(buf);
-			if (fault_z_scale <= 0) fault_z_scale = 1.0;
-			continue;
+			if (strncmp(buf, "FAULT_Z_SCALE", 13) == 0)
+			{
+				fgets(buf, 256, fp);
+				fault_z_scale = atof(buf);
+				if (fault_z_scale <= 0) fault_z_scale = 1.0;
+				continue;
+			}
 		}
 	}
 	fclose(fp);
