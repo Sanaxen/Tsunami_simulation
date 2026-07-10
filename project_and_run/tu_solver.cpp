@@ -5424,11 +5424,11 @@ int tu_solver( char* parameterFile)
 			solv.sediment = sediment;
 
 			solv.log_printf("l“I”íŠQ‘” (–hĞˆÓ¯’á‚¢):%d (–hĞˆÓ¯‚‚¢):%d\n", (int)victim_tot2, (int)victim_tot1);
-			solv.log_printf("Œš‘¢•¨—¬o”íŠQ‘”:%d\n", (int)outflow_number);
-			solv.log_printf("Œš‘¢•¨”íŠQ‘” ‘S‰ó:%d ”¼‰ó:%d °ãZ…:%d °‰ºZ…:%d\n", 
-				(int)all_destruction, (int)partial_destruction, (int)inundation, (int)under);
-			solv.log_printf("”ğ“ïŠ”ğ“ïÒ”:%d ”ğ“ïŠŠO”ğ“ïÒ:%d\n", 
-				(int)evacuees_number, (int)((double)evacuees_number*0.5));
+			solv.log_printf("Œš‘¢•¨—¬o”íŠQ‘”:%.0f\n", outflow_number);
+			solv.log_printf("Œš‘¢•¨”íŠQ‘” ‘S‰ó:%.0f ”¼‰ó:%.0f °ãZ…:%.0f °‰ºZ…:%.0f\n", 
+				all_destruction, partial_destruction, inundation, under);
+			solv.log_printf("”ğ“ïŠ”ğ“ïÒ”:%.0f ”ğ“ïŠŠO”ğ“ïÒ:%.0f\n", 
+				evacuees_number, evacuees_number*0.5);
 
 			double tot_sediment = 0.0001*(WOODEN_RATE*(all_destruction+0.5*partial_destruction)*FLOOR_AREA_AVERAGE/RUBBLE_WEGHT_BAS1+
 				(1.0-WOODEN_RATE)*(all_destruction+0.5*partial_destruction)*FLOOR_AREA_AVERAGE/RUBBLE_WEGHT_BAS2);
@@ -6219,7 +6219,8 @@ void CreateImage(Solver& solv, double* solv_w, int i, double min, double max, do
 						}
 						else
 						{
-							pixels2[pos * 4 + 3] = 255;
+							//pixels2[pos * 4 + 3] = 255;
+							pixels2[pos * 4 + 3] = 160;
 						}
 					}
 				}
