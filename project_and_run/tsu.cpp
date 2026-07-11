@@ -2259,7 +2259,7 @@ int Solver::MotionEquation3(AbeNoguera* p, AbeNoguera* cur, double delta_t, doub
 
 	int cutoff_tgt = 0;
 	int cutoff = 0;
-#pragma omp parallel for OMP_SCHEDULE reduction(+:cutoff)
+#pragma omp parallel for OMP_SCHEDULE reduction(+:cutoff,cutoff_tgt)
 	for (int ii__ = 0; ii__ < iX*jY; ii__++)
 	//for ( int i = ZERO_AREA_WD; i < ysz; i++ )
 	{
