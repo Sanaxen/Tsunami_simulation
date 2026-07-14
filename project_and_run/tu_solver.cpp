@@ -2480,13 +2480,29 @@ int tu_solver( char* parameterFile)
 	//河川等の地形修正
 	{
 		sprintf(fname, "%s%stopography_data_edit.bmp", drive, dir);
-		topography_data_edit.Read(fname);
+		bool topography_data_edit_size = true;
 
-		if (topography_data_edit.GetImage())
+		topography_data_edit.Read(fname);
+		if (topography_data_edit.GetImage() == NULL)
+		{
+			topography_data_edit_size = false;
+		}
+		else
+		{
+
+			if (topography_data_edit.GetImage()->width < grid.iX || topography_data_edit.GetImage()->height < grid.jY)
+			{
+				solv.log_printf("ファイル[%s]のサイズが合っていません\n");
+				topography_data_edit_size = false;
+			}
+		}
+
+		if (topography_data_edit.GetImage() && topography_data_edit_size)
 		{
 			const int absorbingZone_ = solv.absorbingZone;
 			const int IX = grid.iX;
 			const int JY = grid.jY;
+
 
 			for (int i = 1; i < JY - 1; i++)
 			{
@@ -6598,7 +6614,7 @@ void ElvContourBitmpa(Solver& solv, double zmin, double zmax, char* drive, char*
 	BitMap elv_color_level;
 
 	sprintf(fname, "%s%s..\\colormap\\elv_colormap.bmp", exe_drive, exe_dir);
-	//printf("%s\n", fname);
+	printf("%s\n", fname);
 
 	elv_color_level.Read(fname);
 
