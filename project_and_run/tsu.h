@@ -18,8 +18,8 @@
 #include <math.h>
 #include <stdarg.h>
 
-#define OMP_SCHEDULE schedule(guided)
-//#define OMP_SCHEDULE schedule(static)
+//#define OMP_SCHEDULE schedule(guided)
+#define OMP_SCHEDULE schedule(static)
 #include "bitmap.h"
 #include "csv2obj.h"
 
