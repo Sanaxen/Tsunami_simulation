@@ -205,16 +205,17 @@ void draw_vector( float scale )
 	glEnable(GL_COLOR_MATERIAL);
 	for ( int i = 0; i < sz; i++ )
 	{
-		glPointSize(3.0f);
+		glPointSize(1.0f);
 		glBegin(GL_POINTS);
-		glColor4f( 1.0, 0.8, 0.9, 0.7f );
+		glColor4f( 1.0, 0.8, 0.9, 0.4f );
 		glVertex3fv(windVectorList[i].s);
 		glEnd();
 
+		glLineWidth(0.1);
 		glBegin( GL_LINES );
-		glColor4f( 1.0, 0.8, 0.9, 0.7f );
+		glColor4f( 129/255.0, 229/255.0, 157/255.0, 0.4f );
 		glVertex3fv(windVectorList[i].s);
-		glColor4f( 1.0, 1.0, 1.0, 0.1f );
+		glColor4f( 91/255.0, 178/255.0, 145/255.0, 0.1f );
 		glVertex3fv(windVectorList[i].e);
 		glEnd();
 	}

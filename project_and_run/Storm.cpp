@@ -446,10 +446,10 @@ int** Storm_Line:: windVector()
 				{
 					continue;
 				}
-				//if ( r > a.rm*5.0 )
-				//{
-				//	continue;
-				//}
+				if ( r > a.rm*2.0 )
+				{
+					continue;
+				}
 
 				//風ベクトルの単位化
 				float xx = wx/ww;
